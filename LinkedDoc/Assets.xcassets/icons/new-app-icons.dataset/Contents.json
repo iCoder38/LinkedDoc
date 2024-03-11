@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "new-app-icons.zip",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
