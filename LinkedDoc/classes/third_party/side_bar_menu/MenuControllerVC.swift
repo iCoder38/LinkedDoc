@@ -17,50 +17,17 @@ class MenuControllerVC: UIViewController {
     
     var arrMenuItemList = ["Dashboard",
                            "Edit Profile",
-                           "My Post",
-                           "Post Free Stuff",
-                           "Request Services",
-                           "Pet Store",
-                           "Sold items",
-                           "Missed Call",
-                           "Chat",
-                           "Reviews Received",
-                           "Items Purchased",
-                           "Orders Received",
-                           "My Cart",
-                           "Manage Appointments",
-                           "My Bookings",
-                           "Wallet",
+                           "Translate",
                            "Change Password",
                            "Help",
-                           "Delete Account",
-                           "Sign out",
+                           "Logout",
     ]
     
-    var arrMenuItemImage = ["m_dashboard",
-                            "m_edit_profile",
-                            "m_my_posts",
-                            "m_submit_new_post",
-                            "m_request_services",
-                            "m_pet_store",
-                            "m_my_products",
-                            "m_missed_call",
-                            "m_chat",
-                            "m_my_orders",
-                            "m_my_orders",
-                            "m_order_received",
-                            "m_my_cart",
-                            "m_appointments",
-                            "m_my_bookings",
-                            "m_wallet",
-                            "m_change_password",
-                            "m_help",
-                            "remove",
-                                "m_sign_out"]
+    var arrMenuItemImage = ["home","edit","edit","help","changePassword","logout"]
     
     @IBOutlet weak var viewNavigation:UIView! {
         didSet {
-            viewNavigation.backgroundColor = NAVIGATION_BACKGROUND_COLOR
+            viewNavigation.backgroundColor = navigation_color
         }
     }
     @IBOutlet weak var btnBack:UIButton!
@@ -81,7 +48,7 @@ class MenuControllerVC: UIViewController {
             tbleView.delegate = self
             tbleView.dataSource = self
             tbleView.tableFooterView = UIView.init(frame: CGRect(origin: .zero, size: .zero))
-            tbleView.backgroundColor = NAVIGATION_BACKGROUND_COLOR
+            tbleView.backgroundColor = navigation_color
             // tbleView.separatorStyle = .none
         }
     }
@@ -127,9 +94,9 @@ class MenuControllerVC: UIViewController {
     }
     
     
-    @objc func logout_WB() {
+    /*@objc func logout_WB() {
         
-        Utils.RiteVetIndicatorShow()
+         
         
         let urlString = BASE_URL_KREASE
         
@@ -208,7 +175,7 @@ class MenuControllerVC: UIViewController {
                 break
             }
         }
-    }
+    }*/
     
     
     
@@ -216,78 +183,7 @@ class MenuControllerVC: UIViewController {
     
     
     
-    @objc func delete_generateOTP() {
-        
-        Utils.RiteVetIndicatorShow()
-        
-        let urlString = BASE_URL_KREASE
-        
-        var parameters:Dictionary<AnyHashable, Any>!
-        if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-            let x : Int = (person["userId"] as! Int)
-            let myString = String(x)
-            
-            parameters = [
-                "action"       :   "deleteotp",
-                "userId"       :   myString,
-//                "OTP":""
-               
-            ]
-        }
-        print("parameters-------\(String(describing: parameters))")
-        
-        AF.request(urlString, method: .post, parameters: parameters as? Parameters).responseJSON {
-            response in
-            
-            switch(response.result) {
-            case .success(_):
-                if let data = response.value {
-                    
-                    let JSON = data as! NSDictionary
-                    print(JSON)
-                    
-                    var strSuccess : String!
-                    strSuccess = JSON["status"]as Any as? String
-                    
-                    var strSuccess2 : String!
-                    strSuccess2 = JSON["msg"]as Any as? String
-                    
-                    if strSuccess == "Success" || strSuccess == "success"  {
-                        Utils.RiteVetIndicatorHide()
-                        
-                        let obj = self.storyboard?.instantiateViewController(withIdentifier: "delete_account_id") as! delete_account
-                         obj.str_delete_account_message = String(strSuccess2)
-                        let navController = UINavigationController(rootViewController: obj)
-                        navController.setViewControllers([obj], animated:true)
-                        self.revealViewController().setFront(navController, animated: true)
-                        self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-                        
-                    }
-                    else {
-                        Utils.RiteVetIndicatorHide()
-                    }
-                    
-                }
-                
-            case .failure(_):
-                print("Error message:\(String(describing: response.error))")
-                Utils.RiteVetIndicatorHide()
-                
-                let alertController = UIAlertController(title: nil, message: SERVER_ISSUE_MESSAGE_ONE+"\n"+SERVER_ISSUE_MESSAGE_TWO, preferredStyle: .actionSheet)
-                
-                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-                    UIAlertAction in
-                    NSLog("OK Pressed")
-                }
-                
-                alertController.addAction(okAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-                break
-            }
-        }
-    }
+    
     
     
 }
@@ -298,7 +194,7 @@ extension MenuControllerVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrMenuItemList.count // arrMenuItemList.count
+        return self.arrMenuItemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -656,7 +552,7 @@ extension MenuControllerVC: UITableViewDataSource {
     
     @objc func pushPageNumber(strMyPageNumber:String) {
        
-        if strMyPageNumber == "21" {
+        /*if strMyPageNumber == "21" {
             
             let alert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account ?",preferredStyle: UIAlertController.Style.alert)
 
@@ -896,7 +792,7 @@ extension MenuControllerVC: UITableViewDataSource {
             navController.setViewControllers([obj], animated:true)
             self.revealViewController().setFront(navController, animated: true)
             self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
+        }*/
         
     }
     

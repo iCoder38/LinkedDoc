@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EC5E1D21F0987491D3A0D52 /* Pods_LinkedDoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1626EA78B1559BB7B1FADCE /* Pods_LinkedDoc.framework */; };
+		5CA754973A54205D34E22C07 /* Pods_LinkedDocTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B54A2341E09476215C46CE9 /* Pods_LinkedDocTests.framework */; };
+		B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF86222B9F27EA00DBB05A /* complete_profile.swift */; };
 		B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */; };
 		B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */; };
 		B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB62B9ED4D600948E89 /* ViewController.swift */; };
@@ -17,6 +20,16 @@
 		B9E52CCD2B9ED4D700948E89 /* LinkedDocTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CCC2B9ED4D700948E89 /* LinkedDocTests.swift */; };
 		B9E52CD72B9ED4D700948E89 /* LinkedDocUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CD62B9ED4D700948E89 /* LinkedDocUITests.swift */; };
 		B9E52CD92B9ED4D700948E89 /* LinkedDocUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CD82B9ED4D700948E89 /* LinkedDocUITestsLaunchTests.swift */; };
+		B9E52CF02B9ED6C400948E89 /* MenuControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CEC2B9ED6C200948E89 /* MenuControllerVC.swift */; };
+		B9E52CF12B9ED6C400948E89 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CED2B9ED6C300948E89 /* SWRevealViewController.m */; };
+		B9E52CF22B9ED6C400948E89 /* MenuControllerVCTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CEF2B9ED6C400948E89 /* MenuControllerVCTableCell.swift */; };
+		B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CF42B9ED70C00948E89 /* Utils.swift */; };
+		B9E52CF82B9ED87500948E89 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CF72B9ED87500948E89 /* loginViewController.swift */; };
+		B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CFA2B9ED90F00948E89 /* select_language.swift */; };
+		B9E52CFE2B9EDA6C00948E89 /* text_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CFD2B9EDA6C00948E89 /* text_language.swift */; };
+		B9E52D012B9EF86100948E89 /* create_an_account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52D002B9EF86100948E89 /* create_an_account.swift */; };
+		B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52D032B9EF90B00948E89 /* table_cellTableViewCell.swift */; };
+		DED4C0FD6FDD402B386DE922 /* Pods_LinkedDoc_LinkedDocUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1510E1E370622CE3F99BFC54 /* Pods_LinkedDoc_LinkedDocUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +50,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A8D70D45EBB4CF971E46549 /* Pods-LinkedDoc-LinkedDocUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDoc-LinkedDocUITests.release.xcconfig"; path = "Target Support Files/Pods-LinkedDoc-LinkedDocUITests/Pods-LinkedDoc-LinkedDocUITests.release.xcconfig"; sourceTree = "<group>"; };
+		0CA3AFBF3C5B889020C887B9 /* Pods-LinkedDocTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDocTests.debug.xcconfig"; path = "Target Support Files/Pods-LinkedDocTests/Pods-LinkedDocTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1510E1E370622CE3F99BFC54 /* Pods_LinkedDoc_LinkedDocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkedDoc_LinkedDocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E7DC7F18F347B013CDD14E /* Pods-LinkedDoc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDoc.debug.xcconfig"; path = "Target Support Files/Pods-LinkedDoc/Pods-LinkedDoc.debug.xcconfig"; sourceTree = "<group>"; };
+		68464978A9677F6C8FBD85B0 /* Pods-LinkedDocTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDocTests.release.xcconfig"; path = "Target Support Files/Pods-LinkedDocTests/Pods-LinkedDocTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B54A2341E09476215C46CE9 /* Pods_LinkedDocTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkedDocTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1626EA78B1559BB7B1FADCE /* Pods_LinkedDoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkedDoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9BF86222B9F27EA00DBB05A /* complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = complete_profile.swift; sourceTree = "<group>"; };
 		B9E52CAF2B9ED4D600948E89 /* LinkedDoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedDoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +72,20 @@
 		B9E52CD22B9ED4D700948E89 /* LinkedDocUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedDocUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E52CD62B9ED4D700948E89 /* LinkedDocUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedDocUITests.swift; sourceTree = "<group>"; };
 		B9E52CD82B9ED4D700948E89 /* LinkedDocUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedDocUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B9E52CEA2B9ED6C100948E89 /* LinkedDoc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LinkedDoc-Bridging-Header.h"; sourceTree = "<group>"; };
+		B9E52CEB2B9ED6C200948E89 /* SidebarMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SidebarMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		B9E52CEC2B9ED6C200948E89 /* MenuControllerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuControllerVC.swift; sourceTree = "<group>"; };
+		B9E52CED2B9ED6C300948E89 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		B9E52CEE2B9ED6C300948E89 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		B9E52CEF2B9ED6C400948E89 /* MenuControllerVCTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuControllerVCTableCell.swift; sourceTree = "<group>"; };
+		B9E52CF42B9ED70C00948E89 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B9E52CF72B9ED87500948E89 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		B9E52CFA2B9ED90F00948E89 /* select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = select_language.swift; sourceTree = "<group>"; };
+		B9E52CFD2B9EDA6C00948E89 /* text_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_language.swift; sourceTree = "<group>"; };
+		B9E52D002B9EF86100948E89 /* create_an_account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = create_an_account.swift; sourceTree = "<group>"; };
+		B9E52D032B9EF90B00948E89 /* table_cellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = table_cellTableViewCell.swift; sourceTree = "<group>"; };
+		C51AB309C298A68EBDB8F2EA /* Pods-LinkedDoc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDoc.release.xcconfig"; path = "Target Support Files/Pods-LinkedDoc/Pods-LinkedDoc.release.xcconfig"; sourceTree = "<group>"; };
+		EE0EF044CF6B802287748F9E /* Pods-LinkedDoc-LinkedDocUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkedDoc-LinkedDocUITests.debug.xcconfig"; path = "Target Support Files/Pods-LinkedDoc-LinkedDocUITests/Pods-LinkedDoc-LinkedDocUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EC5E1D21F0987491D3A0D52 /* Pods_LinkedDoc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CA754973A54205D34E22C07 /* Pods_LinkedDocTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +109,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED4C0FD6FDD402B386DE922 /* Pods_LinkedDoc_LinkedDocUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45B1868E6407D1D587552369 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1626EA78B1559BB7B1FADCE /* Pods_LinkedDoc.framework */,
+				1510E1E370622CE3F99BFC54 /* Pods_LinkedDoc_LinkedDocUITests.framework */,
+				7B54A2341E09476215C46CE9 /* Pods_LinkedDocTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A8498FE5C371DD8814C1BF5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				46E7DC7F18F347B013CDD14E /* Pods-LinkedDoc.debug.xcconfig */,
+				C51AB309C298A68EBDB8F2EA /* Pods-LinkedDoc.release.xcconfig */,
+				EE0EF044CF6B802287748F9E /* Pods-LinkedDoc-LinkedDocUITests.debug.xcconfig */,
+				0A8D70D45EBB4CF971E46549 /* Pods-LinkedDoc-LinkedDocUITests.release.xcconfig */,
+				0CA3AFBF3C5B889020C887B9 /* Pods-LinkedDocTests.debug.xcconfig */,
+				68464978A9677F6C8FBD85B0 /* Pods-LinkedDocTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B9BF86202B9F1AF700DBB05A /* doctor */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CFF2B9EF84B00948E89 /* create_an_account */,
+				B9BF86212B9F277400DBB05A /* complete_profile */,
+			);
+			path = doctor;
+			sourceTree = "<group>";
+		};
+		B9BF86212B9F277400DBB05A /* complete_profile */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF86222B9F27EA00DBB05A /* complete_profile.swift */,
+			);
+			path = complete_profile;
+			sourceTree = "<group>";
+		};
 		B9E52CA62B9ED4D600948E89 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +163,8 @@
 				B9E52CCB2B9ED4D700948E89 /* LinkedDocTests */,
 				B9E52CD52B9ED4D700948E89 /* LinkedDocUITests */,
 				B9E52CB02B9ED4D600948E89 /* Products */,
+				4A8498FE5C371DD8814C1BF5 /* Pods */,
+				45B1868E6407D1D587552369 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +181,7 @@
 		B9E52CB12B9ED4D600948E89 /* LinkedDoc */ = {
 			isa = PBXGroup;
 			children = (
+				B9E52CE52B9ED67D00948E89 /* classes */,
 				B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */,
 				B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */,
 				B9E52CB62B9ED4D600948E89 /* ViewController.swift */,
@@ -130,6 +211,105 @@
 			path = LinkedDocUITests;
 			sourceTree = "<group>";
 		};
+		B9E52CE52B9ED67D00948E89 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CE82B9ED69300948E89 /* third_party */,
+				B9E52CE72B9ED68C00948E89 /* common */,
+				B9E52CE62B9ED68700948E89 /* screens */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		B9E52CE62B9ED68700948E89 /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CF92B9ED8FD00948E89 /* select_language */,
+				B9E52CF62B9ED86900948E89 /* login */,
+				B9BF86202B9F1AF700DBB05A /* doctor */,
+			);
+			path = screens;
+			sourceTree = "<group>";
+		};
+		B9E52CE72B9ED68C00948E89 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52D022B9EF8EC00948E89 /* table_cell */,
+				B9E52CFC2B9EDA5E00948E89 /* language */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		B9E52CE82B9ED69300948E89 /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CF32B9ED6EA00948E89 /* Utils */,
+				B9E52CE92B9ED6B500948E89 /* side_bar_menu */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
+		B9E52CE92B9ED6B500948E89 /* side_bar_menu */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CEC2B9ED6C200948E89 /* MenuControllerVC.swift */,
+				B9E52CEF2B9ED6C400948E89 /* MenuControllerVCTableCell.swift */,
+				B9E52CEB2B9ED6C200948E89 /* SidebarMenu-Bridging-Header.h */,
+				B9E52CEE2B9ED6C300948E89 /* SWRevealViewController.h */,
+				B9E52CED2B9ED6C300948E89 /* SWRevealViewController.m */,
+				B9E52CEA2B9ED6C100948E89 /* LinkedDoc-Bridging-Header.h */,
+			);
+			path = side_bar_menu;
+			sourceTree = "<group>";
+		};
+		B9E52CF32B9ED6EA00948E89 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CF42B9ED70C00948E89 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B9E52CF62B9ED86900948E89 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CF72B9ED87500948E89 /* loginViewController.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		B9E52CF92B9ED8FD00948E89 /* select_language */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CFA2B9ED90F00948E89 /* select_language.swift */,
+			);
+			path = select_language;
+			sourceTree = "<group>";
+		};
+		B9E52CFC2B9EDA5E00948E89 /* language */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52CFD2B9EDA6C00948E89 /* text_language.swift */,
+			);
+			path = language;
+			sourceTree = "<group>";
+		};
+		B9E52CFF2B9EF84B00948E89 /* create_an_account */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52D002B9EF86100948E89 /* create_an_account.swift */,
+			);
+			path = create_an_account;
+			sourceTree = "<group>";
+		};
+		B9E52D022B9EF8EC00948E89 /* table_cell */ = {
+			isa = PBXGroup;
+			children = (
+				B9E52D032B9EF90B00948E89 /* table_cellTableViewCell.swift */,
+			);
+			path = table_cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E52CDC2B9ED4D700948E89 /* Build configuration list for PBXNativeTarget "LinkedDoc" */;
 			buildPhases = (
+				731D907F97AD49AD3BB3BCAA /* [CP] Check Pods Manifest.lock */,
 				B9E52CAB2B9ED4D600948E89 /* Sources */,
 				B9E52CAC2B9ED4D600948E89 /* Frameworks */,
 				B9E52CAD2B9ED4D600948E89 /* Resources */,
+				3E024550F84E83B0D02D7CFD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,6 +336,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E52CDF2B9ED4D700948E89 /* Build configuration list for PBXNativeTarget "LinkedDocTests" */;
 			buildPhases = (
+				5EC4D7B47469503C1F2556BE /* [CP] Check Pods Manifest.lock */,
 				B9E52CC42B9ED4D700948E89 /* Sources */,
 				B9E52CC52B9ED4D700948E89 /* Frameworks */,
 				B9E52CC62B9ED4D700948E89 /* Resources */,
@@ -172,9 +355,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E52CE22B9ED4D700948E89 /* Build configuration list for PBXNativeTarget "LinkedDocUITests" */;
 			buildPhases = (
+				F7797373EB6F6CCC8CD78D5B /* [CP] Check Pods Manifest.lock */,
 				B9E52CCE2B9ED4D700948E89 /* Sources */,
 				B9E52CCF2B9ED4D700948E89 /* Frameworks */,
 				B9E52CD02B9ED4D700948E89 /* Resources */,
+				283BD8E6FB8E4DE04BDC3D06 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,6 +383,7 @@
 				TargetAttributes = {
 					B9E52CAE2B9ED4D600948E89 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 					B9E52CC72B9ED4D700948E89 = {
 						CreatedOnToolsVersion = 15.3;
@@ -256,15 +442,128 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		283BD8E6FB8E4DE04BDC3D06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc-LinkedDocUITests/Pods-LinkedDoc-LinkedDocUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc-LinkedDocUITests/Pods-LinkedDoc-LinkedDocUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc-LinkedDocUITests/Pods-LinkedDoc-LinkedDocUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E024550F84E83B0D02D7CFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc/Pods-LinkedDoc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc/Pods-LinkedDoc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LinkedDoc/Pods-LinkedDoc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EC4D7B47469503C1F2556BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinkedDocTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		731D907F97AD49AD3BB3BCAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinkedDoc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7797373EB6F6CCC8CD78D5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LinkedDoc-LinkedDocUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B9E52CAB2B9ED4D600948E89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */,
+				B9E52CF22B9ED6C400948E89 /* MenuControllerVCTableCell.swift in Sources */,
 				B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */,
+				B9E52CFE2B9EDA6C00948E89 /* text_language.swift in Sources */,
+				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
+				B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */,
 				B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */,
 				B9E52CBD2B9ED4D600948E89 /* LinkedDoc.xcdatamodeld in Sources */,
+				B9E52CF02B9ED6C400948E89 /* MenuControllerVC.swift in Sources */,
+				B9E52D012B9EF86100948E89 /* create_an_account.swift in Sources */,
+				B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */,
+				B9E52CF12B9ED6C400948E89 /* SWRevealViewController.m in Sources */,
+				B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */,
+				B9E52CF82B9ED87500948E89 /* loginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,62 +740,78 @@
 		};
 		B9E52CDD2B9ED4D700948E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46E7DC7F18F347B013CDD14E /* Pods-LinkedDoc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = NHVZESNL9B;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LinkedDoc/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod.LinkedDoc;
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LinkedDoc/classes/third_party/side_bar_menu/LinkedDoc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		B9E52CDE2B9ED4D700948E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C51AB309C298A68EBDB8F2EA /* Pods-LinkedDoc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = NHVZESNL9B;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LinkedDoc/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod.LinkedDoc;
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LinkedDoc/classes/third_party/side_bar_menu/LinkedDoc-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		B9E52CE02B9ED4D700948E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CA3AFBF3C5B889020C887B9 /* Pods-LinkedDocTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -517,6 +832,7 @@
 		};
 		B9E52CE12B9ED4D700948E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68464978A9677F6C8FBD85B0 /* Pods-LinkedDocTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -537,6 +853,7 @@
 		};
 		B9E52CE32B9ED4D700948E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE0EF044CF6B802287748F9E /* Pods-LinkedDoc-LinkedDocUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -555,6 +872,7 @@
 		};
 		B9E52CE42B9ED4D700948E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A8D70D45EBB4CF971E46549 /* Pods-LinkedDoc-LinkedDocUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

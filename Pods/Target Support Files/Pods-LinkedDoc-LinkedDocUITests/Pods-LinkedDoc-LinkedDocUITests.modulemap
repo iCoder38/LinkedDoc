@@ -1,0 +1,6 @@
+framework module Pods_LinkedDoc_LinkedDocUITests {
+  umbrella header "Pods-LinkedDoc-LinkedDocUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
