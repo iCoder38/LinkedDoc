@@ -15,15 +15,32 @@ class MenuControllerVC: UIViewController {
     
     var bgImage: UIImageView?
     
-    var arrMenuItemList = ["Dashboard",
+    var arr_menu_list_en = ["Dashboard",
                            "Edit Profile",
                            "Translate",
+                            "Change Language",
                            "Change Password",
                            "Help",
                            "Logout",
     ]
     
-    var arrMenuItemImage = ["home","edit","edit","help","changePassword","logout"]
+    var arr_menu_list_ch = ["ch : Dashboard",
+                           "ch : Edit Profile",
+                           "ch : Translate",
+                        "ch : Change Language",
+                           "ch : Change Password",
+                           "ch : Help",
+                           "ch : Logout",
+    ]
+    
+    var arrMenuItemImage = ["home",
+                            "edit",
+                            "trip",
+                            "translation",
+                            "changePassword",
+                            "help_w",
+                            "logout"
+    ]
     
     @IBOutlet weak var viewNavigation:UIView! {
         didSet {
@@ -62,14 +79,6 @@ class MenuControllerVC: UIViewController {
         sideBarMenuClick()
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
-        
-        
-        /*if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-            print(person as Any)
-            
-            
-            
-        }*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +88,10 @@ class MenuControllerVC: UIViewController {
             self.lblName.text = (person["fullName"] as! String)
             self.lblAddress.text = (person["address"] as! String)
         }
+    }
+    
+    @objc func convert_language() {
+        
     }
     
     @objc func sideBarMenuClick() {
@@ -92,100 +105,7 @@ class MenuControllerVC: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    
-    /*@objc func logout_WB() {
-        
-         
-        
-        let urlString = BASE_URL_KREASE
-        
-        var parameters:Dictionary<AnyHashable, Any>!
-        if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-            let x : Int = (person["userId"] as! Int)
-            let myString = String(x)
-            
-            parameters = [
-                "action"    :   "logout",
-                "userId"    :   myString,
-               
-            ]
-        }
-        print("parameters-------\(String(describing: parameters))")
-        
-        AF.request(urlString, method: .post, parameters: parameters as? Parameters).responseJSON {
-            response in
-            
-            switch(response.result) {
-            case .success(_):
-                if let data = response.value {
-                    
-                    let JSON = data as! NSDictionary
-                    print(JSON)
-                    
-                    var strSuccess : String!
-                    strSuccess = JSON["status"]as Any as? String
-                    
-                    var strSuccess2 : String!
-                    strSuccess2 = JSON["msg"]as Any as? String
-                    
-                    if strSuccess == "Success" || strSuccess == "success"  {
-                        Utils.RiteVetIndicatorHide()
-                        
-                        let defaults = UserDefaults.standard
-                        defaults.setValue("", forKey: "keyLoginFullData")
-                        defaults.setValue(nil, forKey: "keyLoginFullData")
-                        
-                        defaults.setValue("", forKey: "key_first_time_vet_reg")
-                        defaults.setValue(nil, forKey: "key_first_time_vet_reg")
-                        
-                        defaults.setValue("", forKey: "key_first_time_other_reg")
-                        defaults.setValue(nil, forKey: "key_first_time_other_reg")
-                        
-                        
-                        let obj = self.storyboard?.instantiateViewController(withIdentifier: "LoginId") as! Login
-                        // obj.strBookingOrAppointment = "bookingIs"
-                        let navController = UINavigationController(rootViewController: obj)
-                        navController.setViewControllers([obj], animated:true)
-                        self.revealViewController().setFront(navController, animated: true)
-                        self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-                        
-                    }
-                    else {
-                        Utils.RiteVetIndicatorHide()
-                    }
-                    
-                }
-                
-            case .failure(_):
-                print("Error message:\(String(describing: response.error))")
-                Utils.RiteVetIndicatorHide()
-                
-                let alertController = UIAlertController(title: nil, message: SERVER_ISSUE_MESSAGE_ONE+"\n"+SERVER_ISSUE_MESSAGE_TWO, preferredStyle: .actionSheet)
-                
-                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-                    UIAlertAction in
-                    NSLog("OK Pressed")
-                }
-                
-                alertController.addAction(okAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-                break
-            }
-        }
-    }*/
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
 }
 
 extension MenuControllerVC: UITableViewDataSource {
@@ -194,14 +114,14 @@ extension MenuControllerVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrMenuItemList.count
+        return self.arr_menu_list_en.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MenuControllerVCTableCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MenuControllerVCTableCell
         
         cell.backgroundColor = .clear
-        cell.lblName.text = self.arrMenuItemList[indexPath.row]
+        cell.lblName.text = self.arr_menu_list_en[indexPath.row]
         cell.lblName.textColor = .white
         cell.imgProfile.image = UIImage(named: self.arrMenuItemImage[indexPath.row])
         
@@ -479,79 +399,41 @@ extension MenuControllerVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if String(arrMenuItemList[indexPath.row]) == "Dashboard" {
+        if String(arr_menu_list_en[indexPath.row]) == "Dashboard" {
             pushPageNumber(strMyPageNumber: "1")
         }
-        if String(arrMenuItemList[indexPath.row]) == "Edit Profile" {
+        if String(arr_menu_list_en[indexPath.row]) == "Edit Profile" {
             pushPageNumber(strMyPageNumber: "2")
         }
-        if String(arrMenuItemList[indexPath.row]) == "My Post" {
+        if String(arr_menu_list_en[indexPath.row]) == "Translate" {
+            pushPageNumber(strMyPageNumber: "3")
+        }
+        if String(arr_menu_list_en[indexPath.row]) == "Change Language" {
             pushPageNumber(strMyPageNumber: "4")
         }
-        if String(arrMenuItemList[indexPath.row]) == "Post Free Stuff" {
-            pushPageNumber(strMyPageNumber: "5")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Request Services" {
-            pushPageNumber(strMyPageNumber: "6")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Pet Store" {
-            pushPageNumber(strMyPageNumber: "7")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Items Purchased" {
-            pushPageNumber(strMyPageNumber: "8")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Manage Appointments" {
-            pushPageNumber(strMyPageNumber: "11")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "My Bookings" {
-            pushPageNumber(strMyPageNumber: "12")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Change Password" {
-            pushPageNumber(strMyPageNumber: "9")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Help" {
-            pushPageNumber(strMyPageNumber: "10")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Logout" {
-            pushPageNumber(strMyPageNumber: "13")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Sign out" {
-            pushPageNumber(strMyPageNumber: "13")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Sold items" {
-            pushPageNumber(strMyPageNumber: "14")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "My Cart" {
-            pushPageNumber(strMyPageNumber: "15")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Chat" {
-            pushPageNumber(strMyPageNumber: "16")
-        }
-        if String(arrMenuItemList[indexPath.row]) == "Missed Call" {
-            pushPageNumber(strMyPageNumber: "17")
-        }
-        
-        if String(arrMenuItemList[indexPath.row]) == "Wallet" {
-            pushPageNumber(strMyPageNumber: "18")
-        }
-        
-        if String(arrMenuItemList[indexPath.row]) == "Orders Received" {
-            pushPageNumber(strMyPageNumber: "19")
-        }
-        
-        if String(arrMenuItemList[indexPath.row]) == "Reviews Received" {
-            pushPageNumber(strMyPageNumber: "20")
-        }
-        
-        if String(arrMenuItemList[indexPath.row]) == "Delete Account" {
-            pushPageNumber(strMyPageNumber: "21")
-        }
-        
         
     }
     
     @objc func pushPageNumber(strMyPageNumber:String) {
        
+        if strMyPageNumber == "3" {
+            
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "translate_language_id") as! translate_language
+            let navController = UINavigationController(rootViewController: obj)
+            navController.setViewControllers([obj], animated:true)
+            self.revealViewController().setFront(navController, animated: true)
+            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+            
+        } else if strMyPageNumber == "4" {
+            
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "update_select_language_id") as! update_select_language
+            let navController = UINavigationController(rootViewController: obj)
+            navController.setViewControllers([obj], animated:true)
+            self.revealViewController().setFront(navController, animated: true)
+            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+            
+        }
+        
         /*if strMyPageNumber == "21" {
             
             let alert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account ?",preferredStyle: UIAlertController.Style.alert)

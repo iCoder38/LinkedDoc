@@ -156,3 +156,35 @@ class complete_profile_table_cell : UITableViewCell {
     }
     
 }
+
+// /* ************** TRANSLATE LANGUAGE ************************ */
+// /* ********************************************************** */
+class translate_language_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var txt_view_up:UITextView! {
+        didSet {
+            txt_view_up.layer.cornerRadius = 12
+            txt_view_up.clipsToBounds = true
+            txt_view_up.backgroundColor = text_field_BG_color
+        }
+    }
+    @IBOutlet weak var txt_view_down:UITextView! {
+        didSet {
+            txt_view_down.layer.cornerRadius = 12
+            txt_view_down.clipsToBounds = true
+            txt_view_down.backgroundColor = text_field_BG_color
+        }
+    }
+    
+    @IBOutlet weak var lbl_text_up:UILabel!
+    @IBOutlet weak var lbl_text_down:UILabel!
+    
+    @IBOutlet weak var btn_translate:UIButton!  {
+        didSet {
+            btn_translate.backgroundColor = button_light_blue_color
+            btn_translate.layer.cornerRadius = 12
+            btn_translate.clipsToBounds = true
+            btn_translate.setTitleColor(.white, for: .normal)
+        }
+    }
+}

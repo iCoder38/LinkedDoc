@@ -75,11 +75,32 @@ var button_text_finish_ch = "chinese : Finish"
 
 
 
+// dashboard
+var navigation_title_dashboard_en = "Dashboard"
+var navigation_title_dashboard_ch = "chinese : Dashboard"
+
+var text_translate_en = "Dashboard"
+var text_translate_ch = "chinese : Dashboard"
+
+var text_password_en = "Password"
+var text_password_ch = "chinese : Password"
+
+var text_hep_en = "Help"
+var text_hep_ch = "chinese : Help"
 
 
+// translate language
+var navigation_title_translate_language_en = "Translate language"
+var navigation_title_translate_language_ch = "chinese : Translate language"
 
+var button_text_en = "Translate".uppercased()
+var button_text_ch = "chinese : Translate".uppercased()
 
+var text_translate_up_en = "Native Language: English"
+var text_translate_up_ch = "chinese : Native Language: English"
 
+var text_translate_down_en = "Native Language: Chinese"
+var text_translate_down_ch = "chinese : Native Language: Chinese"
 
 // common
 var button_text_continue_en = "Continue"
@@ -276,11 +297,81 @@ class text_language: UIViewController {
         
     }
     
+    // dashboard
+    class func dashboard_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_dashboard_en
+            } else {
+                str_language_prefrence_is = navigation_title_dashboard_ch
+            }
+        } else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_translate_en
+            } else {
+                str_language_prefrence_is = text_translate_ch
+            }
+        } else if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_password_en
+            } else {
+                str_language_prefrence_is = text_password_ch
+            }
+        } else if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_hep_en
+            } else {
+                str_language_prefrence_is = text_hep_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
     
     
     
-    
-    
+    // translate language
+    class func translate_language_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_translate_language_en
+            } else {
+                str_language_prefrence_is = navigation_title_translate_language_ch
+            }
+        } else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = button_text_en
+            } else {
+                str_language_prefrence_is = button_text_ch
+            }
+        }  else if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_translate_up_en
+            } else {
+                str_language_prefrence_is = text_translate_up_ch
+            }
+        }  else if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_translate_down_en
+            } else {
+                str_language_prefrence_is = text_translate_down_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
     
     
     

@@ -1,14 +1,14 @@
 //
-//  complete_profile.swift
+//  translate_language.swift
 //  LinkedDoc
 //
-//  Created by Dishant Rajput on 11/03/24.
+//  Created by Dishant Rajput on 12/03/24.
 //
 
 import UIKit
 
-class complete_profile: UIViewController {
-    
+class translate_language: UIViewController {
+
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
             view_navigation.backgroundColor = navigation_color
@@ -23,6 +23,7 @@ class complete_profile: UIViewController {
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .white
+            btn_back.setImage(UIImage(systemName: "list.dash"), for: .normal)
         }
     }
     
@@ -41,19 +42,13 @@ class complete_profile: UIViewController {
         
         self.tble_view.separatorColor = .clear
         
-        self.view.backgroundColor = app_bg_color
-        self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
-    }
-    
-    @objc func finish_click_method() {
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
-        self.navigationController?.pushViewController(push, animated: true)
+        self.sideBarMenu(button: self.btn_back)
     }
     
 }
 
 //MARK:- TABLE VIEW -
-extension complete_profile: UITableViewDataSource , UITableViewDelegate {
+extension translate_language: UITableViewDataSource , UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -64,7 +59,7 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:complete_profile_table_cell = tableView.dequeueReusableCell(withIdentifier: "complete_profile_table_cell") as! complete_profile_table_cell
+        let cell:translate_language_table_cell = tableView.dequeueReusableCell(withIdentifier: "translate_language_table_cell") as! translate_language_table_cell
         
         cell.backgroundColor = .clear
         
@@ -72,17 +67,12 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
         
-        self.lbl_navigation_title.text = text_language.complete_profile_screen(status: "#01")
+        self.lbl_navigation_title.text = text_language.translate_language_screen(status: "#01")
+        cell.btn_translate.setTitle(text_language.translate_language_screen(status: "#02"), for: .normal)
         
-        cell.txt_complete_address.placeholder = text_language.complete_profile_screen(status: "#02")
-        cell.txt_area_zipcode.placeholder = text_language.complete_profile_screen(status: "#03")
-        cell.txt_working_hours.placeholder = text_language.complete_profile_screen(status: "#04")
-        cell.txt_year_of_experience.placeholder = text_language.complete_profile_screen(status: "#05")
-        cell.txt_specialization.placeholder = text_language.complete_profile_screen(status: "#06")
+        cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
+        cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
         
-        cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#07"), for: .normal)
-        
-        cell.btn_finish.addTarget(self, action: #selector(finish_click_method), for: .touchUpInside)
         return cell
         
     }
