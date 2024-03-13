@@ -68,7 +68,6 @@ class select_language: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set("en", forKey: default_key_language)
         
         self.btn_english.setImage(UIImage(named: "check"), for: .normal)
         self.btn_chinese.setImage(UIImage(named: "un_check"), for: .normal)
@@ -78,6 +77,8 @@ class select_language: UIViewController {
         self.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
         
         self.view.backgroundColor = app_bg_color
+        
+        self.remember_me()
     }
     
     @objc func english_click_method() {
@@ -109,7 +110,50 @@ class select_language: UIViewController {
     @objc func continue_click_method() {
         Utils.light_vibrate()
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginViewController_id")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "welcome_id")
         self.navigationController?.pushViewController(push, animated: true)
+        
+        
     }
+    
+    @objc func remember_me() {
+        
+        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+            print(language_select as Any)
+            
+            if (language_select == "en") {
+                UserDefaults.standard.set("en", forKey: default_key_language)
+            } else {
+                UserDefaults.standard.set("ch", forKey: default_key_language)
+            }
+        } else {
+            UserDefaults.standard.set("en", forKey: default_key_language)
+        }
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person as Any)
+            
+            if person["role"] as! String == "Doctor" {
+                
+                if (person["address"] as! String) == "" {
+                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
+                } else {
+                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
+                }
+            } else {
+                
+                
+                
+            }
+            
+        }
+        
+    }
+    
 }

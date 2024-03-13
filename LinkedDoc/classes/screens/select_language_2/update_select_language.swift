@@ -70,6 +70,7 @@ class update_select_language: UIViewController {
             btn_continue.layer.cornerRadius = 12
             btn_continue.clipsToBounds = true
             btn_continue.setTitleColor(.white, for: .normal)
+            btn_continue.isHidden = true
         }
     }
     
@@ -107,13 +108,24 @@ class update_select_language: UIViewController {
         // self.btn_english.setImage(UIImage(named: "check"), for: .normal)
         // self.btn_chinese.setImage(UIImage(named: "un_check"), for: .normal)
         
-        self.sideBarMenu(button: self.btn_back)
-        
+        // self.sideBarMenu(button: self.btn_back)
+        self.sideBarMenu()
         self.btn_english.addTarget(self, action: #selector(english_click_method), for: .touchUpInside)
         self.btn_chinese.addTarget(self, action: #selector(chinese_click_method), for: .touchUpInside)
         self.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
         
         self.view.backgroundColor = app_bg_color
+    }
+    
+    @objc func sideBarMenu() {
+        
+        if revealViewController() != nil {
+            btn_back.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            
+            revealViewController().rearViewRevealWidth = 300
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
     }
     
     @objc func english_click_method() {

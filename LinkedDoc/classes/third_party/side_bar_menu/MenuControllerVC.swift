@@ -24,13 +24,13 @@ class MenuControllerVC: UIViewController {
                            "Logout",
     ]
     
-    var arr_menu_list_ch = ["ch : Dashboard",
-                           "ch : Edit Profile",
-                           "ch : Translate",
-                        "ch : Change Language",
-                           "ch : Change Password",
-                           "ch : Help",
-                           "ch : Logout",
+    var arr_menu_list_ch = ["儀表板",
+                           "編輯個人資料",
+                           "翻譯",
+                            "ch : Change Language",
+                           "密碼更改",
+                           "輔助說明",
+                           "登出",
     ]
     
     var arrMenuItemImage = ["home",
@@ -85,9 +85,11 @@ class MenuControllerVC: UIViewController {
         super.viewWillAppear(true)
         
         if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-            self.lblName.text = (person["fullName"] as! String)
-            self.lblAddress.text = (person["address"] as! String)
+            // //self.lblName.text = (person["fullName"] as! String)
+            // self.lblAddress.text = (person["address"] as! String)
         }
+        
+        self.tbleView.reloadData()
     }
     
     @objc func convert_language() {
@@ -114,6 +116,17 @@ extension MenuControllerVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+            print(language_select as Any)
+            if (language_select == "en") {
+                return self.arr_menu_list_en.count
+            } else {
+                return self.arr_menu_list_ch.count
+            }
+            
+        }
+        
         return self.arr_menu_list_en.count
     }
     
@@ -121,7 +134,18 @@ extension MenuControllerVC: UITableViewDataSource {
         let cell:MenuControllerVCTableCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MenuControllerVCTableCell
         
         cell.backgroundColor = .clear
-        cell.lblName.text = self.arr_menu_list_en[indexPath.row]
+        
+        
+        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+            print(language_select as Any)
+            if (language_select == "en") {
+                cell.lblName.text = self.arr_menu_list_en[indexPath.row]
+            } else {
+                cell.lblName.text = self.arr_menu_list_ch[indexPath.row]
+            }
+        }
+        
+        
         cell.lblName.textColor = .white
         cell.imgProfile.image = UIImage(named: self.arrMenuItemImage[indexPath.row])
         
@@ -411,22 +435,65 @@ extension MenuControllerVC: UITableViewDataSource {
         if String(arr_menu_list_en[indexPath.row]) == "Change Language" {
             pushPageNumber(strMyPageNumber: "4")
         }
-        
+        if String(arr_menu_list_en[indexPath.row]) == "Change Password" {
+            pushPageNumber(strMyPageNumber: "5")
+        }
+        if String(arr_menu_list_en[indexPath.row]) == "Logout" {
+            pushPageNumber(strMyPageNumber: "6")
+        }
     }
     
     @objc func pushPageNumber(strMyPageNumber:String) {
-       
+        
         if strMyPageNumber == "3" {
             
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "translate_language_id") as! translate_language
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "translate_language_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)
+            
+        } else if strMyPageNumber == "1" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "dashboard_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)
+            
+        } else if strMyPageNumber == "2" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "update_profile_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)
+            
+        } else if strMyPageNumber == "4" {
+            
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "update_select_language_id") as! update_select_language
             let navController = UINavigationController(rootViewController: obj)
             navController.setViewControllers([obj], animated:true)
             self.revealViewController().setFront(navController, animated: true)
             self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
             
-        } else if strMyPageNumber == "4" {
+        } else if strMyPageNumber == "5" {
             
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "update_select_language_id") as! update_select_language
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "change_password_id") as! change_password
+            let navController = UINavigationController(rootViewController: obj)
+            navController.setViewControllers([obj], animated:true)
+            self.revealViewController().setFront(navController, animated: true)
+            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+            
+        } else if strMyPageNumber == "6" {
+            
+            let defaults = UserDefaults.standard
+            defaults.set(nil, forKey: str_save_login_user_data)
+            
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
             let navController = UINavigationController(rootViewController: obj)
             navController.setViewControllers([obj], animated:true)
             self.revealViewController().setFront(navController, animated: true)

@@ -59,6 +59,10 @@ class dashboard: UIViewController {
     @IBOutlet weak var lbl_password:UILabel!
     @IBOutlet weak var lbl_help:UILabel!
     
+    @IBOutlet weak var lbl_name:UILabel!
+    @IBOutlet weak var lbl_phone:UILabel!
+    @IBOutlet weak var lbl_address:UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,8 +76,19 @@ class dashboard: UIViewController {
         self.lbl_translate.text = text_language.dashboard_screen(status: "#02")
         self.lbl_password.text = text_language.dashboard_screen(status: "#03")
         self.lbl_help.text = text_language.dashboard_screen(status: "#04")
+        
+        self.parse_server_value()
     }
     
+    @objc func parse_server_value() {
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person)
+            
+            self.lbl_name.text = (person["fullName"] as! String)
+            // self.lbl_phone.text =  // (person[""] as! String)
+            self.lbl_address.text =  (person["address"] as! String)
+        }
+    }
    
     
 }

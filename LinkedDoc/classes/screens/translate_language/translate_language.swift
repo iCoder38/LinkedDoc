@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class translate_language: UIViewController {
 
@@ -42,9 +43,103 @@ class translate_language: UIViewController {
         
         self.tble_view.separatorColor = .clear
         
-        self.sideBarMenu(button: self.btn_back)
+        // self.sideBarMenu(button: self.btn_back)
+        self.sideBarMenuClick2()
+        
+    }
+    @objc func sideBarMenuClick2() {
+        print("HIT")
+        if revealViewController() != nil {
+            
+            btn_back.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            revealViewController().rearViewRevealWidth = 300
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+        }
     }
     
+    @objc func convert_language_click_method() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! translate_language_table_cell
+        
+        if (cell.txt_view_up.text == "") {
+            return
+        }
+        
+        self.convert_language(text_to_convert: cell.txt_view_up.text)
+    }
+    
+    @objc func convert_language(text_to_convert:String) {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! translate_language_table_cell
+        
+        self.view.endEditing(true)
+        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "translating"))
+        
+        let headers = [
+            "content-type": "application/x-www-form-urlencoded",
+            "Accept-Encoding": "application/gzip",
+            "X-RapidAPI-Key": "0947338691msh3f39d264894c812p10b756jsnff8e4a6543e7",
+            "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+        ]
+
+        let merge_text = "q="+String(text_to_convert)
+        print(merge_text as Any)
+        
+        let postData = NSMutableData(data: String(merge_text).data(using: String.Encoding.utf8)!)
+        postData.append("&target=zh-TW".data(using: String.Encoding.utf8)!)
+        postData.append("&source=en".data(using: String.Encoding.utf8)!)
+
+        let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate1.p.rapidapi.com/language/translate/v2")! as URL,
+                                                cachePolicy: .useProtocolCachePolicy,
+                                            timeoutInterval: 10.0)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = postData as Data
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error as Any)
+                ERProgressHud.sharedInstance.hide()
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                // print(httpResponse as Any)
+                ERProgressHud.sharedInstance.hide()
+                guard let data = data else { return }
+                // print(String(data: data, encoding: .utf8)!)
+                DispatchQueue.main.async{
+                    do {
+                        //create json object from data
+                        if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                            print(json)
+                            print(json["data"] as Any)
+                            
+                            var dict:NSDictionary!
+                            dict = (json["data"] as! NSDictionary)
+                            
+                            var ar : NSArray!
+                            ar = (dict["translations"] as! Array<Any>) as NSArray
+                            // print(ar[0]["translatedText"] as Any)
+                            
+                            let item = ar[0] as? [String:Any]
+                            // print(item!["translatedText"] as! String)
+                            
+                            cell.txt_view_down.text = (item!["translatedText"] as! String)
+                            ERProgressHud.sharedInstance.hide()
+                            
+                        }
+                    } catch let error {
+                        print(error.localizedDescription)
+                        ERProgressHud.sharedInstance.hide()
+                    }
+                }
+               
+            }
+        })
+// hi how are you mate ?
+        dataTask.resume()
+    }
 }
 
 //MARK:- TABLE VIEW -
@@ -73,6 +168,7 @@ extension translate_language: UITableViewDataSource , UITableViewDelegate {
         cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
         cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
         
+        cell.btn_translate.addTarget(self, action: #selector(convert_language_click_method), for: .touchUpInside)
         return cell
         
     }

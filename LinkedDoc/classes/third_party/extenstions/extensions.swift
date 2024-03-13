@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import Alamofire
 
 extension UIViewController {
+    
+    @objc func please_check_your_internet_connection() {
+        let alert = NewYorkAlertController(title: String("Error").uppercased(), message: String("Please check your Internet Connection"), style: .alert)
+        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        alert.addButtons([cancel])
+        self.present(alert, animated: true)
+    }
     
     @objc func back_click_method() {
         self.navigationController?.popViewController(animated: true)
@@ -22,6 +30,36 @@ extension UIViewController {
         }
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+        
+    }
+    
+}
+
+extension Date {
+    
+    func dateString(_ format: String = "MMM-dd-YYYY, hh:mm a") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+    
+    func dateByAddingYears(_ dYears: Int) -> Date {
+        var dateComponents = DateComponents()
+        dateComponents.year = dYears
+        return Calendar.current.date(byAdding: dateComponents, to: self)!
+    }
 }
 
 extension UIImageView {
@@ -54,4 +92,4 @@ extension UITextField {
     }
     
 }
-
+ 

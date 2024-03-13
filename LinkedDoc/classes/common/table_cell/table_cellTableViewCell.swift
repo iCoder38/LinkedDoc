@@ -77,6 +77,70 @@ class create_an_account_table_cell : UITableViewCell {
     }
     
 }
+
+// /* ************** UPDATE PROFILE ************************ */
+// /* ********************************************************** */
+class updating_profile_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var view_under_image:UIView! {
+        didSet {
+            view_under_image.layer.cornerRadius = 8
+            view_under_image.clipsToBounds = true
+            view_under_image.backgroundColor = .white
+        }
+    }
+    
+    @IBOutlet weak var txt_name:UITextField! {
+        didSet {
+            txt_name.layer.cornerRadius = 12
+            txt_name.clipsToBounds = true
+            txt_name.backgroundColor = text_field_BG_color
+            txt_name.placeholder = "name"
+            txt_name.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_email:UITextField! {
+        didSet {
+            txt_email.layer.cornerRadius = 12
+            txt_email.clipsToBounds = true
+            txt_email.backgroundColor = text_field_BG_color
+            txt_email.placeholder = "Email address"
+            txt_email.isUserInteractionEnabled = false
+            txt_email.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_phone:UITextField! {
+        didSet {
+            txt_phone.layer.cornerRadius = 12
+            txt_phone.clipsToBounds = true
+            txt_phone.backgroundColor = text_field_BG_color
+            txt_phone.placeholder = "Phone"
+            txt_phone.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_password:UITextField! {
+        didSet {
+            txt_password.layer.cornerRadius = 12
+            txt_password.clipsToBounds = true
+            txt_password.backgroundColor = text_field_BG_color
+            txt_password.placeholder = "Password"
+            txt_password.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var lbl_create_account_text:UILabel!
+    @IBOutlet weak var lbl_already_have_an_account:UILabel!
+    
+    @IBOutlet weak var btn_continue:UIButton!  {
+        didSet {
+            btn_continue.backgroundColor = button_light_blue_color
+            btn_continue.layer.cornerRadius = 12
+            btn_continue.clipsToBounds = true
+            btn_continue.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
 // /* ************** COMPLETE PROFILE ************************ */
 // /* ********************************************************** */
 class complete_profile_table_cell : UITableViewCell {
@@ -106,6 +170,7 @@ class complete_profile_table_cell : UITableViewCell {
             txt_area_zipcode.backgroundColor = .white
             txt_area_zipcode.placeholder = "Area zipcode"
             txt_area_zipcode.setLeftPaddingPoints(20)
+            txt_area_zipcode.keyboardType = .numberPad
         }
     }
     
@@ -114,11 +179,19 @@ class complete_profile_table_cell : UITableViewCell {
             txt_working_hours.layer.cornerRadius = 12
             txt_working_hours.clipsToBounds = true
             txt_working_hours.backgroundColor = .white
-            txt_working_hours.placeholder = "Working hours"
+            txt_working_hours.placeholder = "Working hours start"
             txt_working_hours.setLeftPaddingPoints(20)
         }
     }
-    
+    @IBOutlet weak var txt_working_hours_end:UITextField! {
+        didSet {
+            txt_working_hours_end.layer.cornerRadius = 12
+            txt_working_hours_end.clipsToBounds = true
+            txt_working_hours_end.backgroundColor = .white
+            txt_working_hours_end.placeholder = "Working hours end"
+            txt_working_hours_end.setLeftPaddingPoints(20)
+        }
+    }
     @IBOutlet weak var txt_year_of_experience:UITextField! {
         didSet {
             txt_year_of_experience.layer.cornerRadius = 12
@@ -126,6 +199,7 @@ class complete_profile_table_cell : UITableViewCell {
             txt_year_of_experience.backgroundColor = .white
             txt_year_of_experience.placeholder = "Year of experience"
             txt_year_of_experience.setLeftPaddingPoints(20)
+            txt_year_of_experience.keyboardType = .numberPad
         }
     }
     
@@ -154,7 +228,8 @@ class complete_profile_table_cell : UITableViewCell {
             btn_finish.setTitleColor(.white, for: .normal)
         }
     }
-    
+    @IBOutlet weak var btn_start_time:UIButton!
+    @IBOutlet weak var btn_end_time:UIButton!
 }
 
 // /* ************** TRANSLATE LANGUAGE ************************ */
@@ -173,6 +248,8 @@ class translate_language_table_cell : UITableViewCell {
             txt_view_down.layer.cornerRadius = 12
             txt_view_down.clipsToBounds = true
             txt_view_down.backgroundColor = text_field_BG_color
+            txt_view_down.isEditable = false
+            txt_view_down.isSelectable = true
         }
     }
     
@@ -185,6 +262,57 @@ class translate_language_table_cell : UITableViewCell {
             btn_translate.layer.cornerRadius = 12
             btn_translate.clipsToBounds = true
             btn_translate.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
+// /* ************** TRANSLATE LANGUAGE ************************ */
+// /* ********************************************************** */
+class change_password_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var view_bottom:UIView! {
+        didSet {
+            view_bottom.layer.cornerRadius = 12
+            view_bottom.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var txt_old_password:UITextField! {
+        didSet {
+            txt_old_password.layer.cornerRadius = 12
+            txt_old_password.clipsToBounds = true
+            txt_old_password.backgroundColor = text_field_BG_color
+            txt_old_password.placeholder = "Current password"
+            txt_old_password.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var txt_new_password:UITextField! {
+        didSet {
+            txt_new_password.layer.cornerRadius = 12
+            txt_new_password.clipsToBounds = true
+            txt_new_password.backgroundColor = text_field_BG_color
+            txt_new_password.placeholder = "New password"
+            txt_new_password.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var txt_confirm_password:UITextField! {
+        didSet {
+            txt_confirm_password.layer.cornerRadius = 12
+            txt_confirm_password.clipsToBounds = true
+            txt_confirm_password.backgroundColor = text_field_BG_color
+            txt_confirm_password.placeholder = "Confirm password"
+            txt_confirm_password.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var btn_change_password:UIButton!  {
+        didSet {
+            btn_change_password.backgroundColor = button_light_blue_color
+            btn_change_password.layer.cornerRadius = 12
+            btn_change_password.clipsToBounds = true
+            btn_change_password.setTitleColor(.white, for: .normal)
         }
     }
 }

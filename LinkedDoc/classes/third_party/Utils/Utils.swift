@@ -7,6 +7,12 @@
 
 import UIKit
 
+var application_base_url = "https://demo4.evirtualservices.net/linkdoc/services/index"
+
+let str_save_login_user_data = "keyLoginFullData"
+let str_save_last_api_token = "key_last_api_token"
+
+let your_are_not_auth = "You are not authorize to access the API"
 
 var default_key_language = "key_select_language"
 var english_language = "en"

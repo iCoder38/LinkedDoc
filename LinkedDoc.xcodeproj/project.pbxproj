@@ -14,7 +14,20 @@
 		B907845E2BA02D310024970D /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907845D2BA02D310024970D /* extensions.swift */; };
 		B90784612BA02DDB0024970D /* translate_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784602BA02DDB0024970D /* translate_language.swift */; };
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
+		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
 		B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF86222B9F27EA00DBB05A /* complete_profile.swift */; };
+		B9BF96552BA074DC00860A64 /* change_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96542BA074DC00860A64 /* change_password.swift */; };
+		B9BF96582BA07C9700860A64 /* ERProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96572BA07C9700860A64 /* ERProgressHud.swift */; };
+		B9BF96622BA07CCF00860A64 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965A2BA07CCF00860A64 /* AlertView.swift */; };
+		B9BF96632BA07CCF00860A64 /* LeftPaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965B2BA07CCF00860A64 /* LeftPaddingTextField.swift */; };
+		B9BF96642BA07CCF00860A64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965C2BA07CCF00860A64 /* Color.swift */; };
+		B9BF96652BA07CCF00860A64 /* NewYorkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965D2BA07CCF00860A64 /* NewYorkAlertController.swift */; };
+		B9BF96662BA07CCF00860A64 /* UIStackView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965E2BA07CCF00860A64 /* UIStackView+Utility.swift */; };
+		B9BF96672BA07CCF00860A64 /* NewYorkAlertViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF965F2BA07CCF00860A64 /* NewYorkAlertViewType.swift */; };
+		B9BF96682BA07CCF00860A64 /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96602BA07CCF00860A64 /* ActionSheetView.swift */; };
+		B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */; };
+		B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966B2BA088F400860A64 /* RPicker.swift */; };
+		B9BF966F2BA0905700860A64 /* welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966E2BA0905700860A64 /* welcome.swift */; };
 		B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */; };
 		B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */; };
 		B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB62B9ED4D600948E89 /* ViewController.swift */; };
@@ -67,7 +80,20 @@
 		B907845D2BA02D310024970D /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B90784602BA02DDB0024970D /* translate_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate_language.swift; sourceTree = "<group>"; };
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
+		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
 		B9BF86222B9F27EA00DBB05A /* complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = complete_profile.swift; sourceTree = "<group>"; };
+		B9BF96542BA074DC00860A64 /* change_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = change_password.swift; sourceTree = "<group>"; };
+		B9BF96572BA07C9700860A64 /* ERProgressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ERProgressHud.swift; sourceTree = "<group>"; };
+		B9BF965A2BA07CCF00860A64 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		B9BF965B2BA07CCF00860A64 /* LeftPaddingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPaddingTextField.swift; sourceTree = "<group>"; };
+		B9BF965C2BA07CCF00860A64 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B9BF965D2BA07CCF00860A64 /* NewYorkAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewYorkAlertController.swift; sourceTree = "<group>"; };
+		B9BF965E2BA07CCF00860A64 /* UIStackView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Utility.swift"; sourceTree = "<group>"; };
+		B9BF965F2BA07CCF00860A64 /* NewYorkAlertViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewYorkAlertViewType.swift; sourceTree = "<group>"; };
+		B9BF96602BA07CCF00860A64 /* ActionSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
+		B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewYorkButton.swift; sourceTree = "<group>"; };
+		B9BF966B2BA088F400860A64 /* RPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPicker.swift; sourceTree = "<group>"; };
+		B9BF966E2BA0905700860A64 /* welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcome.swift; sourceTree = "<group>"; };
 		B9E52CAF2B9ED4D600948E89 /* LinkedDoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedDoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +229,14 @@
 			path = select_language_2;
 			sourceTree = "<group>";
 		};
+		B919B7542BA18F40005E96D3 /* update_profile */ = {
+			isa = PBXGroup;
+			children = (
+				B919B7552BA18F4C005E96D3 /* update_profile.swift */,
+			);
+			path = update_profile;
+			sourceTree = "<group>";
+		};
 		B9BF86202B9F1AF700DBB05A /* doctor */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +252,53 @@
 				B9BF86222B9F27EA00DBB05A /* complete_profile.swift */,
 			);
 			path = complete_profile;
+			sourceTree = "<group>";
+		};
+		B9BF96532BA0744200860A64 /* change_password */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF96542BA074DC00860A64 /* change_password.swift */,
+			);
+			path = change_password;
+			sourceTree = "<group>";
+		};
+		B9BF96562BA07C8D00860A64 /* progress */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF96572BA07C9700860A64 /* ERProgressHud.swift */,
+			);
+			path = progress;
+			sourceTree = "<group>";
+		};
+		B9BF96592BA07CBA00860A64 /* alert */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF96602BA07CCF00860A64 /* ActionSheetView.swift */,
+				B9BF965A2BA07CCF00860A64 /* AlertView.swift */,
+				B9BF965C2BA07CCF00860A64 /* Color.swift */,
+				B9BF965B2BA07CCF00860A64 /* LeftPaddingTextField.swift */,
+				B9BF965D2BA07CCF00860A64 /* NewYorkAlertController.swift */,
+				B9BF965F2BA07CCF00860A64 /* NewYorkAlertViewType.swift */,
+				B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */,
+				B9BF965E2BA07CCF00860A64 /* UIStackView+Utility.swift */,
+			);
+			path = alert;
+			sourceTree = "<group>";
+		};
+		B9BF966A2BA088ED00860A64 /* picker */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF966B2BA088F400860A64 /* RPicker.swift */,
+			);
+			path = picker;
+			sourceTree = "<group>";
+		};
+		B9BF966D2BA0904200860A64 /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF966E2BA0905700860A64 /* welcome.swift */,
+			);
+			path = welcome;
 			sourceTree = "<group>";
 		};
 		B9E52CA62B9ED4D600948E89 = {
@@ -288,6 +369,8 @@
 		B9E52CE62B9ED68700948E89 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				B919B7542BA18F40005E96D3 /* update_profile */,
+				B9BF966D2BA0904200860A64 /* welcome */,
 				B9E52CF92B9ED8FD00948E89 /* select_language */,
 				B90784682BA038C80024970D /* select_language_2 */,
 				B9E52CF62B9ED86900948E89 /* login */,
@@ -301,6 +384,10 @@
 		B9E52CE72B9ED68C00948E89 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				B9BF966A2BA088ED00860A64 /* picker */,
+				B9BF96592BA07CBA00860A64 /* alert */,
+				B9BF96562BA07C8D00860A64 /* progress */,
+				B9BF96532BA0744200860A64 /* change_password */,
 				B9E52D022B9EF8EC00948E89 /* table_cell */,
 				B9E52CFC2B9EDA5E00948E89 /* language */,
 			);
@@ -621,13 +708,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9BF96552BA074DC00860A64 /* change_password.swift in Sources */,
+				B9BF96582BA07C9700860A64 /* ERProgressHud.swift in Sources */,
+				B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */,
 				B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */,
+				B9BF96622BA07CCF00860A64 /* AlertView.swift in Sources */,
 				B907845E2BA02D310024970D /* extensions.swift in Sources */,
+				B9BF96642BA07CCF00860A64 /* Color.swift in Sources */,
+				B9BF96682BA07CCF00860A64 /* ActionSheetView.swift in Sources */,
 				B9E52CF22B9ED6C400948E89 /* MenuControllerVCTableCell.swift in Sources */,
+				B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */,
 				B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */,
 				B9E52CFE2B9EDA6C00948E89 /* text_language.swift in Sources */,
 				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
+				B9BF966F2BA0905700860A64 /* welcome.swift in Sources */,
 				B907845B2BA02CFB0024970D /* all_colors.swift in Sources */,
+				B9BF96632BA07CCF00860A64 /* LeftPaddingTextField.swift in Sources */,
 				B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */,
 				B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */,
 				B9E52CBD2B9ED4D600948E89 /* LinkedDoc.xcdatamodeld in Sources */,
@@ -636,9 +732,13 @@
 				B90784612BA02DDB0024970D /* translate_language.swift in Sources */,
 				B90784582BA0218D0024970D /* dashboard.swift in Sources */,
 				B907846A2BA038E20024970D /* update_select_language.swift in Sources */,
+				B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */,
+				B9BF96652BA07CCF00860A64 /* NewYorkAlertController.swift in Sources */,
+				B9BF96672BA07CCF00860A64 /* NewYorkAlertViewType.swift in Sources */,
 				B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */,
 				B9E52CF12B9ED6C400948E89 /* SWRevealViewController.m in Sources */,
 				B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */,
+				B9BF96662BA07CCF00860A64 /* UIStackView+Utility.swift in Sources */,
 				B9E52CF82B9ED87500948E89 /* loginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,6 +927,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LinkedDoc/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -863,6 +964,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LinkedDoc/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

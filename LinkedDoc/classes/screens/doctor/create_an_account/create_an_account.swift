@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class create_an_account: UIViewController {
 
@@ -35,6 +36,8 @@ class create_an_account: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         self.tble_view.delegate = self
         self.tble_view.dataSource = self
         self.tble_view.reloadData()
@@ -47,10 +50,86 @@ class create_an_account: UIViewController {
     @objc func continue_click_method2() {
         Utils.light_vibrate()
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
-        self.navigationController?.pushViewController(push, animated: true)
+        self.create_an_account()
     }
     
+    @objc func create_an_account() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! create_an_account_table_cell
+        
+        if (cell.txt_name.text == "") {
+            return
+        }
+        if (cell.txt_email.text == "") {
+            return
+        }
+        if (cell.txt_phone.text == "") {
+            return
+        }
+        if (cell.txt_password.text == "") {
+            return
+        }
+        
+        var parameters:Dictionary<AnyHashable, Any>!
+        
+        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+        
+        parameters = [
+            "action"        : "registration",
+            "fullName"      : String(cell.txt_name.text!),
+            "email"         : String(cell.txt_email.text!),
+            "contactNumber" : String(cell.txt_phone.text!),
+            "password"      : String(cell.txt_password.text!),
+            "role"          : String("Doctor"),
+            "device"        : String("iOS")
+        ]
+        
+        
+        print("parameters-------\(String(describing: parameters))")
+        
+        AF.request(application_base_url, method: .post, parameters: parameters as? Parameters).responseJSON {
+            response in
+            
+            switch(response.result) {
+            case .success(_):
+                if let data = response.value {
+                    
+                    let JSON = data as! NSDictionary
+                    print(JSON)
+                    
+                    var strSuccess : String!
+                    strSuccess = JSON["status"] as? String
+                    
+                    if strSuccess.lowercased() == "success" {
+                        ERProgressHud.sharedInstance.hide()
+                        
+                        var dict: Dictionary<AnyHashable, Any>
+                        dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                        
+                        let defaults = UserDefaults.standard
+                        defaults.setValue(dict, forKey: str_save_login_user_data)
+                        
+                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                        self.navigationController?.pushViewController(push, animated: true)
+                        
+                        
+                    }
+                    else {
+                        // self.login_refresh_token_wb()
+                    }
+                    
+                }
+                
+            case .failure(_):
+                print("Error message:\(String(describing: response.error))")
+                ERProgressHud.sharedInstance.hide()
+                 self.please_check_your_internet_connection()
+                
+                break
+            }
+        }
+        
+    }
 }
 
 //MARK:- TABLE VIEW -
@@ -87,6 +166,7 @@ extension create_an_account: UITableViewDataSource , UITableViewDelegate {
         cell.lbl_already_have_an_account.text = text_language.create_an_account_screen(status: "#08")
         
         cell.btn_continue.addTarget(self, action: #selector(continue_click_method2), for: .touchUpInside)
+        
         return cell
         
     }
