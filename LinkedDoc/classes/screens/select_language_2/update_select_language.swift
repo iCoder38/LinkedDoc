@@ -104,12 +104,10 @@ class update_select_language: UIViewController {
                 
             }
         }
-         
-        // self.btn_english.setImage(UIImage(named: "check"), for: .normal)
-        // self.btn_chinese.setImage(UIImage(named: "un_check"), for: .normal)
         
-        // self.sideBarMenu(button: self.btn_back)
-        self.sideBarMenu()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.sideBarMenu(button: self.btn_back)
+        
         self.btn_english.addTarget(self, action: #selector(english_click_method), for: .touchUpInside)
         self.btn_chinese.addTarget(self, action: #selector(chinese_click_method), for: .touchUpInside)
         self.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)

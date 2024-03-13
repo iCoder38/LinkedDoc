@@ -10,6 +10,8 @@ import Foundation
 
 class translate_language: UIViewController {
 
+    var str_back_menu:String!
+    
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
             view_navigation.backgroundColor = navigation_color
@@ -43,10 +45,17 @@ class translate_language: UIViewController {
         
         self.tble_view.separatorColor = .clear
         
-        // self.sideBarMenu(button: self.btn_back)
-        self.sideBarMenuClick2()
+        if (self.str_back_menu == "back") {
+            self.btn_back.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+            self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        } else {
+            self.btn_back.setImage(UIImage(systemName: "list.dash"), for: .normal)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.sideBarMenu(button: self.btn_back)
+        }
         
     }
+    
     @objc func sideBarMenuClick2() {
         print("HIT")
         if revealViewController() != nil {
@@ -112,7 +121,7 @@ class translate_language: UIViewController {
                     do {
                         //create json object from data
                         if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                            print(json)
+                            // print(json)
                             print(json["data"] as Any)
                             
                             var dict:NSDictionary!

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SDWebImage
 
 class MenuControllerVC: UIViewController {
 
@@ -60,6 +61,13 @@ class MenuControllerVC: UIViewController {
     @IBOutlet weak var lblName:UILabel!
     @IBOutlet weak var lblAddress:UILabel!
     
+    @IBOutlet weak var img_profile:UIImageView! {
+        didSet {
+            img_profile.layer.cornerRadius = 35
+            img_profile.clipsToBounds = true
+        }
+    }
+    
     @IBOutlet weak var tbleView: UITableView! {
         didSet {
             tbleView.delegate = self
@@ -84,9 +92,14 @@ class MenuControllerVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-            // //self.lblName.text = (person["fullName"] as! String)
-            // self.lblAddress.text = (person["address"] as! String)
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person)
+            
+            self.img_profile.sd_imageIndicator = SDWebImageActivityIndicator.whiteLarge
+            self.img_profile.sd_setImage(with: URL(string: (person["image"] as! String)), placeholderImage: UIImage(named: "avatar"))
+            
+            self.lblName.text       = (person["fullName"] as! String)
+            self.lblAddress.text    = (person["address"] as! String)
         }
         
         self.tbleView.reloadData()
@@ -98,12 +111,13 @@ class MenuControllerVC: UIViewController {
     
     @objc func sideBarMenuClick() {
         if revealViewController() != nil {
-        menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-        
+            menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            
             revealViewController().rearViewRevealWidth = 300
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-          }
+        }
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -441,11 +455,24 @@ extension MenuControllerVC: UITableViewDataSource {
         if String(arr_menu_list_en[indexPath.row]) == "Logout" {
             pushPageNumber(strMyPageNumber: "6")
         }
+        if String(arr_menu_list_en[indexPath.row]) == "Help" {
+            pushPageNumber(strMyPageNumber: "7")
+        }
     }
     
     @objc func pushPageNumber(strMyPageNumber:String) {
         
         if strMyPageNumber == "3" {
+            
+            // let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "translate_language_id")
+            // self.navigationController?.pushViewController(push, animated: true)
+            
+            /*let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "translate_language_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)*/
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
@@ -469,6 +496,15 @@ extension MenuControllerVC: UITableViewDataSource {
             let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
             self.view.window?.rootViewController = sw
             let destinationController = storyboard.instantiateViewController(withIdentifier: "update_profile_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)
+            
+        } else if strMyPageNumber == "7" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "help_id")
             let navigationController = UINavigationController(rootViewController: destinationController)
             sw.setFront(navigationController, animated: true)
             
@@ -501,247 +537,6 @@ extension MenuControllerVC: UITableViewDataSource {
             
         }
         
-        /*if strMyPageNumber == "21" {
-            
-            let alert = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account ?",preferredStyle: UIAlertController.Style.alert)
-
-            alert.addAction(UIAlertAction(title: "Yes, delete", style: .default, handler: { _ in
-                //Cancel Action
-                self.delete_generateOTP()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .destructive, handler: { _ in
-                //Cancel Action
-                
-            }))
-            
-            self.present(alert, animated: true, completion: nil)
-            
-            
-//            let obj = self.storyboard?.instantiateViewController(withIdentifier: "all_reviews_id") as! all_reviews
-//            let navController = UINavigationController(rootViewController: obj)
-//            navController.setViewControllers([obj], animated:true)
-//            self.revealViewController().setFront(navController, animated: true)
-//            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-            
-        }
-        
-        if strMyPageNumber == "20" {
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "all_reviews_id") as! all_reviews
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-            
-        }
-        
-        if strMyPageNumber == "19" {
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "order_received_id") as! order_received
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-            
-        }
-        
-        if strMyPageNumber == "18" {
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "cashout_id") as! cashout
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-            
-        }
-        
-        if strMyPageNumber == "1" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "DashboardId") as! Dashboard
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "2" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileId") as! EditProfile
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "4" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "MyPostId") as! MyPost
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "5" {
-            
-            let defaults = UserDefaults.standard
-            defaults.set("SubmitPostMenuBar", forKey: "keySideBarMenuSubmitPost")
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "SubmitPostId") as! SubmitPost
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "6" {
-            
-            let defaults = UserDefaults.standard
-            defaults.set("RequestServiceMenuBar", forKey: "keySideBarMenuRequestPost")
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "RequestServiceId") as! RequestService
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "7" {
-            
-            let defaults = UserDefaults.standard
-            defaults.set("PetStoreMenuBar", forKey: "keySideBarMenuPetStore")
-            
-            defaults.setValue("", forKey: "keyReadTermsAndCondition")
-            defaults.setValue(nil, forKey: "keyReadTermsAndCondition")
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "BrowsePetStoreId") as! BrowsePetStore
-            let navController = UINavigationController(rootViewController: obj)
-            // obj.strFromSideBarPetStore = "sideBarMenuForMyProductCart"
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-            
-            /*let defaults = UserDefaults.standard
-            defaults.set("PetStoreMenuBar", forKey: "keySideBarMenuPetStore")
-        
-             if let name = defaults.string(forKey: "keyReadTermsAndCondition") {
-                 print(name)
-                 if name == "Yes" {
-                    let obj = self.storyboard?.instantiateViewController(withIdentifier: "BrowsePetStoreId") as! BrowsePetStore
-                    let navController = UINavigationController(rootViewController: obj)
-                    navController.setViewControllers([obj], animated:true)
-                    self.revealViewController().setFront(navController, animated: true)
-                    self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-                 }
-                 else
-                 {
-                    let obj = self.storyboard?.instantiateViewController(withIdentifier: "PetStoreTermsAndConditionsId") as! PetStoreTermsAndConditions
-                    let navController = UINavigationController(rootViewController: obj)
-                    navController.setViewControllers([obj], animated:true)
-                    self.revealViewController().setFront(navController, animated: true)
-                    self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-                 }
-         }*/
-        }
-        if strMyPageNumber == "8" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "MyOrdersId") as! MyOrders
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "9" {
-            
-            let myString = "backOrMenu"
-            UserDefaults.standard.set(myString, forKey: "keyBackOrSlide")
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordId") as! ChangePassword
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "10" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "HelpId") as! Help
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "11" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "AppointmentId") as! Appointment
-            obj.strBookingOrAppointment = "appointmentIs"
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        if strMyPageNumber == "12" {
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "MyBookingId") as! MyBooking
-            // obj.strBookingOrAppointment = "bookingIs"
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        
-        if strMyPageNumber == "13" {
-            
-            let alert = UIAlertController(title: "Alert!", message: "Are you sure you want to Signout ?",preferredStyle: UIAlertController.Style.alert)
-
-            alert.addAction(UIAlertAction(title: "Yes, Logout", style: UIAlertAction.Style.default, handler: { _ in
-                //Cancel Action
-                
-                
-                self.logout_WB()
-                
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive, handler: { _ in
-                //Cancel Action
-                
-            }))
-            
-            self.present(alert, animated: true, completion: nil)
-            
-            
-        }
-        
-        if strMyPageNumber == "14" {
-            
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "DogFoodId") as! DogFood
-             obj.strFromSideBar = "sideBarMenuForMyProduct"
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        
-        if strMyPageNumber == "15" {
-            
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "AddToCartId") as! AddToCart
-             obj.strFromSideBarCart = "sideBarMenuForMyProductCart"
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        
-        
-        if strMyPageNumber == "16" {
-            
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "DialogsId") as! Dialogs
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }
-        
-        if strMyPageNumber == "17" {
-            
-            
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "CallLogsId") as! CallLogs
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
-        }*/
         
     }
     

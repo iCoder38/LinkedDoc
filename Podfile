@@ -27,4 +27,6 @@ pod 'Firebase/Messaging'
 pod 'FirebaseFirestore'
 pod 'Firebase/Storage'
 
+pod 'Toast-Swift'
+
 end

@@ -37,15 +37,13 @@ class update_profile: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
         self.tble_view.delegate = self
         self.tble_view.dataSource = self
         self.tble_view.reloadData()
         
         self.tble_view.separatorColor = .clear
         
-        self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         self.sideBarMenu(button: self.btn_back)
     }
@@ -136,17 +134,20 @@ class update_profile: UIViewController, UITextFieldDelegate {
                                     
                                     if (language_select == "en") {
                                         
-                                        let alert = NewYorkAlertController(title: JSON["status"] as? String, message: JSON["status"] as? String, style: .alert)
+                                        /*let alert = NewYorkAlertController(title: JSON["status"] as? String, message: JSON["msg"] as? String, style: .alert)
                                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
                                         alert.addButtons([cancel])
-                                        self.present(alert, animated: true)
+                                        self.present(alert, animated: true)*/
                                         
+                                        self.view.makeToast(JSON["msg"] as? String)
                                     } else {
                                         
-                                        let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: JSON["msg_ch"] as? String, style: .alert)
+                                        /*let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: JSON["msg_ch"] as? String, style: .alert)
                                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
                                         alert.addButtons([cancel])
-                                        self.present(alert, animated: true)
+                                        self.present(alert, animated: true)*/
+                                        
+                                        self.view.makeToast(JSON["msg_ch"] as? String)
                                         
                                     }
                                     

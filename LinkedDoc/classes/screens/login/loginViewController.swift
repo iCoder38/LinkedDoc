@@ -133,6 +133,9 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         if (self.txt_password.text == "") {
             return
         }
+        
+        self.view.endEditing(true)
+        
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
         var parameters:Dictionary<AnyHashable, Any>!
         

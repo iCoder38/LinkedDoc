@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class dashboard: UIViewController {
 
@@ -63,11 +64,37 @@ class dashboard: UIViewController {
     @IBOutlet weak var lbl_phone:UILabel!
     @IBOutlet weak var lbl_address:UILabel!
     
+    @IBOutlet weak var img_profile:UIImageView! {
+        didSet {
+            // img_profile.layer.cornerRadius = 70
+            // img_profile.clipsToBounds = true
+            img_profile.layer.masksToBounds = true
+            img_profile.layer.borderWidth = 1.5
+            img_profile.layer.borderColor = UIColor.white.cgColor
+            img_profile.layer.cornerRadius = img_profile.bounds.width / 2
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.sideBarMenu(button: self.btn_back)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(translate_tap))
+        self.img_translate.isUserInteractionEnabled = true
+        self.img_translate.addGestureRecognizer(tapGestureRecognizer)
+        
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(password_tap))
+        self.img_password.isUserInteractionEnabled = true
+        self.img_password.addGestureRecognizer(tapGestureRecognizer2)
+        
+        let tapGestureRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(help_tap))
+        self.img_help.isUserInteractionEnabled = true
+        self.img_help.addGestureRecognizer(tapGestureRecognizer3)
+        
         self.convert_language()
+        
     }
     
     @objc func convert_language() {
@@ -84,11 +111,34 @@ class dashboard: UIViewController {
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             print(person)
             
+            self.img_profile.sd_imageIndicator = SDWebImageActivityIndicator.whiteLarge
+            self.img_profile.sd_setImage(with: URL(string: (person["image"] as! String)), placeholderImage: UIImage(named: "avatar"))
+            
             self.lbl_name.text = (person["fullName"] as! String)
-            // self.lbl_phone.text =  // (person[""] as! String)
+            self.lbl_phone.text = (person["contactNumber"] as! String)
             self.lbl_address.text =  (person["address"] as! String)
         }
     }
-   
+    
+    @objc func translate_tap() {
+         print("translate")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "translate_language_id") as? translate_language
+        push!.str_back_menu = "back"
+        self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func password_tap() {
+        print("password")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "change_password_id") as? change_password
+        push!.str_back_menu = "back"
+        self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func help_tap() {
+        print("help")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "help_id") as? help
+        push!.str_back_menu = "back"
+        self.navigationController?.pushViewController(push!, animated: true)
+    }
     
 }
