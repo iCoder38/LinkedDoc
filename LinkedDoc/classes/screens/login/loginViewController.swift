@@ -43,6 +43,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             txt_email.backgroundColor = text_field_BG_color
             txt_email.placeholder = "Email"
             txt_email.setLeftPaddingPoints(20)
+            txt_email.keyboardType = .emailAddress
         }
     }
     
@@ -83,6 +84,8 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
          
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         // keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -109,6 +112,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         
         self.btn_register_now.setTitle(text_language.login_screen(status: "#06"), for: .normal)
         
+        self.btn_register_now.addTarget(self, action: #selector(register_now_click_method), for: .touchUpInside)
         self.btn_continue.addTarget(self, action: #selector(login_click_method_WB), for: .touchUpInside)
     }
     
@@ -122,6 +126,13 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     @objc func patient_click_method() {
         Utils.light_vibrate()
         
+    }
+    
+    @objc func register_now_click_method() {
+        Utils.light_vibrate()
+        
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id")
+        self.navigationController?.pushViewController(push, animated: true)
     }
     
     @objc func login_click_method_WB() {

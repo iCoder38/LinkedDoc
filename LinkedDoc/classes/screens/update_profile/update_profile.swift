@@ -7,8 +7,14 @@
 
 import UIKit
 import Alamofire
+import SDWebImage
 
-class update_profile: UIViewController, UITextFieldDelegate {
+class update_profile: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // image
+    var imgUploadYesOrNo:String! = "0"
+    var imageStr:String!
+    var imgData:Data!
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -78,105 +84,110 @@ class update_profile: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         var parameters:Dictionary<AnyHashable, Any>!
         
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "updating"))
-        
-        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-            print(person)
+        if (self.imgUploadYesOrNo == "1") {
+            self.upload_date_with_image()
+        } else{
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "updating"))
             
-            let x : Int = person["userId"] as! Int
-            let myString = String(x)
-            
-            if let token_id_is = UserDefaults.standard.string(forKey: str_save_last_api_token) {
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                print(person)
                 
-                let headers: HTTPHeaders = [
-                    "token":String(token_id_is),
-                ]
+                let x : Int = person["userId"] as! Int
+                let myString = String(x)
                 
-                parameters = [
-                    "action"        : "editprofile",
-                    "userId"        : String(myString),
-                    "fullName"      : String(cell.txt_name.text!),
-                    "email"         : String(cell.txt_email.text!),
-                    "contactNumber" : String(cell.txt_phone.text!),
-                    "role"          : (person["role"] as! String),
-                    "device"        : String("iOS")
-                ]
-                
-                print("parameters-------\(String(describing: parameters))")
-                
-                AF.request(application_base_url, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
-                    response in
+                if let token_id_is = UserDefaults.standard.string(forKey: str_save_last_api_token) {
                     
-                    switch(response.result) {
-                    case .success(_):
-                        if let data = response.value {
-                            
-                            let JSON = data as! NSDictionary
-                            print(JSON)
-                            
-                            var strSuccess : String!
-                            strSuccess = JSON["status"] as? String
-                            
-                            if strSuccess.lowercased() == "success" {
-                                ERProgressHud.sharedInstance.hide()
+                    let headers: HTTPHeaders = [
+                        "token":String(token_id_is),
+                    ]
+                    
+                    parameters = [
+                        "action"        : "editprofile",
+                        "userId"        : String(myString),
+                        "fullName"      : String(cell.txt_name.text!),
+                        "email"         : String(cell.txt_email.text!),
+                        "contactNumber" : String(cell.txt_phone.text!),
+                        "role"          : (person["role"] as! String),
+                        "device"        : String("iOS")
+                    ]
+                    
+                    print("parameters-------\(String(describing: parameters))")
+                    
+                    AF.request(application_base_url, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
+                        response in
+                        
+                        switch(response.result) {
+                        case .success(_):
+                            if let data = response.value {
                                 
-                                var dict: Dictionary<AnyHashable, Any>
-                                dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                                let JSON = data as! NSDictionary
+                                print(JSON)
                                 
-                                let defaults = UserDefaults.standard
-                                defaults.setValue(dict, forKey: str_save_login_user_data)
+                                var strSuccess : String!
+                                strSuccess = JSON["status"] as? String
                                 
-                                /*let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
-                                 self.navigationController?.pushViewController(push, animated: true)*/
-                                
-                                if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
-                                    print(language_select as Any)
+                                if strSuccess.lowercased() == "success" {
+                                    ERProgressHud.sharedInstance.hide()
                                     
-                                    if (language_select == "en") {
+                                    var dict: Dictionary<AnyHashable, Any>
+                                    dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                                    
+                                    let defaults = UserDefaults.standard
+                                    defaults.setValue(dict, forKey: str_save_login_user_data)
+                                    
+                                    /*let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                                     self.navigationController?.pushViewController(push, animated: true)*/
+                                    
+                                    if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                        print(language_select as Any)
                                         
-                                        /*let alert = NewYorkAlertController(title: JSON["status"] as? String, message: JSON["msg"] as? String, style: .alert)
-                                        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
-                                        alert.addButtons([cancel])
-                                        self.present(alert, animated: true)*/
-                                        
-                                        self.view.makeToast(JSON["msg"] as? String)
-                                    } else {
-                                        
-                                        /*let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: JSON["msg_ch"] as? String, style: .alert)
-                                        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
-                                        alert.addButtons([cancel])
-                                        self.present(alert, animated: true)*/
-                                        
-                                        self.view.makeToast(JSON["msg_ch"] as? String)
+                                        if (language_select == "en") {
+                                            
+                                            /*let alert = NewYorkAlertController(title: JSON["status"] as? String, message: JSON["msg"] as? String, style: .alert)
+                                             let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+                                             alert.addButtons([cancel])
+                                             self.present(alert, animated: true)*/
+                                            
+                                            self.view.makeToast(JSON["msg"] as? String)
+                                        } else {
+                                            
+                                            /*let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: JSON["msg_ch"] as? String, style: .alert)
+                                             let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+                                             alert.addButtons([cancel])
+                                             self.present(alert, animated: true)*/
+                                            
+                                            self.view.makeToast(JSON["msg_ch"] as? String)
+                                            
+                                        }
                                         
                                     }
                                     
+                                    
                                 }
-                                                            
+                                else {
+                                    self.generate_token(status: "0")
+                                }
                                 
                             }
-                            else {
-                                self.generate_token()
-                            }
                             
+                        case .failure(_):
+                            print("Error message:\(String(describing: response.error))")
+                            ERProgressHud.sharedInstance.hide()
+                            self.please_check_your_internet_connection()
+                            
+                            break
                         }
-                        
-                    case .failure(_):
-                        print("Error message:\(String(describing: response.error))")
-                        ERProgressHud.sharedInstance.hide()
-                        self.please_check_your_internet_connection()
-                        
-                        break
                     }
+                } else {
+                    self.generate_token(status: "0")
                 }
-            } else {
-                self.generate_token()
             }
         }
         
+        
     }
     
-    @objc func generate_token() {
+    @objc func generate_token(status:String) {
         
         var parameters:Dictionary<AnyHashable, Any>!
         
@@ -214,7 +225,12 @@ class update_profile: UIViewController, UITextFieldDelegate {
                         UserDefaults.standard.set("", forKey: str_save_last_api_token)
                         UserDefaults.standard.set(str_token, forKey: str_save_last_api_token)
                         
-                        self.create_an_account()
+                        if (status == "0") {
+                            self.create_an_account()
+                        } else {
+                            self.upload_date_with_image()
+                        }
+                        
                         
                     } else {
                         ERProgressHud.sharedInstance.hide()
@@ -231,6 +247,228 @@ class update_profile: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    
+    
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.uploadImageOpenActionSheet()
+    }
+    
+    @objc func uploadImageOpenActionSheet() {
+        let alert = UIAlertController(title: text_language.common_screen(status: "upload_profile_picture"), message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "camera"), style: .default , handler:{ (UIAlertAction)in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "gallery"), style: .default , handler:{ (UIAlertAction)in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "dismiss"), style: .destructive, handler:{ (UIAlertAction)in
+            //print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            //print("completion block")
+        })
+    }
+    @objc func openCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera;
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func openGallery() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary;
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! updating_profile_table_cell
+        
+        imgUploadYesOrNo = "1"
+        
+        
+        let image_data = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        cell.img_profile.image = image_data // show image on image view
+        let imageData:Data = image_data!.pngData()!
+        imageStr = imageData.base64EncodedString()
+        self.dismiss(animated: true, completion: nil)
+        
+        imgData = image_data!.jpegData(compressionQuality: 0.2)!
+        //print(type(of: imgData))
+        //print(imgData)
+        
+    }
+    
+    @objc func upload_date_with_image() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! updating_profile_table_cell
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "updating"))
+            let x : Int = (person["userId"] as! Int)
+            let myString = String(x)
+            
+            if let token_id_is = UserDefaults.standard.string(forKey: str_save_last_api_token) {
+                
+                let _: HTTPHeaders = [
+                    "token":String(token_id_is),
+                ]
+                
+                var urlRequest = URLRequest(url: URL(string: application_base_url)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0 * 1000)
+                urlRequest.httpMethod = "POST"
+                urlRequest.allHTTPHeaderFields = ["token":String(token_id_is)]
+                urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                // let indexPath = IndexPath.init(row: 0, section: 0)
+                // let cell = self.tablView.cellForRow(at: indexPath) as! AddTableTableViewCell
+                
+                //Set Your Parameter
+                let parameterDict = NSMutableDictionary()
+                parameterDict.setValue("editprofile", forKey: "action")
+                parameterDict.setValue(String(myString), forKey: "userId")
+                
+                parameterDict.setValue(String(cell.txt_name.text!), forKey: "fullName")
+                parameterDict.setValue(String(cell.txt_email.text!), forKey: "email")
+                parameterDict.setValue(String(cell.txt_phone.text!), forKey: "contactNumber")
+                parameterDict.setValue((person["role"] as! String), forKey: "role")
+                parameterDict.setValue(String("iOS"), forKey: "device")
+                
+                // Now Execute
+                AF.upload(multipartFormData: { multiPart in
+                    for (key, value) in parameterDict {
+                        if let temp = value as? String {
+                            multiPart.append(temp.data(using: .utf8)!, withName: key as! String)
+                        }
+                        if let temp = value as? Int {
+                            multiPart.append("\(temp)".data(using: .utf8)!, withName: key as! String)
+                        }
+                        if let temp = value as? NSArray {
+                            temp.forEach({ element in
+                                let keyObj = key as! String + "[]"
+                                if let string = element as? String {
+                                    multiPart.append(string.data(using: .utf8)!, withName: keyObj)
+                                } else
+                                if let num = element as? Int {
+                                    let value = "\(num)"
+                                    multiPart.append(value.data(using: .utf8)!, withName: keyObj)
+                                }
+                            })
+                        }
+                    }
+                    multiPart.append(self.imgData, withName: "image", fileName: "profile_picture.png", mimeType: "image/png")
+                }, with: urlRequest)
+                .uploadProgress(queue: .main, closure: { progress in
+                    //Current upload progress of file
+                    print("Upload Progress: \(progress.fractionCompleted)")
+                })
+                .responseJSON(completionHandler: { data in
+                    
+                    switch data.result {
+                        
+                    case .success(_):
+                        do {
+                            
+                            let dictionary = try JSONSerialization.jsonObject(with: data.data!, options: .fragmentsAllowed) as! NSDictionary
+                            
+                            print("Success!")
+                            print(dictionary)
+                            
+                            var strSuccess : String!
+                            strSuccess = dictionary["msg"] as? String
+                            
+                            if (strSuccess == your_are_not_auth) {
+                                self.generate_token(status: "1")
+                            } else {
+                                ERProgressHud.sharedInstance.hide()
+                                
+                                let JSON = dictionary
+                                print(JSON)
+                                
+                                var dict: Dictionary<AnyHashable, Any>
+                                dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                                
+                                let defaults = UserDefaults.standard
+                                defaults.setValue(dict, forKey: str_save_login_user_data)
+                                
+                                self.imgUploadYesOrNo = "0"
+                                
+                                if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                    print(language_select as Any)
+                                    
+                                    if (language_select == "en") {
+                                        
+                                        self.view.makeToast(dictionary["msg"] as? String)
+                                    } else {
+                                        
+                                        self.view.makeToast(dictionary["msg_ch"] as? String)
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                        catch {
+                            // catch error.
+                            print("catch error")
+                            ERProgressHud.sharedInstance.hide()
+                        }
+                        break
+                        
+                    case .failure(_):
+                        print("failure")
+                        ERProgressHud.sharedInstance.hide()
+                        break
+                        
+                    }
+                    
+                    
+                })
+            }
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! updating_profile_table_cell
+        
+        if (textField == cell.txt_phone) {
+            
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            // make sure the result is under 16 characters
+            return updatedText.count <= 10
+            
+            
+            
+        }  else {
+            
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            // make sure the result is under 16 characters
+            return updatedText.count <= 30
+            
+        }
+        
+    }
+    
 }
 
 //MARK:- TABLE VIEW -
@@ -270,10 +508,18 @@ extension update_profile: UITableViewDataSource , UITableViewDelegate {
         
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             print(person)
+            
+            cell.img_profile.sd_imageIndicator = SDWebImageActivityIndicator.whiteLarge
+            cell.img_profile.sd_setImage(with: URL(string: (person["image"] as! String)), placeholderImage: UIImage(named: "avatar"))
+            
             cell.txt_name.text = (person["fullName"] as! String)
             cell.txt_email.text = (person["email"] as! String)
             cell.txt_phone.text = (person["contactNumber"] as! String)
         }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        cell.img_profile.isUserInteractionEnabled = true
+        cell.img_profile.addGestureRecognizer(tapGestureRecognizer)
         
         return cell
         

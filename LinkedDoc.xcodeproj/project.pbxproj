@@ -379,10 +379,10 @@
 		B9E52CE62B9ED68700948E89 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				B9E52CF92B9ED8FD00948E89 /* select_language */,
 				B9A280732BA1C98900D3ACFD /* help */,
 				B919B7542BA18F40005E96D3 /* update_profile */,
 				B9BF966D2BA0904200860A64 /* welcome */,
-				B9E52CF92B9ED8FD00948E89 /* select_language */,
 				B90784682BA038C80024970D /* select_language_2 */,
 				B9E52CF62B9ED86900948E89 /* login */,
 				B9BF86202B9F1AF700DBB05A /* doctor */,

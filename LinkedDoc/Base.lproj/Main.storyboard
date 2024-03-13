@@ -665,7 +665,7 @@
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" image="lock" catalog="system"/>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select he language to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFQ-7Y-YdY">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select he language to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFQ-7Y-YdY">
                                                             <rect key="frame" x="8" y="382" width="377" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="29" id="j9w-nQ-UAH"/>
@@ -721,6 +721,7 @@
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <connections>
                                             <outlet property="btn_continue" destination="A6p-o5-I3N" id="6cO-ya-eCz"/>
+                                            <outlet property="img_profile" destination="jAg-1t-fON" id="LQD-ft-iRv"/>
                                             <outlet property="lbl_already_have_an_account" destination="IFQ-7Y-YdY" id="2sM-gu-6zc"/>
                                             <outlet property="lbl_create_account_text" destination="mf4-dj-AbK" id="A6G-aN-9bS"/>
                                             <outlet property="txt_email" destination="DMH-j0-HwO" id="ahB-ej-Oxa"/>
@@ -1621,7 +1622,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGV-qA-Itx">
-                                                    <rect key="frame" x="0.0" y="109" width="393" height="462"/>
+                                                    <rect key="frame" x="0.0" y="109" width="393" height="292"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GT8-A7-XvL">
                                                             <rect key="frame" x="8" y="8" width="377" height="60"/>
@@ -1698,7 +1699,7 @@
                                                         <constraint firstItem="z09-9p-czx" firstAttribute="leading" secondItem="iGV-qA-Itx" secondAttribute="leading" constant="8" id="Qo1-1o-g2g"/>
                                                         <constraint firstAttribute="trailing" secondItem="wgq-t0-2ZI" secondAttribute="trailing" constant="18" id="Rgz-nt-B0M"/>
                                                         <constraint firstAttribute="trailing" secondItem="BrU-3x-zag" secondAttribute="trailing" constant="18" id="TaZ-yI-tF4"/>
-                                                        <constraint firstAttribute="height" constant="462" id="UVX-5S-kXv"/>
+                                                        <constraint firstAttribute="height" constant="292" id="UVX-5S-kXv"/>
                                                         <constraint firstAttribute="trailing" secondItem="GT8-A7-XvL" secondAttribute="trailing" constant="8" id="UkH-MD-AK7"/>
                                                         <constraint firstItem="QRf-ZS-2DH" firstAttribute="top" secondItem="UBS-DP-n8d" secondAttribute="bottom" constant="8" symbolic="YES" id="VVJ-Yl-909"/>
                                                         <constraint firstItem="UBS-DP-n8d" firstAttribute="leading" secondItem="iGV-qA-Itx" secondAttribute="leading" constant="8" id="YbB-fn-qkr"/>
@@ -1762,7 +1763,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="580-0s-sB5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10868" y="204"/>
+            <point key="canvasLocation" x="10867.938931297709" y="203.52112676056339"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="naN-13-gTR">
@@ -2102,6 +2103,7 @@
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <connections>
                                             <outlet property="btn_continue" destination="Rbr-js-bSg" id="6vz-Nj-4Cn"/>
+                                            <outlet property="img_profile" destination="i8b-Cz-g7i" id="5mz-ed-ncA"/>
                                             <outlet property="txt_email" destination="vEK-BG-Xn8" id="cb9-Wb-29n"/>
                                             <outlet property="txt_name" destination="43h-yM-Wts" id="PfV-rj-d7a"/>
                                             <outlet property="txt_phone" destination="Rmb-iU-Now" id="BKZ-16-qTp"/>
@@ -2305,7 +2307,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="vmo-n9-fAR"/>
                     <connections>
+                        <outlet property="btn_all_rights" destination="cJ0-yb-Y0a" id="S7c-DO-cih"/>
                         <outlet property="btn_back" destination="w3A-A5-olf" id="wE0-RD-UFp"/>
+                        <outlet property="btn_connect_with_us" destination="fbm-wU-9i3" id="y1X-e5-xZC"/>
+                        <outlet property="btn_email" destination="qxe-i9-bJS" id="TEw-W1-DGi"/>
+                        <outlet property="btn_support" destination="fU9-70-MGS" id="Hha-dO-3cB"/>
+                        <outlet property="btn_whatsapp" destination="iMw-VC-eBk" id="xi9-Eu-kyj"/>
                         <outlet property="lbl_navigation_title" destination="BGp-jp-iM4" id="HfH-MG-0rC"/>
                         <outlet property="view_navigation" destination="T8i-tN-I8a" id="1WZ-oM-Sdd"/>
                     </connections>

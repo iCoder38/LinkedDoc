@@ -69,9 +69,6 @@ class select_language: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.btn_english.setImage(UIImage(named: "check"), for: .normal)
-        self.btn_chinese.setImage(UIImage(named: "un_check"), for: .normal)
-        
         self.btn_english.addTarget(self, action: #selector(english_click_method), for: .touchUpInside)
         self.btn_chinese.addTarget(self, action: #selector(chinese_click_method), for: .touchUpInside)
         self.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
@@ -123,8 +120,28 @@ class select_language: UIViewController {
             
             if (language_select == "en") {
                 UserDefaults.standard.set("en", forKey: default_key_language)
+                
+                UserDefaults.standard.set("en", forKey: default_key_language)
+                
+                self.btn_english.setImage(UIImage(named: "check"), for: .normal)
+                self.btn_chinese.setImage(UIImage(named: "un_check"), for: .normal)
+                
+                self.lbl_navigation_title.text = navigation_title_select_language_en
+                self.lbl_mid_text.text = select_language_text_en
+                self.btn_continue.setTitle(button_text_continue_en, for: .normal)
+                
             } else {
                 UserDefaults.standard.set("ch", forKey: default_key_language)
+                
+                UserDefaults.standard.set("ch", forKey: default_key_language)
+                
+                self.btn_english.setImage(UIImage(named: "un_check"), for: .normal)
+                self.btn_chinese.setImage(UIImage(named: "check"), for: .normal)
+                
+                self.lbl_navigation_title.text = navigation_title_select_language_ch
+                self.lbl_mid_text.text = select_language_text_ch
+                self.btn_continue.setTitle(button_text_continue_ch, for: .normal)
+                
             }
         } else {
             UserDefaults.standard.set("en", forKey: default_key_language)

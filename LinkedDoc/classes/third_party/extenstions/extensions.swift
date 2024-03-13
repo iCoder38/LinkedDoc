@@ -22,6 +22,8 @@ extension UIViewController {
     }
     
     @objc func sideBarMenu(button:UIButton) {
+        self.view.endEditing(true)
+        
         if revealViewController() != nil {
             button.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
             

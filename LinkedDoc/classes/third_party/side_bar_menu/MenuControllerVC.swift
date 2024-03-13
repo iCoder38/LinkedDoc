@@ -526,8 +526,8 @@ extension MenuControllerVC: UITableViewDataSource {
             
         } else if strMyPageNumber == "6" {
             
-            let defaults = UserDefaults.standard
-            defaults.set(nil, forKey: str_save_login_user_data)
+            UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
+            UserDefaults.standard.set(nil, forKey: default_key_language)
             
             let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
             let navController = UINavigationController(rootViewController: obj)

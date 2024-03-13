@@ -77,6 +77,7 @@ class complete_profile: UIViewController {
         if (cell.txt_view.text == "") {
             return
         }
+        self.view.endEditing(true)
         var parameters:Dictionary<AnyHashable, Any>!
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
@@ -276,7 +277,7 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 900
+        return 1100
     }
 
 }

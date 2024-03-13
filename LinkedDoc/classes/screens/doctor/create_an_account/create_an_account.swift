@@ -8,8 +8,13 @@
 import UIKit
 import Alamofire
 
-class create_an_account: UIViewController {
+class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // image
+    var imgUploadYesOrNo:String! = "0"
+    var imageStr:String!
+    var imgData:Data!
+    
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
             view_navigation.backgroundColor = navigation_color
@@ -70,38 +75,240 @@ class create_an_account: UIViewController {
             return
         }
         
-        var parameters:Dictionary<AnyHashable, Any>!
+        self.view.endEditing(true)
+        
+        if (self.imgUploadYesOrNo == "1") {
+            self.upload_date_with_image()
+        } else {
+            var parameters:Dictionary<AnyHashable, Any>!
+            
+            ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+            
+            parameters = [
+                "action"        : "registration",
+                "fullName"      : String(cell.txt_name.text!),
+                "email"         : String(cell.txt_email.text!),
+                "contactNumber" : String(cell.txt_phone.text!),
+                "password"      : String(cell.txt_password.text!),
+                "role"          : String("Doctor"),
+                "device"        : String("iOS")
+            ]
+            
+            
+            print("parameters-------\(String(describing: parameters))")
+            
+            AF.request(application_base_url, method: .post, parameters: parameters as? Parameters).responseJSON {
+                response in
+                
+                switch(response.result) {
+                case .success(_):
+                    if let data = response.value {
+                        
+                        let JSON = data as! NSDictionary
+                        print(JSON)
+                        
+                        var strSuccess : String!
+                        strSuccess = JSON["status"] as? String
+                        
+                        if strSuccess.lowercased() == "success" {
+                            ERProgressHud.sharedInstance.hide()
+                            
+                            var dict: Dictionary<AnyHashable, Any>
+                            dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                            
+                            let defaults = UserDefaults.standard
+                            defaults.setValue(dict, forKey: str_save_login_user_data)
+                            
+                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                            self.navigationController?.pushViewController(push, animated: true)
+                            
+                            
+                        }
+                        else {
+                            // self.login_refresh_token_wb()
+                        }
+                        
+                    }
+                    
+                case .failure(_):
+                    print("Error message:\(String(describing: response.error))")
+                    ERProgressHud.sharedInstance.hide()
+                     self.please_check_your_internet_connection()
+                    
+                    break
+                }
+            }
+        }
+        
+        
+        
+        
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! create_an_account_table_cell
+        
+        if (textField == cell.txt_phone) {
+            
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            // make sure the result is under 16 characters
+            return updatedText.count <= 10
+            
+            
+            
+        }  else {
+            
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            // make sure the result is under 16 characters
+            return updatedText.count <= 30
+            
+        }
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.uploadImageOpenActionSheet()
+    }
+    
+    @objc func uploadImageOpenActionSheet() {
+        let alert = UIAlertController(title: text_language.common_screen(status: "upload_profile_picture"), message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "camera"), style: .default , handler:{ (UIAlertAction)in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "gallery"), style: .default , handler:{ (UIAlertAction)in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction(title: text_language.common_screen(status: "dismiss"), style: .destructive, handler:{ (UIAlertAction)in
+            //print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            //print("completion block")
+        })
+    }
+    @objc func openCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera;
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func openGallery() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary;
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! create_an_account_table_cell
+        
+        imgUploadYesOrNo = "1"
+        
+        
+        let image_data = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        cell.img_profile.image = image_data // show image on image view
+        let imageData:Data = image_data!.pngData()!
+        imageStr = imageData.base64EncodedString()
+        self.dismiss(animated: true, completion: nil)
+        
+        imgData = image_data!.jpegData(compressionQuality: 0.2)!
+        //print(type(of: imgData))
+        //print(imgData)
+        
+    }
+    
+    @objc func upload_date_with_image() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! create_an_account_table_cell
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
         
-        parameters = [
-            "action"        : "registration",
-            "fullName"      : String(cell.txt_name.text!),
-            "email"         : String(cell.txt_email.text!),
-            "contactNumber" : String(cell.txt_phone.text!),
-            "password"      : String(cell.txt_password.text!),
-            "role"          : String("Doctor"),
-            "device"        : String("iOS")
-        ]
+        var urlRequest = URLRequest(url: URL(string: application_base_url)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0 * 1000)
+        urlRequest.httpMethod = "POST"
+        // urlRequest.allHTTPHeaderFields = ["token":String(token_id_is)]
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        //Set Your Parameter
+        let parameterDict = NSMutableDictionary()
+        parameterDict.setValue("registration", forKey: "action")
         
-        print("parameters-------\(String(describing: parameters))")
+        parameterDict.setValue(String(cell.txt_name.text!), forKey: "fullName")
+        parameterDict.setValue(String(cell.txt_email.text!), forKey: "email")
+        parameterDict.setValue(String(cell.txt_phone.text!), forKey: "contactNumber")
+        parameterDict.setValue(String(cell.txt_password.text!), forKey: "password")
         
-        AF.request(application_base_url, method: .post, parameters: parameters as? Parameters).responseJSON {
-            response in
+        parameterDict.setValue("Doctor", forKey: "role")
+        parameterDict.setValue(String("iOS"), forKey: "device")
+        
+        // Now Execute
+        AF.upload(multipartFormData: { multiPart in
+            for (key, value) in parameterDict {
+                if let temp = value as? String {
+                    multiPart.append(temp.data(using: .utf8)!, withName: key as! String)
+                }
+                if let temp = value as? Int {
+                    multiPart.append("\(temp)".data(using: .utf8)!, withName: key as! String)
+                }
+                if let temp = value as? NSArray {
+                    temp.forEach({ element in
+                        let keyObj = key as! String + "[]"
+                        if let string = element as? String {
+                            multiPart.append(string.data(using: .utf8)!, withName: keyObj)
+                        } else
+                        if let num = element as? Int {
+                            let value = "\(num)"
+                            multiPart.append(value.data(using: .utf8)!, withName: keyObj)
+                        }
+                    })
+                }
+            }
+            multiPart.append(self.imgData, withName: "image", fileName: "profile_picture.png", mimeType: "image/png")
+        }, with: urlRequest)
+        .uploadProgress(queue: .main, closure: { progress in
+            //Current upload progress of file
+            print("Upload Progress: \(progress.fractionCompleted)")
+        })
+        .responseJSON(completionHandler: { data in
             
-            switch(response.result) {
+            switch data.result {
+                
             case .success(_):
-                if let data = response.value {
+                do {
                     
-                    let JSON = data as! NSDictionary
-                    print(JSON)
+                    let dictionary = try JSONSerialization.jsonObject(with: data.data!, options: .fragmentsAllowed) as! NSDictionary
+                    
+                    print("Success!")
+                    print(dictionary)
                     
                     var strSuccess : String!
-                    strSuccess = JSON["status"] as? String
+                    strSuccess = dictionary["msg"] as? String
                     
-                    if strSuccess.lowercased() == "success" {
+                    if (strSuccess == your_are_not_auth) {
+                        
+                    } else {
                         ERProgressHud.sharedInstance.hide()
+                        
+                        let JSON = dictionary
+                        print(JSON)
                         
                         var dict: Dictionary<AnyHashable, Any>
                         dict = JSON["data"] as! Dictionary<AnyHashable, Any>
@@ -109,25 +316,44 @@ class create_an_account: UIViewController {
                         let defaults = UserDefaults.standard
                         defaults.setValue(dict, forKey: str_save_login_user_data)
                         
+                        self.imgUploadYesOrNo = "0"
+                        
+                        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                            print(language_select as Any)
+                            
+                            if (language_select == "en") {
+                                
+                                self.view.makeToast(dictionary["msg"] as? String)
+                            } else {
+                                
+                                self.view.makeToast(dictionary["msg_ch"] as? String)
+                                
+                            }
+                            
+                        }
                         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
                         self.navigationController?.pushViewController(push, animated: true)
-                        
-                        
-                    }
-                    else {
-                        // self.login_refresh_token_wb()
                     }
                     
+                    
                 }
+                catch {
+                    // catch error.
+                    print("catch error")
+                    ERProgressHud.sharedInstance.hide()
+                }
+                break
                 
             case .failure(_):
-                print("Error message:\(String(describing: response.error))")
+                print("failure")
                 ERProgressHud.sharedInstance.hide()
-                 self.please_check_your_internet_connection()
-                
                 break
+                
             }
-        }
+            
+            
+        })
+        
         
     }
 }
@@ -151,6 +377,12 @@ extension create_an_account: UITableViewDataSource , UITableViewDelegate {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
+        
+        cell.txt_phone.delegate = self
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        cell.img_profile.isUserInteractionEnabled = true
+        cell.img_profile.addGestureRecognizer(tapGestureRecognizer)
         
         cell.lbl_create_account_text.text = text_language.create_an_account_screen(status: "#02")
         cell.btn_continue.setTitle(text_language.create_an_account_screen(status: "#03"), for: .normal)
@@ -177,7 +409,7 @@ extension create_an_account: UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 620
+        return 920
     }
 
 }

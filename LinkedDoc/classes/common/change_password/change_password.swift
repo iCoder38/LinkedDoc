@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import Toast_Swift
 
-class change_password: UIViewController {
+class change_password: UIViewController, UITextFieldDelegate {
 
     var str_back_menu:String!
     
@@ -267,6 +267,12 @@ extension change_password: UITableViewDataSource , UITableViewDelegate {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
+        
+        cell.txt_old_password.delegate = self
+        cell.txt_new_password.delegate = self
+        cell.txt_confirm_password.delegate = self
+        
+        cell.txt_old_password.becomeFirstResponder()
         
         self.lbl_navigation_title.text = text_language.change_password_screen(status: "#01")
         

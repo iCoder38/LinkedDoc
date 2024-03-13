@@ -50,6 +50,7 @@ class welcome: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.btn_doctor.addTarget(self, action: #selector(doctor_click_method), for: .touchUpInside)
         self.btn_patient.addTarget(self, action: #selector(patient_click_method), for: .touchUpInside)
         

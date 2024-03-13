@@ -43,8 +43,17 @@ class create_an_account_table_cell : UITableViewCell {
             txt_email.backgroundColor = text_field_BG_color
             txt_email.placeholder = "Email address"
             txt_email.setLeftPaddingPoints(20)
+            txt_email.keyboardType = .emailAddress
         }
     }
+    
+    @IBOutlet weak var img_profile:UIImageView! {
+        didSet {
+            img_profile.layer.cornerRadius = 70
+            img_profile.clipsToBounds = true
+        }
+    }
+    
     @IBOutlet weak var txt_phone:UITextField! {
         didSet {
             txt_phone.layer.cornerRadius = 12
@@ -52,6 +61,7 @@ class create_an_account_table_cell : UITableViewCell {
             txt_phone.backgroundColor = text_field_BG_color
             txt_phone.placeholder = "Phone"
             txt_phone.setLeftPaddingPoints(20)
+            txt_phone.keyboardType = .phonePad
         }
     }
     @IBOutlet weak var txt_password:UITextField! {
@@ -61,6 +71,7 @@ class create_an_account_table_cell : UITableViewCell {
             txt_password.backgroundColor = text_field_BG_color
             txt_password.placeholder = "Password"
             txt_password.setLeftPaddingPoints(20)
+            txt_password.isSecureTextEntry = true
         }
     }
     
@@ -90,6 +101,13 @@ class updating_profile_table_cell : UITableViewCell {
         }
     }
     
+    @IBOutlet weak var img_profile:UIImageView! {
+        didSet {
+            img_profile.layer.cornerRadius = 70
+            img_profile.clipsToBounds = true
+        }
+    }
+    
     @IBOutlet weak var txt_name:UITextField! {
         didSet {
             txt_name.layer.cornerRadius = 12
@@ -116,6 +134,7 @@ class updating_profile_table_cell : UITableViewCell {
             txt_phone.backgroundColor = text_field_BG_color
             txt_phone.placeholder = "Phone"
             txt_phone.setLeftPaddingPoints(20)
+            txt_phone.keyboardType = .phonePad
         }
     }
     @IBOutlet weak var txt_password:UITextField! {

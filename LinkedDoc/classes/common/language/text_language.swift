@@ -42,6 +42,22 @@ var button_continue_ch = "請繼續"
 var button_register_now_en = "register now"
 var button_register_now_ch = "非會員？ 請註冊"
 
+// help
+var navigation_title_help_en = "Help"
+var navigation_title_help_ch = "輔助說明"
+
+var text_connect_with_us_en = "CONNECT WITH US"
+var text_connect_with_us_ch = "請跟我們聯絡"
+
+var text_whatsapp_en = "Whatsapp"
+var text_whatsapp_ch = "電話號碼"
+
+var text_support_en = "Support"
+var text_support_ch = "電子信箱"
+
+var text_all_rights_reserved_en = "©2024 LinkedDoc. All Rights Reserved."
+var text_all_rights_reserved_ch = "ch : ©2024 LinkedDoc. All Rights Reserved."
+
 // create and account
 var navigation_title_create_an_account_en = "Create an account"
 var navigation_title_create_an_account_ch = "建立帳號"
@@ -147,7 +163,7 @@ var text_please_wait_ch = "ch : please wait..."
 var text_updating_en = "updating..."
 var text_updating_ch = "ch : updating..."
 
-var text_dismiss_en = "dismiss..."
+var text_dismiss_en = "dismiss"
 var text_dismiss_ch = "ch : dismiss"
 
 var text_success_en = "Success"
@@ -155,6 +171,15 @@ var text_success_ch = "ch : Success"
 
 var text_translating_en = "Translating"
 var text_translating_ch = "ch : Translating"
+
+var text_upload_en = "Upload profile picture"
+var text_upload_ch = "ch : Upload profile image"
+
+var text_camera_en = "Camera"
+var text_camera_ch = "ch : Camera"
+
+var text_gallery_en = "Gallery"
+var text_gallery_ch = "ch : Gallery"
 
 class text_language: UIViewController {
     
@@ -212,16 +237,84 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_success_ch
             }
             
-        }    else  if (status == "translating") {
+        } else  if (status == "translating") {
             if (text_language.selected_language_get() == english_language) {
                 str_language_prefrence_is = text_translating_en
             } else {
                 str_language_prefrence_is = text_translating_ch
             }
             
+        }  else  if (status == "upload_profile_picture") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_upload_en
+            } else {
+                str_language_prefrence_is = text_upload_ch
+            }
+            
+        }  else  if (status == "camera") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_camera_en
+            } else {
+                str_language_prefrence_is = text_camera_ch
+            }
+            
+        }  else  if (status == "gallery") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_gallery_en
+            } else {
+                str_language_prefrence_is = text_gallery_ch
+            }
+            
         }
+        
         return str_language_prefrence_is
         
+    }
+    
+    // help
+    class func help_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_help_en
+            } else {
+                str_language_prefrence_is = navigation_title_help_ch
+            }
+        } else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_connect_with_us_en
+            } else {
+                str_language_prefrence_is = text_connect_with_us_ch
+            }
+        }  else if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_whatsapp_en
+            } else {
+                str_language_prefrence_is = text_whatsapp_ch
+            }
+        }   else if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_support_en
+            } else {
+                str_language_prefrence_is = text_support_ch
+            }
+        }    else if (status == "#05") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_all_rights_reserved_en
+            } else {
+                str_language_prefrence_is = text_all_rights_reserved_ch
+            }
+        }
+        
+        
+        
+        
+        return str_language_prefrence_is
     }
     
     // login
@@ -314,6 +407,7 @@ class text_language: UIViewController {
         
         return str_language_prefrence_is
     }
+    
     
     
     // create an account

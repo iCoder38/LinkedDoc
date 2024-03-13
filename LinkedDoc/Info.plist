@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>LinkedDoc would like toh access your Camera to Upload Upload profile picture.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>LinkedDoc would like toh access your Gallery to Upload profile picture.</string>
 </dict>
 </plist>
