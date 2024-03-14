@@ -9,6 +9,9 @@ import UIKit
 
 var application_base_url = "https://demo4.evirtualservices.net/linkdoc/services/index"
 
+// keys
+var str_rapid_api_keys = "0947338691msh3f39d264894c812p10b756jsnff8e4a6543e7"
+
 let str_save_login_user_data = "keyLoginFullData"
 let str_save_last_api_token = "key_last_api_token"
 

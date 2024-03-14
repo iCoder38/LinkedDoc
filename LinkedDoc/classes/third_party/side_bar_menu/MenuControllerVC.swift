@@ -18,6 +18,7 @@ class MenuControllerVC: UIViewController {
     
     var arr_menu_list_en = ["Dashboard",
                            "Edit Profile",
+                            "Edit Details",
                            "Translate",
                             "Change Language",
                            "Change Password",
@@ -27,14 +28,16 @@ class MenuControllerVC: UIViewController {
     
     var arr_menu_list_ch = ["儀表板",
                            "編輯個人資料",
+                            "編輯個人資料",
                            "翻譯",
-                            "ch : Change Language",
+                            "更改你要用的語言",
                            "密碼更改",
                            "輔助說明",
                            "登出",
     ]
     
     var arrMenuItemImage = ["home",
+                            "edit",
                             "edit",
                             "trip",
                             "translation",
@@ -458,6 +461,9 @@ extension MenuControllerVC: UITableViewDataSource {
         if String(arr_menu_list_en[indexPath.row]) == "Help" {
             pushPageNumber(strMyPageNumber: "7")
         }
+        if String(arr_menu_list_en[indexPath.row]) == "Edit Details" {
+            pushPageNumber(strMyPageNumber: "8")
+        }
     }
     
     @objc func pushPageNumber(strMyPageNumber:String) {
@@ -483,12 +489,26 @@ extension MenuControllerVC: UITableViewDataSource {
             
         } else if strMyPageNumber == "1" {
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
-            self.view.window?.rootViewController = sw
-            let destinationController = storyboard.instantiateViewController(withIdentifier: "dashboard_id")
-            let navigationController = UINavigationController(rootViewController: destinationController)
-            sw.setFront(navigationController, animated: true)
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                print(person)
+                
+                if (person["role"] as! String) == "Member" {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+                    self.view.window?.rootViewController = sw
+                    let destinationController = storyboard.instantiateViewController(withIdentifier: "patient_dashboard_id")
+                    let navigationController = UINavigationController(rootViewController: destinationController)
+                    sw.setFront(navigationController, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+                    self.view.window?.rootViewController = sw
+                    let destinationController = storyboard.instantiateViewController(withIdentifier: "dashboard_id")
+                    let navigationController = UINavigationController(rootViewController: destinationController)
+                    sw.setFront(navigationController, animated: true)
+                }
+            }
+            
             
         } else if strMyPageNumber == "2" {
             
@@ -496,6 +516,15 @@ extension MenuControllerVC: UITableViewDataSource {
             let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
             self.view.window?.rootViewController = sw
             let destinationController = storyboard.instantiateViewController(withIdentifier: "update_profile_id")
+            let navigationController = UINavigationController(rootViewController: destinationController)
+            sw.setFront(navigationController, animated: true)
+            
+        } else if strMyPageNumber == "8" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+            self.view.window?.rootViewController = sw
+            let destinationController = storyboard.instantiateViewController(withIdentifier: "update_patient_details_id")
             let navigationController = UINavigationController(rootViewController: destinationController)
             sw.setFront(navigationController, animated: true)
             

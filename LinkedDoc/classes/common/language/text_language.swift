@@ -10,10 +10,10 @@ import Alamofire
 
 // SELECT LANGUAGE
 var navigation_title_select_language_en = "select language".uppercased()
-var navigation_title_select_language_ch = "chinese select language".uppercased()
+var navigation_title_select_language_ch = "選擇你的語言".uppercased()
 
 var select_language_text_en = "Select the language to continue"
-var select_language_text_ch = "chinese : Select language to continue"
+var select_language_text_ch = "請選擇你的語言 才能繼續"
 
 
 // welcome
@@ -31,7 +31,7 @@ var button_text_patient_continue_ch = "病人"
 
 // login
 var navigation_title_login_en = "Login"
-var navigation_title_login_ch = "chinese Login"
+var navigation_title_login_ch = "登入"
 
 var text_login_message_en = "Sign in to your account"
 var text_login_message_ch = "登入您的帳戶"
@@ -56,7 +56,7 @@ var text_support_en = "Support"
 var text_support_ch = "電子信箱"
 
 var text_all_rights_reserved_en = "©2024 LinkedDoc. All Rights Reserved."
-var text_all_rights_reserved_ch = "ch : ©2024 LinkedDoc. All Rights Reserved."
+var text_all_rights_reserved_ch = "@2024 醫生聯絡網. 保留所有權利."
 
 // create and account
 var navigation_title_create_an_account_en = "Create an account"
@@ -65,6 +65,11 @@ var navigation_title_create_an_account_ch = "建立帳號"
 
 var navigation_title_edit_profile_en = "Edit profile"
 var navigation_title_edit_profile_ch = "編輯個人資料"
+
+
+var navigation_title_edit_details_en = "Edit details"
+var navigation_title_edit_details_ch = "編輯個人資料"
+
 
 var text_field_name_placeholder_en = "Name"
 var text_field_email_placeholder_en = "Email"
@@ -86,7 +91,7 @@ var button_text_create_an_account_en = "Create an account"
 var button_text_create_an_account_ch = "建立帳號"
 
 var button_text_update_an_account_en = "Update"
-var button_text_update_an_account_ch = "ch: update"
+var button_text_update_an_account_ch = "更新"
 
 // complete profile
 var navigation_title_complete_profile_en = "Complete profile"
@@ -99,12 +104,20 @@ var text_field_year_of_exp_placeholder_en = "Year of Experience"
 var text_field_specialization_placeholder_en = "Specialization"
 var text_field_working_hour_end_placeholder_en = "Working hours end"
 
+var text_field_gender_placeholder_en = "Gender"
+var text_field_weight_placeholder_en = "Weight"
+var text_field_blood_group_placeholder_en = "Blood group"
+
 var text_field_complete_address_placeholder_ch = "填寫地址"
 var text_field_area_zip_code_placeholder_ch = "郵遞區號"
-var text_field_working_hours_placeholder_ch = "chinese : Working hours start"
+var text_field_working_hours_placeholder_ch = "工作時間 (開始/開門）"
 var text_field_year_of_exp_placeholder_ch = "經驗"
 var text_field_specialization_placeholder_ch = "專業放射學"
-var text_field_working_hour_end_placeholder_ch = "chinese : Working hours end"
+var text_field_working_hour_end_placeholder_ch = "工作時間 (结束/關門"
+
+var text_field_gender_placeholder_ch = "性別"
+var text_field_weight_placeholder_ch = "體重"
+var text_field_blood_group_placeholder_ch = "血型"
 
 var button_text_finish_en = "Finish"
 var button_text_finish_ch = "完全"
@@ -123,6 +136,22 @@ var text_password_ch = "密碼"
 
 var text_hep_en = "Help"
 var text_hep_ch = "輔助說明"
+
+
+var text_journal_en = "Journal"
+var text_journal_ch = "加上日誌記錄"
+
+
+var text_search_doctor_en = "Search Doctor"
+var text_search_doctor_ch = "醫生搜尋"
+
+var text_add_journal_en = "Add Journal"
+var text_add_journal_ch = "加上日誌記錄"
+
+
+
+var text_logout_en = "Logout"
+var text_logout_ch = " 登出"
 
 
 // translate language
@@ -146,9 +175,9 @@ var text_field_old_password_placeholder_en = "Old Password"
 var text_field_new_password_placeholder_en = "New Password"
 var text_field_confirm_password_placeholder_en = "Confirm Password"
 
-var text_field_old_password_placeholder_ch = "ch : Old Password"
-var text_field_new_password_placeholder_ch = "ch : New Password"
-var text_field_confirm_password_placeholder_ch = "ch : Confirm Password"
+var text_field_old_password_placeholder_ch = "舊密碼"
+var text_field_new_password_placeholder_ch = "新密碼"
+var text_field_confirm_password_placeholder_ch = "確定密碼"
 
 var button_text_change_password_en = "Change Password"
 var button_text_change_password_ch = "密碼更改"
@@ -158,28 +187,31 @@ var button_text_continue_en = "Continue"
 var button_text_continue_ch = "請繼續"
 
 var text_please_wait_en = "please wait..."
-var text_please_wait_ch = "ch : please wait..."
+var text_please_wait_ch = "請稍待一下"
 
 var text_updating_en = "updating..."
-var text_updating_ch = "ch : updating..."
+var text_updating_ch = "更新"
 
 var text_dismiss_en = "dismiss"
-var text_dismiss_ch = "ch : dismiss"
+var text_dismiss_ch = "解除"
 
 var text_success_en = "Success"
-var text_success_ch = "ch : Success"
+var text_success_ch = "成功"
 
 var text_translating_en = "Translating"
-var text_translating_ch = "ch : Translating"
+var text_translating_ch = "翻譯"
 
 var text_upload_en = "Upload profile picture"
-var text_upload_ch = "ch : Upload profile image"
+var text_upload_ch = "更新個人資料照片"
 
 var text_camera_en = "Camera"
-var text_camera_ch = "ch : Camera"
+var text_camera_ch = "相機"
 
 var text_gallery_en = "Gallery"
-var text_gallery_ch = "ch : Gallery"
+var text_gallery_ch = "資料庫"
+
+var text_are_you_sure_logout_en = "Are you sure you want to logout?"
+var text_are_you_sure_logout_ch = "請確定你要登出"
 
 class text_language: UIViewController {
     
@@ -263,6 +295,13 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_gallery_en
             } else {
                 str_language_prefrence_is = text_gallery_ch
+            }
+            
+        } else  if (status == "logout") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_are_you_sure_logout_en
+            } else {
+                str_language_prefrence_is = text_are_you_sure_logout_ch
             }
             
         }
@@ -543,11 +582,45 @@ class text_language: UIViewController {
             } else {
                 str_language_prefrence_is = button_text_finish_ch
             }
-        }else if (status == "#08") {
+        } else if (status == "#08") {
             if (text_language.selected_language_get() == english_language) {
                 str_language_prefrence_is = text_field_working_hour_end_placeholder_en
             } else {
                 str_language_prefrence_is = text_field_working_hour_end_placeholder_ch
+            }
+        }
+        else if (status == "#09") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_field_gender_placeholder_en
+            } else {
+                str_language_prefrence_is = text_field_gender_placeholder_ch
+            }
+        }
+        else if (status == "#10") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_field_weight_placeholder_en
+            } else {
+                str_language_prefrence_is = text_field_weight_placeholder_ch
+            }
+        }
+        else if (status == "#11") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_field_blood_group_placeholder_en
+            } else {
+                str_language_prefrence_is = text_field_blood_group_placeholder_ch
+            }
+        }
+        else if (status == "#12") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = button_text_update_an_account_en
+            } else {
+                str_language_prefrence_is = button_text_update_an_account_ch
+            }
+        } else if (status == "#14") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_edit_details_en
+            } else {
+                str_language_prefrence_is = navigation_title_edit_details_ch
             }
         }
         
@@ -587,6 +660,35 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_hep_en
             } else {
                 str_language_prefrence_is = text_hep_ch
+            }
+        }
+        
+        else if (status == "#05") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_journal_en
+            } else {
+                str_language_prefrence_is = text_journal_ch
+            }
+        }
+        else if (status == "#06") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_search_doctor_en
+            } else {
+                str_language_prefrence_is = text_search_doctor_ch
+            }
+        }
+        else if (status == "#07") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_add_journal_en
+            } else {
+                str_language_prefrence_is = text_add_journal_ch
+            }
+        }
+        else if (status == "#08") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_logout_en
+            } else {
+                str_language_prefrence_is = text_logout_ch
             }
         }
         

@@ -165,7 +165,17 @@ class select_language: UIViewController {
                 }
             } else {
                 
-                
+                if (person["address"] as! String) == "" {
+                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
+                } else {
+                    
+                    let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
+                    self.navigationController?.pushViewController(push, animated: true)
+                    
+                }
                 
             }
             

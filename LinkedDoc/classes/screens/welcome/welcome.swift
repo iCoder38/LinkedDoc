@@ -71,13 +71,17 @@ class welcome: UIViewController {
     @objc func doctor_click_method() {
         Utils.light_vibrate()
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginViewController_id")
-        self.navigationController?.pushViewController(push, animated: true)
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginViewController_id") as? loginViewController
+        push!.str_profile = "Doctor"
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
     @objc func patient_click_method() {
         Utils.light_vibrate()
         
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "loginViewController_id") as? loginViewController
+        push!.str_profile = "Member"
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
      

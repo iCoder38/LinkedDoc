@@ -29,6 +29,9 @@
 		B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */; };
 		B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966B2BA088F400860A64 /* RPicker.swift */; };
 		B9BF966F2BA0905700860A64 /* welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966E2BA0905700860A64 /* welcome.swift */; };
+		B9E05BDE2BA2CA1000720A47 /* patient_complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */; };
+		B9E05BE12BA2D0B200720A47 /* patient_dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BE02BA2D0B200720A47 /* patient_dashboard.swift */; };
+		B9E05BE42BA2E22F00720A47 /* update_patient_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BE32BA2E22F00720A47 /* update_patient_details.swift */; };
 		B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */; };
 		B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */; };
 		B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E52CB62B9ED4D600948E89 /* ViewController.swift */; };
@@ -96,6 +99,9 @@
 		B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewYorkButton.swift; sourceTree = "<group>"; };
 		B9BF966B2BA088F400860A64 /* RPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPicker.swift; sourceTree = "<group>"; };
 		B9BF966E2BA0905700860A64 /* welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcome.swift; sourceTree = "<group>"; };
+		B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patient_complete_profile.swift; sourceTree = "<group>"; };
+		B9E05BE02BA2D0B200720A47 /* patient_dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patient_dashboard.swift; sourceTree = "<group>"; };
+		B9E05BE32BA2E22F00720A47 /* update_patient_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_patient_details.swift; sourceTree = "<group>"; };
 		B9E52CAF2B9ED4D600948E89 /* LinkedDoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedDoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E52CB22B9ED4D600948E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E52CB42B9ED4D600948E89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -311,6 +317,32 @@
 			path = welcome;
 			sourceTree = "<group>";
 		};
+		B9E05BDC2BA2C9FE00720A47 /* patient */ = {
+			isa = PBXGroup;
+			children = (
+				B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */,
+				B9E05BE22BA2E21A00720A47 /* update_patient_details */,
+				B9E05BDF2BA2D0A500720A47 /* patient_dashboard */,
+			);
+			path = patient;
+			sourceTree = "<group>";
+		};
+		B9E05BDF2BA2D0A500720A47 /* patient_dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B9E05BE02BA2D0B200720A47 /* patient_dashboard.swift */,
+			);
+			path = patient_dashboard;
+			sourceTree = "<group>";
+		};
+		B9E05BE22BA2E21A00720A47 /* update_patient_details */ = {
+			isa = PBXGroup;
+			children = (
+				B9E05BE32BA2E22F00720A47 /* update_patient_details.swift */,
+			);
+			path = update_patient_details;
+			sourceTree = "<group>";
+		};
 		B9E52CA62B9ED4D600948E89 = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +411,7 @@
 		B9E52CE62B9ED68700948E89 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				B9E05BDC2BA2C9FE00720A47 /* patient */,
 				B9E52CF92B9ED8FD00948E89 /* select_language */,
 				B9A280732BA1C98900D3ACFD /* help */,
 				B919B7542BA18F40005E96D3 /* update_profile */,
@@ -731,6 +764,7 @@
 				B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */,
 				B9E52CB32B9ED4D600948E89 /* AppDelegate.swift in Sources */,
 				B9E52CFE2B9EDA6C00948E89 /* text_language.swift in Sources */,
+				B9E05BE12BA2D0B200720A47 /* patient_dashboard.swift in Sources */,
 				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
 				B9BF966F2BA0905700860A64 /* welcome.swift in Sources */,
 				B907845B2BA02CFB0024970D /* all_colors.swift in Sources */,
@@ -745,9 +779,11 @@
 				B907846A2BA038E20024970D /* update_select_language.swift in Sources */,
 				B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */,
 				B9BF96652BA07CCF00860A64 /* NewYorkAlertController.swift in Sources */,
+				B9E05BDE2BA2CA1000720A47 /* patient_complete_profile.swift in Sources */,
 				B9A280752BA1C99200D3ACFD /* help.swift in Sources */,
 				B9BF96672BA07CCF00860A64 /* NewYorkAlertViewType.swift in Sources */,
 				B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */,
+				B9E05BE42BA2E22F00720A47 /* update_patient_details.swift in Sources */,
 				B9E52CF12B9ED6C400948E89 /* SWRevealViewController.m in Sources */,
 				B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */,
 				B9BF96662BA07CCF00860A64 /* UIStackView+Utility.swift in Sources */,
@@ -945,6 +981,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -982,6 +1019,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

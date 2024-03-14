@@ -160,6 +160,163 @@ class updating_profile_table_cell : UITableViewCell {
     }
 }
 
+// /* ************** PATIENT COMPLETE PROFILE ****************** */
+// /* ********************************************************** */
+class patient_complete_profile_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var view_tble_view:UIView! {
+        didSet {
+            view_tble_view.layer.cornerRadius = 8
+            view_tble_view.clipsToBounds = true
+            view_tble_view.backgroundColor = .clear
+        }
+    }
+    
+    @IBOutlet weak var txt_complete_address:UITextField! {
+        didSet {
+            txt_complete_address.layer.cornerRadius = 12
+            txt_complete_address.clipsToBounds = true
+            txt_complete_address.backgroundColor = .white
+            txt_complete_address.placeholder = "Complete address"
+            txt_complete_address.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var txt_area_zipcode:UITextField! {
+        didSet {
+            txt_area_zipcode.layer.cornerRadius = 12
+            txt_area_zipcode.clipsToBounds = true
+            txt_area_zipcode.backgroundColor = .white
+            txt_area_zipcode.placeholder = "Area zipcode"
+            txt_area_zipcode.setLeftPaddingPoints(20)
+            txt_area_zipcode.keyboardType = .numberPad
+        }
+    }
+    
+    @IBOutlet weak var txt_gender:UITextField! {
+        didSet {
+            txt_gender.layer.cornerRadius = 12
+            txt_gender.clipsToBounds = true
+            txt_gender.backgroundColor = .white
+            txt_gender.placeholder = "Gender"
+            txt_gender.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_weight:UITextField! {
+        didSet {
+            txt_weight.layer.cornerRadius = 12
+            txt_weight.clipsToBounds = true
+            txt_weight.backgroundColor = .white
+            txt_weight.placeholder = "Weight"
+            txt_weight.setLeftPaddingPoints(20)
+            txt_weight.keyboardType = .numberPad
+        }
+    }
+    @IBOutlet weak var txt_blood_group:UITextField! {
+        didSet {
+            txt_blood_group.layer.cornerRadius = 12
+            txt_blood_group.clipsToBounds = true
+            txt_blood_group.backgroundColor = .white
+            txt_blood_group.placeholder = "Blood group"
+            txt_blood_group.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var btn_finish:UIButton!  {
+        didSet {
+            btn_finish.backgroundColor = button_light_blue_color
+            btn_finish.layer.cornerRadius = 12
+            btn_finish.clipsToBounds = true
+            btn_finish.setTitleColor(.white, for: .normal)
+        }
+    }
+    @IBOutlet weak var btn_gender:UIButton!
+}
+
+// /* ************** TRANSLATE LANGUAGE ************************ */
+// /* ********************************************************** */
+
+
+// /* ************** EDIT : COMPLETE PROFILE ************************ */
+// /* ********************************************************** */
+class update_patient_details_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var view_tble_view:UIView! {
+        didSet {
+            view_tble_view.layer.cornerRadius = 8
+            view_tble_view.clipsToBounds = true
+            view_tble_view.backgroundColor = .clear
+        }
+    }
+    
+    @IBOutlet weak var txt_complete_address:UITextField! {
+        didSet {
+            txt_complete_address.layer.cornerRadius = 12
+            txt_complete_address.clipsToBounds = true
+            txt_complete_address.backgroundColor = .white
+            txt_complete_address.placeholder = "Complete address"
+            txt_complete_address.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var txt_area_zipcode:UITextField! {
+        didSet {
+            txt_area_zipcode.layer.cornerRadius = 12
+            txt_area_zipcode.clipsToBounds = true
+            txt_area_zipcode.backgroundColor = .white
+            txt_area_zipcode.placeholder = "Area zipcode"
+            txt_area_zipcode.setLeftPaddingPoints(20)
+            txt_area_zipcode.keyboardType = .numberPad
+        }
+    }
+    
+    @IBOutlet weak var txt_gender:UITextField! {
+        didSet {
+            txt_gender.layer.cornerRadius = 12
+            txt_gender.clipsToBounds = true
+            txt_gender.backgroundColor = .white
+            txt_gender.placeholder = "Gender"
+            txt_gender.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_weight:UITextField! {
+        didSet {
+            txt_weight.layer.cornerRadius = 12
+            txt_weight.clipsToBounds = true
+            txt_weight.backgroundColor = .white
+            txt_weight.placeholder = "Weight"
+            txt_weight.setLeftPaddingPoints(20)
+            txt_weight.keyboardType = .numberPad
+        }
+    }
+    @IBOutlet weak var txt_blood_group:UITextField! {
+        didSet {
+            txt_blood_group.layer.cornerRadius = 12
+            txt_blood_group.clipsToBounds = true
+            txt_blood_group.backgroundColor = .white
+            txt_blood_group.placeholder = "Blood group"
+            txt_blood_group.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var btn_finish:UIButton!  {
+        didSet {
+            btn_finish.backgroundColor = button_light_blue_color
+            btn_finish.layer.cornerRadius = 12
+            btn_finish.clipsToBounds = true
+            btn_finish.setTitleColor(.white, for: .normal)
+        }
+    }
+    @IBOutlet weak var btn_gender:UIButton!
+    
+    @IBOutlet weak var lbl_address:UILabel!
+    @IBOutlet weak var lbl_area_zipcode:UILabel!
+    @IBOutlet weak var lbl_gender:UILabel!
+    @IBOutlet weak var lbl_weight:UILabel!
+    @IBOutlet weak var lbl_blood_group:UILabel!
+}
+
+
 // /* ************** COMPLETE PROFILE ************************ */
 // /* ********************************************************** */
 class complete_profile_table_cell : UITableViewCell {

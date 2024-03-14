@@ -10,6 +10,7 @@ import Alamofire
 
 class loginViewController: UIViewController, UITextFieldDelegate {
 
+    var str_profile:String!
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -119,8 +120,9 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     @objc func doctor_click_method() {
         Utils.light_vibrate()
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id")
-        self.navigationController?.pushViewController(push, animated: true)
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id") as? create_an_account
+        push!.str_get_profile = String(self.str_profile)
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
     @objc func patient_click_method() {
@@ -131,8 +133,9 @@ class loginViewController: UIViewController, UITextFieldDelegate {
     @objc func register_now_click_method() {
         Utils.light_vibrate()
         
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id")
-        self.navigationController?.pushViewController(push, animated: true)
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id") as? create_an_account
+        push!.str_get_profile = String(self.str_profile)
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
     @objc func login_click_method_WB() {
@@ -183,8 +186,18 @@ class loginViewController: UIViewController, UITextFieldDelegate {
                         let defaults = UserDefaults.standard
                         defaults.setValue(dict, forKey: str_save_login_user_data)
                         
-                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
-                        self.navigationController?.pushViewController(push, animated: true)
+                        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                            print(person as Any)
+                            
+                            if person["role"] as! String == "Doctor" {
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
+                                self.navigationController?.pushViewController(push, animated: true)
+                            } else {
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
+                                self.navigationController?.pushViewController(push, animated: true)
+                            }
+                            
+                        }
                         
                     }
                     

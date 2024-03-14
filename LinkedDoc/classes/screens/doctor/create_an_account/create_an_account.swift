@@ -10,6 +10,8 @@ import Alamofire
 
 class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var str_get_profile:String!
+    
     // image
     var imgUploadYesOrNo:String! = "0"
     var imageStr:String!
@@ -90,7 +92,7 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 "email"         : String(cell.txt_email.text!),
                 "contactNumber" : String(cell.txt_phone.text!),
                 "password"      : String(cell.txt_password.text!),
-                "role"          : String("Doctor"),
+                "role"          : String(self.str_get_profile),
                 "device"        : String("iOS")
             ]
             
@@ -119,8 +121,15 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                             let defaults = UserDefaults.standard
                             defaults.setValue(dict, forKey: str_save_login_user_data)
                             
-                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
-                            self.navigationController?.pushViewController(push, animated: true)
+                            if (dict["role"] as! String) == "Member" {
+                                
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
+                                self.navigationController?.pushViewController(push, animated: true)
+                            } else {
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                                self.navigationController?.pushViewController(push, animated: true)
+                            }
+                            
                             
                             
                         }
@@ -256,7 +265,7 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
         parameterDict.setValue(String(cell.txt_phone.text!), forKey: "contactNumber")
         parameterDict.setValue(String(cell.txt_password.text!), forKey: "password")
         
-        parameterDict.setValue("Doctor", forKey: "role")
+        parameterDict.setValue(String(self.str_get_profile), forKey: "role")
         parameterDict.setValue(String("iOS"), forKey: "device")
         
         // Now Execute
@@ -331,8 +340,16 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                             }
                             
                         }
-                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
-                        self.navigationController?.pushViewController(push, animated: true)
+                        if (dict["role"] as! String) == "Member" {
+                            
+                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
+                            self.navigationController?.pushViewController(push, animated: true)
+                        } else {
+                            
+                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                            self.navigationController?.pushViewController(push, animated: true)
+                            
+                        }
                     }
                     
                     

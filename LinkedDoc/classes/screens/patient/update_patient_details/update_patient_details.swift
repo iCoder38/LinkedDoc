@@ -1,14 +1,15 @@
 //
-//  complete_profile.swift
+//  update_patient_details.swift
 //  LinkedDoc
 //
-//  Created by Dishant Rajput on 11/03/24.
+//  Created by Dishant Rajput on 14/03/24.
 //
 
 import UIKit
 import Alamofire
+import Toast_Swift
 
-class complete_profile: UIViewController {
+class update_patient_details: UIViewController {
     
     var str_token:String! = ""
     
@@ -26,7 +27,7 @@ class complete_profile: UIViewController {
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .white
-            btn_back.isHidden = true
+            btn_back.isHidden = false
         }
     }
     
@@ -46,7 +47,9 @@ class complete_profile: UIViewController {
         self.tble_view.separatorColor = .clear
         
         self.view.backgroundColor = app_bg_color
-        self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        self.btn_back.setImage(UIImage(systemName: "list.dash"), for: .normal)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.sideBarMenu(button: self.btn_back)
     }
     
     @objc func finish_click_method() {
@@ -57,7 +60,7 @@ class complete_profile: UIViewController {
     
     @objc func complete_profile_account_WB() {
         let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
+        let cell = self.tble_view.cellForRow(at: indexPath) as! update_patient_details_table_cell
         
         if (cell.txt_complete_address.text == "") {
             return
@@ -65,18 +68,16 @@ class complete_profile: UIViewController {
         if (cell.txt_area_zipcode.text == "") {
             return
         }
-        if (cell.txt_working_hours.text == "") {
+        if (cell.txt_gender.text == "") {
             return
         }
-        if (cell.txt_year_of_experience.text == "") {
+        if (cell.txt_weight.text == "") {
             return
         }
-        if (cell.txt_complete_address.text == "") {
+        if (cell.txt_blood_group.text == "") {
             return
         }
-        if (cell.txt_view.text == "") {
-            return
-        }
+        
         self.view.endEditing(true)
         var parameters:Dictionary<AnyHashable, Any>!
         
@@ -98,10 +99,10 @@ class complete_profile: UIViewController {
                     "userId"        : String(myString),
                     "address"       : String(cell.txt_complete_address.text!),
                     "zipcode"       : String(cell.txt_area_zipcode.text!),
-                    "wokingHours"       : String(cell.txt_working_hours.text!)+" - "+String(cell.txt_working_hours_end.text!),
-                    "yearOfExperience"       : String(cell.txt_year_of_experience.text!),
-                    "specialization"       : String(cell.txt_specialization.text!),
-                    "about"       : String(cell.txt_view.text!),
+                    "gender"        : String(cell.txt_gender.text!),
+                    "weight"        : String(cell.txt_weight.text!),
+                    "BloodGroup"    : String(cell.txt_blood_group.text!),
+                   
                 ]
                 
                 print("parameters-------\(String(describing: parameters))")
@@ -128,15 +129,17 @@ class complete_profile: UIViewController {
                                 let defaults = UserDefaults.standard
                                 defaults.setValue(dict, forKey: str_save_login_user_data)
                                 
-                                if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-                                    print(person as Any)
+                                if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                    print(language_select as Any)
                                     
-                                    if person["role"] as! String == "Doctor" {
-                                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
-                                        self.navigationController?.pushViewController(push, animated: true)
+                                    if (language_select == "en") {
+                                        
+                                        self.view.makeToast(JSON["msg"] as? String)
+                                        
                                     } else {
-                                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
-                                        self.navigationController?.pushViewController(push, animated: true)
+                                        
+                                        self.view.makeToast(JSON["msg_ch"] as? String)
+                                        
                                     }
                                     
                                 }
@@ -220,30 +223,23 @@ class complete_profile: UIViewController {
     
     
     
-    @objc func start_time_click_method() {
+    @objc func gender_click_method() {
         let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
-        RPicker.selectDate(title: "Select Time", cancelText: "Cancel", datePickerMode: .time, didSelectDate: { (selectedDate) in
-            cell.txt_working_hours.text = selectedDate.dateString("hh:mm a")
+        let cell = self.tble_view.cellForRow(at: indexPath) as! update_patient_details_table_cell
+        
+        let dummyList = ["Male", "Female", "Prefer not to say",]
+        
+        RPicker.selectOption(title: "Select gender", cancelText: "Cancel", dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
              
-            
-        })
+            cell.txt_gender.text = String(selctedText)
+        }
     }
     
-    @objc func end_time_click_method() {
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
-        RPicker.selectDate(title: "Select Time", cancelText: "Cancel", datePickerMode: .time, didSelectDate: { (selectedDate) in
-            cell.txt_working_hours_end.text = selectedDate.dateString("hh:mm a")
-             
-            
-        })
-        
-    }
+     
 }
 
 //MARK:- TABLE VIEW -
-extension complete_profile: UITableViewDataSource , UITableViewDelegate {
+extension update_patient_details: UITableViewDataSource , UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -254,7 +250,7 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:complete_profile_table_cell = tableView.dequeueReusableCell(withIdentifier: "complete_profile_table_cell") as! complete_profile_table_cell
+        let cell:update_patient_details_table_cell = tableView.dequeueReusableCell(withIdentifier: "update_patient_details_table_cell") as! update_patient_details_table_cell
         
         cell.backgroundColor = .clear
         
@@ -262,21 +258,36 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
         
-        self.lbl_navigation_title.text = text_language.complete_profile_screen(status: "#01")
+        self.lbl_navigation_title.text = text_language.complete_profile_screen(status: "#14")
         
         cell.txt_complete_address.placeholder = text_language.complete_profile_screen(status: "#02")
         cell.txt_area_zipcode.placeholder = text_language.complete_profile_screen(status: "#03")
-        cell.txt_working_hours.placeholder = text_language.complete_profile_screen(status: "#04")
-        cell.txt_year_of_experience.placeholder = text_language.complete_profile_screen(status: "#05")
-        cell.txt_specialization.placeholder = text_language.complete_profile_screen(status: "#06")
-        cell.txt_working_hours_end.placeholder = text_language.complete_profile_screen(status: "#08")
+        cell.txt_gender.placeholder = text_language.complete_profile_screen(status: "#09")
+        cell.txt_weight.placeholder = text_language.complete_profile_screen(status: "#10")
+        cell.txt_blood_group.placeholder = text_language.complete_profile_screen(status: "#11")
         
-        cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#07"), for: .normal)
+        cell.lbl_address.text =  text_language.complete_profile_screen(status: "#02")
+        cell.lbl_area_zipcode.text = text_language.complete_profile_screen(status: "#03")
+        cell.lbl_gender.text = text_language.complete_profile_screen(status: "#09")
+        cell.lbl_weight.text = text_language.complete_profile_screen(status: "#10")
+        cell.lbl_blood_group.text = text_language.complete_profile_screen(status: "#11")
+        
+        cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#12"), for: .normal)
         
         cell.btn_finish.addTarget(self, action: #selector(finish_click_method), for: .touchUpInside)
         
-        cell.btn_start_time.addTarget(self, action: #selector(start_time_click_method), for: .touchUpInside)
-        cell.btn_end_time.addTarget(self, action: #selector(end_time_click_method), for: .touchUpInside)
+        cell.btn_gender.addTarget(self, action: #selector(gender_click_method), for: .touchUpInside)
+        
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person)
+        
+            cell.txt_complete_address.text = (person["address"] as! String)
+            cell.txt_area_zipcode.text = (person["zipcode"] as! String)
+            cell.txt_gender.text = (person["gender"] as! String)
+            cell.txt_weight.text = (person["weight"] as! String)
+            cell.txt_blood_group.text = (person["BloodGroup"] as! String)
+        }
         
         return cell
         
@@ -291,3 +302,4 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
     }
 
 }
+

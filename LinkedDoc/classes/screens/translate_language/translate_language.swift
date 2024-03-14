@@ -88,17 +88,36 @@ class translate_language: UIViewController {
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
             "Accept-Encoding": "application/gzip",
-            "X-RapidAPI-Key": "0947338691msh3f39d264894c812p10b756jsnff8e4a6543e7",
+            "X-RapidAPI-Key": String(str_rapid_api_keys),
             "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
         ]
 
+        
+        
         let merge_text = "q="+String(text_to_convert)
         print(merge_text as Any)
         
+        let doctor_target:String! = "&target=zh-TW"
+        let doctor_source:String! = "&source=en"
+        
+        let member_target:String! = "&target=en"
+        let member_source:String! = "&source=zh-TW"
+        
         let postData = NSMutableData(data: String(merge_text).data(using: String.Encoding.utf8)!)
-        postData.append("&target=zh-TW".data(using: String.Encoding.utf8)!)
-        postData.append("&source=en".data(using: String.Encoding.utf8)!)
-
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person)
+            
+            if (person["role"] as! String) == "Member" {
+                postData.append(String(member_target).data(using: String.Encoding.utf8)!)
+                postData.append(String(member_source).data(using: String.Encoding.utf8)!)
+            } else {
+                postData.append(String(doctor_target).data(using: String.Encoding.utf8)!)
+                postData.append(String(doctor_source).data(using: String.Encoding.utf8)!)
+            }
+            
+        }
+        
         let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate1.p.rapidapi.com/language/translate/v2")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
@@ -174,8 +193,18 @@ extension translate_language: UITableViewDataSource , UITableViewDelegate {
         self.lbl_navigation_title.text = text_language.translate_language_screen(status: "#01")
         cell.btn_translate.setTitle(text_language.translate_language_screen(status: "#02"), for: .normal)
         
-        cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
-        cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person as Any)
+            
+            if person["role"] as! String == "Doctor" {
+                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
+            } else {
+                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#04")
+                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#03")
+            }
+        }
+        
         
         cell.btn_translate.addTarget(self, action: #selector(convert_language_click_method), for: .touchUpInside)
         return cell
