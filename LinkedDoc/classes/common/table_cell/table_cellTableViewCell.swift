@@ -160,6 +160,92 @@ class updating_profile_table_cell : UITableViewCell {
     }
 }
 
+
+// /* ************** ADD HEALTH JOURNAL ****************** */
+// /* ********************************************************** */
+class region_table_cell_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var txt_view_one:UITextView! {
+        didSet {
+            txt_view_one.layer.cornerRadius = 12
+            txt_view_one.clipsToBounds = true
+            txt_view_one.backgroundColor = text_field_BG_color
+        }
+    }
+    
+    @IBOutlet weak var txt_view_two:UITextView! {
+        didSet {
+            txt_view_two.layer.cornerRadius = 12
+            txt_view_two.clipsToBounds = true
+            txt_view_two.backgroundColor = text_field_BG_color
+        }
+    }
+    
+    
+}
+
+// /* ************** ADD HEALTH JOURNAL ****************** */
+// /* ********************************************************** */
+class add_health_journal_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var txt_BP:UITextField! {
+        didSet {
+            txt_BP.layer.cornerRadius = 12
+            txt_BP.clipsToBounds = true
+            txt_BP.backgroundColor = text_field_BG_color
+            txt_BP.placeholder = "Blood Pressure"
+            txt_BP.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_weight:UITextField! {
+        didSet {
+            txt_weight.layer.cornerRadius = 12
+            txt_weight.clipsToBounds = true
+            txt_weight.backgroundColor = text_field_BG_color
+            txt_weight.placeholder = "Weight"
+            txt_weight.setLeftPaddingPoints(20)
+            txt_weight.keyboardType = .numberPad
+        }
+    }
+    @IBOutlet weak var txt_minute_of_excercise:UITextField! {
+        didSet {
+            txt_minute_of_excercise.layer.cornerRadius = 12
+            txt_minute_of_excercise.clipsToBounds = true
+            txt_minute_of_excercise.backgroundColor = text_field_BG_color
+            txt_minute_of_excercise.placeholder = "Minute of Excercise"
+            txt_minute_of_excercise.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_notable_event:UITextField! {
+        didSet {
+            txt_notable_event.layer.cornerRadius = 12
+            txt_notable_event.clipsToBounds = true
+            txt_notable_event.backgroundColor = text_field_BG_color
+            txt_notable_event.placeholder = "Notable events"
+            txt_notable_event.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var btn_continue:UIButton!  {
+        didSet {
+            btn_continue.backgroundColor = button_light_blue_color
+            btn_continue.layer.cornerRadius = 12
+            btn_continue.clipsToBounds = true
+            btn_continue.setTitleColor(.white, for: .normal)
+        }
+    }
+    
+    @IBOutlet weak var btn_notable_event:UIButton!
+    
+    @IBOutlet weak var lbl_blood_pressure:UILabel!
+    @IBOutlet weak var lbl_weight:UILabel!
+    @IBOutlet weak var lbl_minute_of_excercise:UILabel!
+    @IBOutlet weak var lbl_notable_events:UILabel!
+    
+    
+    
+    
+}
+
 // /* ************** PATIENT COMPLETE PROFILE ****************** */
 // /* ********************************************************** */
 class patient_complete_profile_table_cell : UITableViewCell {

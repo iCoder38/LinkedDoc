@@ -212,9 +212,9 @@ class patient_complete_profile: UIViewController {
         let indexPath = IndexPath.init(row: 0, section: 0)
         let cell = self.tble_view.cellForRow(at: indexPath) as! patient_complete_profile_table_cell
         
-        let dummyList = ["Male", "Female", "Prefer not to say",]
+        let dummyList = [text_language.common_screen(status: "male"), text_language.common_screen(status: "female")]
         
-        RPicker.selectOption(title: "Select gender", cancelText: "Cancel", dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
+        RPicker.selectOption(title: text_language.common_screen(status: "gender"), cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
              
             cell.txt_gender.text = String(selctedText)
         }

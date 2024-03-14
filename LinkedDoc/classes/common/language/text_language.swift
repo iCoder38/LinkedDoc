@@ -215,6 +215,102 @@ var text_gallery_ch = "資料庫"
 var text_are_you_sure_logout_en = "Are you sure you want to logout?"
 var text_are_you_sure_logout_ch = "請確定你要登出"
 
+// health journal
+var navigation_title_add_health_general_en = "add health journal".uppercased()
+var navigation_title_add_health_general_ch = "加上健康日誌".uppercased()
+
+var text_blood_pressure_en = "Blood Pressure"
+var text_blood_pressure_ch = "血壓"
+
+var text_weight_en = "Weight"
+var text_weight_ch = "體重"
+
+var text_minute_of_excercise_en = "Minute of Excercise"
+var text_minute_of_excercise_ch = "運動時間"
+
+var text_notable_events_en = "Notable events"
+var text_notable_events_ch = "值得注意事項"
+
+var text_pain_en = "Pain"
+var text_pain_ch = "身體不舒服"
+
+var text_diff_breathing_en = "Difficult breathing/moving"
+var text_diff_breathing_ch = "呼吸困難，身體移動困難等"
+
+var text_male_en = "Male"
+var text_male_ch = "ch : male"
+
+var text_female_en = "Female"
+var text_female_ch = "ch : female"
+
+// onset
+var navigation_title_onset_en = "onset".uppercased()
+var navigation_title_onset_ch = "發作".uppercased()
+
+var text_what_were_you_doing_en = "What were you doing when this event began"
+var text_what_were_you_doing_ch = "你有做什麼去減輕痛苦"
+
+var text_describe_en = "Please describe"
+var text_describe_ch = "請描述"
+
+var button_skip_en = "skip".uppercased()
+var button_skip_ch = "請跳過".uppercased()
+
+
+
+var text_constant_options_en = "Please describe"
+var text_constant_options_ch = "請描述"
+
+
+var text_dull_option_dull_en = "Dull"
+var text_dull_option_dull_ch = "身體沒反應"
+
+var text_dull_option_sharp_en = "Sharp"
+var text_dull_option_sharp_ch = "身體劇痛"
+
+var text_dull_option_pressure_en = "Pressure"
+var text_dull_option_pressure_ch = "身體壓力指數"
+
+var text_dull_option_throbing_en = "Throbing"
+var text_dull_option_throbing_ch = "身體悸動"
+
+var text_dull_option_burning_en = "Burning"
+var text_dull_option_burning_ch = "身體灼熱"
+
+var text_dull_option_other_en = "Other"
+var text_dull_option_other_ch = "其他"
+
+
+var text_constant_option_constant_en = "Constant"
+var text_constant_option_constant_ch = "持續"
+
+var text_constant_option_intermittent_en = "Intermittent"
+var text_constant_option_intermittent_ch = "間歇性"
+
+var text_constant_option_other_en = "Other"
+var text_constant_option_other_ch = "其他"
+
+
+// provocation
+var navigation_title_provocation_en = "Provocation".uppercased()
+var navigation_title_provocation_ch = "病痛加重".uppercased()
+
+var text_prov_message_en = "Is there anything that makes it better or worse (moving / medication)"
+var text_prov_message_ch = "做什麼去減輕或加重病痛 (身體移動/ 藥物"
+
+// quality
+var navigation_title_quality_en = "Quality".uppercased()
+var navigation_title_quality_ch = "身體狀況".uppercased()
+
+var text_describe_pain_en = "Describe pain"
+var text_describe_pain_ch = "描述病痛程度"
+
+var text_dull_en = "Dull"
+var text_dull_ch = "身體反應"
+
+var text_constant_en = "Constant"
+var text_constant_ch = "恆量 "
+
 class text_language: UIViewController {
     
     
@@ -306,11 +402,294 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_are_you_sure_logout_ch
             }
             
+        } else  if (status == "pain") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_pain_en
+            } else {
+                str_language_prefrence_is = text_pain_ch
+            }
+            
+        } else  if (status == "diff_breathing") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_diff_breathing_en
+            } else {
+                str_language_prefrence_is = text_diff_breathing_ch
+            }
+            
+        }
+        else  if (status == "male") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_male_en
+            } else {
+                str_language_prefrence_is = text_male_ch
+            }
+            
+        }else  if (status == "female") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_female_en
+            } else {
+                str_language_prefrence_is = text_female_ch
+            }
+            
+        }else  if (status == "gender") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_field_gender_placeholder_en
+            } else {
+                str_language_prefrence_is = text_field_gender_placeholder_ch
+            }
+            
+        } else  if (status == "please_describe") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_describe_en
+            } else {
+                str_language_prefrence_is = text_describe_ch
+            }
+            
+        } else  if (status == "dull_option_dull") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_dull_en
+            } else {
+                str_language_prefrence_is = text_dull_option_dull_ch
+            }
+            
+        }else  if (status == "dull_option_sharp") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_sharp_en
+            } else {
+                str_language_prefrence_is = text_dull_option_sharp_ch
+            }
+            
+        }else  if (status == "dull_option_pressure") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_pressure_en
+            } else {
+                str_language_prefrence_is = text_dull_option_pressure_ch
+            }
+            
+        }else  if (status == "dull_option_throbing") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_throbing_en
+            } else {
+                str_language_prefrence_is = text_dull_option_throbing_ch
+            }
+            
+        }else  if (status == "dull_option_burning") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_burning_en
+            } else {
+                str_language_prefrence_is = text_dull_option_burning_ch
+            }
+            
+        }else  if (status == "dull_option_other") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_option_other_en
+            } else {
+                str_language_prefrence_is = text_dull_option_other_ch
+            }
+            
+        } else  if (status == "constant_option_constant") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_constant_option_constant_en
+            } else {
+                str_language_prefrence_is = text_constant_option_constant_ch
+            }
+            
+        }else  if (status == "constant_option_intermittent") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_constant_option_intermittent_en
+            } else {
+                str_language_prefrence_is = text_constant_option_intermittent_ch
+            }
+            
+        }else  if (status == "constant_option_other") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_constant_option_other_en
+            } else {
+                str_language_prefrence_is = text_constant_option_other_ch
+            }
+            
         }
         
         return str_language_prefrence_is
         
     }
+    
+    // create an account
+    class func complete_profile_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_complete_profile_en
+            } else {
+                str_language_prefrence_is = navigation_title_complete_profile_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+
+    }
+    
+    // describe pain
+    class func quality_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_quality_en
+            } else {
+                str_language_prefrence_is = navigation_title_quality_ch
+            }
+        } else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_describe_pain_en
+            } else {
+                str_language_prefrence_is = text_describe_pain_ch
+            }
+        } else if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_dull_en
+            } else {
+                str_language_prefrence_is = text_dull_ch
+            }
+        } else if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_constant_en
+            } else {
+                str_language_prefrence_is = text_constant_ch
+            }
+        }
+         
+        
+        return str_language_prefrence_is
+    }
+    
+    // provocation
+    class func provocation_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_provocation_en
+            } else {
+                str_language_prefrence_is = navigation_title_provocation_ch
+            }
+        }
+        else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_prov_message_en
+            } else {
+                str_language_prefrence_is = text_prov_message_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
+    
+    // onset
+    class func on_set_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_onset_en
+            } else {
+                str_language_prefrence_is = navigation_title_onset_ch
+            }
+        }
+        else if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_describe_en
+            } else {
+                str_language_prefrence_is = text_describe_ch
+            }
+        }else if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_what_were_you_doing_en
+            } else {
+                str_language_prefrence_is = text_what_were_you_doing_ch
+            }
+        }else if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = button_skip_en
+            } else {
+                str_language_prefrence_is = button_skip_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
+    
+    // ADD JOURNAL
+    class func add_health_journal_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_add_health_general_en
+            } else {
+                str_language_prefrence_is = navigation_title_add_health_general_ch
+            }
+        } else
+        if (status == "#02") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_blood_pressure_en
+            } else {
+                str_language_prefrence_is = text_blood_pressure_ch
+            }
+        } else
+        if (status == "#03") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_weight_en
+            } else {
+                str_language_prefrence_is = text_weight_ch
+            }
+        } else
+        if (status == "#04") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_minute_of_excercise_en
+            } else {
+                str_language_prefrence_is = text_minute_of_excercise_ch
+            }
+        } else
+        if (status == "#05") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_notable_events_en
+            } else {
+                str_language_prefrence_is = text_notable_events_ch
+            }
+        } else
+        if (status == "#06") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = button_continue_en
+            } else {
+                str_language_prefrence_is = button_continue_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
+    
     
     // help
     class func help_screen(status:String)->String {

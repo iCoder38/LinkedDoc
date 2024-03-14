@@ -16,6 +16,11 @@
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
 		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
 		B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */; };
+		B975F24F2BA3082B0002964F /* add_health_journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F24E2BA3082B0002964F /* add_health_journal.swift */; };
+		B975F2522BA31B600002964F /* onset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F2512BA31B600002964F /* onset.swift */; };
+		B975F2552BA31F270002964F /* provocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F2542BA31F270002964F /* provocation.swift */; };
+		B975F2582BA321350002964F /* describe_pain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F2572BA321350002964F /* describe_pain.swift */; };
+		B975F25B2BA332480002964F /* region.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F25A2BA332480002964F /* region.swift */; };
 		B9A280752BA1C99200D3ACFD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A280742BA1C99200D3ACFD /* help.swift */; };
 		B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF86222B9F27EA00DBB05A /* complete_profile.swift */; };
 		B9BF96552BA074DC00860A64 /* change_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96542BA074DC00860A64 /* change_password.swift */; };
@@ -87,6 +92,11 @@
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
 		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
 		B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_doctor_details.swift; sourceTree = "<group>"; };
+		B975F24E2BA3082B0002964F /* add_health_journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_health_journal.swift; sourceTree = "<group>"; };
+		B975F2512BA31B600002964F /* onset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onset.swift; sourceTree = "<group>"; };
+		B975F2542BA31F270002964F /* provocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provocation.swift; sourceTree = "<group>"; };
+		B975F2572BA321350002964F /* describe_pain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = describe_pain.swift; sourceTree = "<group>"; };
+		B975F25A2BA332480002964F /* region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = region.swift; sourceTree = "<group>"; };
 		B9A280742BA1C99200D3ACFD /* help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = help.swift; sourceTree = "<group>"; };
 		B9BF86222B9F27EA00DBB05A /* complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = complete_profile.swift; sourceTree = "<group>"; };
 		B9BF96542BA074DC00860A64 /* change_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = change_password.swift; sourceTree = "<group>"; };
@@ -255,6 +265,58 @@
 			path = update_doctor_details;
 			sourceTree = "<group>";
 		};
+		B975F24C2BA308000002964F /* add_health_journal */ = {
+			isa = PBXGroup;
+			children = (
+				B975F24D2BA3080E0002964F /* add */,
+				B975F2502BA31B550002964F /* on_set */,
+				B975F2532BA31F1C0002964F /* provocation */,
+				B975F2562BA3212B0002964F /* describe_pain */,
+				B975F2592BA332400002964F /* region */,
+			);
+			path = add_health_journal;
+			sourceTree = "<group>";
+		};
+		B975F24D2BA3080E0002964F /* add */ = {
+			isa = PBXGroup;
+			children = (
+				B975F24E2BA3082B0002964F /* add_health_journal.swift */,
+			);
+			path = add;
+			sourceTree = "<group>";
+		};
+		B975F2502BA31B550002964F /* on_set */ = {
+			isa = PBXGroup;
+			children = (
+				B975F2512BA31B600002964F /* onset.swift */,
+			);
+			path = on_set;
+			sourceTree = "<group>";
+		};
+		B975F2532BA31F1C0002964F /* provocation */ = {
+			isa = PBXGroup;
+			children = (
+				B975F2542BA31F270002964F /* provocation.swift */,
+			);
+			path = provocation;
+			sourceTree = "<group>";
+		};
+		B975F2562BA3212B0002964F /* describe_pain */ = {
+			isa = PBXGroup;
+			children = (
+				B975F2572BA321350002964F /* describe_pain.swift */,
+			);
+			path = describe_pain;
+			sourceTree = "<group>";
+		};
+		B975F2592BA332400002964F /* region */ = {
+			isa = PBXGroup;
+			children = (
+				B975F25A2BA332480002964F /* region.swift */,
+			);
+			path = region;
+			sourceTree = "<group>";
+		};
 		B9A280732BA1C98900D3ACFD /* help */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +328,7 @@
 		B9BF86202B9F1AF700DBB05A /* doctor */ = {
 			isa = PBXGroup;
 			children = (
+				B90784562BA021790024970D /* dashboard */,
 				B92A1BBE2BA2ED68004919D1 /* update_doctor_details */,
 				B9E52CFF2B9EF84B00948E89 /* create_an_account */,
 				B9BF86212B9F277400DBB05A /* complete_profile */,
@@ -331,9 +394,10 @@
 		B9E05BDC2BA2C9FE00720A47 /* patient */ = {
 			isa = PBXGroup;
 			children = (
+				B9E05BDF2BA2D0A500720A47 /* patient_dashboard */,
+				B975F24C2BA308000002964F /* add_health_journal */,
 				B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */,
 				B9E05BE22BA2E21A00720A47 /* update_patient_details */,
-				B9E05BDF2BA2D0A500720A47 /* patient_dashboard */,
 			);
 			path = patient;
 			sourceTree = "<group>";
@@ -430,7 +494,6 @@
 				B90784682BA038C80024970D /* select_language_2 */,
 				B9E52CF62B9ED86900948E89 /* login */,
 				B9BF86202B9F1AF700DBB05A /* doctor */,
-				B90784562BA021790024970D /* dashboard */,
 				B907845F2BA02DBE0024970D /* translate_language */,
 			);
 			path = screens;
@@ -782,17 +845,21 @@
 				B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */,
 				B9BF96632BA07CCF00860A64 /* LeftPaddingTextField.swift in Sources */,
 				B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */,
+				B975F25B2BA332480002964F /* region.swift in Sources */,
 				B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */,
 				B9E52CBD2B9ED4D600948E89 /* LinkedDoc.xcdatamodeld in Sources */,
 				B9E52CF02B9ED6C400948E89 /* MenuControllerVC.swift in Sources */,
 				B9E52D012B9EF86100948E89 /* create_an_account.swift in Sources */,
 				B90784612BA02DDB0024970D /* translate_language.swift in Sources */,
+				B975F2552BA31F270002964F /* provocation.swift in Sources */,
 				B90784582BA0218D0024970D /* dashboard.swift in Sources */,
 				B907846A2BA038E20024970D /* update_select_language.swift in Sources */,
 				B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */,
+				B975F2582BA321350002964F /* describe_pain.swift in Sources */,
 				B9BF96652BA07CCF00860A64 /* NewYorkAlertController.swift in Sources */,
 				B9E05BDE2BA2CA1000720A47 /* patient_complete_profile.swift in Sources */,
 				B9A280752BA1C99200D3ACFD /* help.swift in Sources */,
+				B975F2522BA31B600002964F /* onset.swift in Sources */,
 				B9BF96672BA07CCF00860A64 /* NewYorkAlertViewType.swift in Sources */,
 				B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */,
 				B9E05BE42BA2E22F00720A47 /* update_patient_details.swift in Sources */,
@@ -800,6 +867,7 @@
 				B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */,
 				B9BF96662BA07CCF00860A64 /* UIStackView+Utility.swift in Sources */,
 				B9E52CF82B9ED87500948E89 /* loginViewController.swift in Sources */,
+				B975F24F2BA3082B0002964F /* add_health_journal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,6 +79,7 @@ class patient_dashboard: UIViewController {
     @IBOutlet weak var img_translate:UIImageView!
     @IBOutlet weak var img_password:UIImageView!
     @IBOutlet weak var img_help:UIImageView!
+    @IBOutlet weak var img_add_journal:UIImageView!
     
     @IBOutlet weak var lbl_translate:UILabel!
     @IBOutlet weak var lbl_password:UILabel!
@@ -122,6 +123,10 @@ class patient_dashboard: UIViewController {
         let tapGestureRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(help_tap))
         self.img_help.isUserInteractionEnabled = true
         self.img_help.addGestureRecognizer(tapGestureRecognizer3)
+        
+        let tapGestureRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(add_journal_tap))
+        self.img_add_journal.isUserInteractionEnabled = true
+        self.img_add_journal.addGestureRecognizer(tapGestureRecognizer4)
         
         let tapGestureRecognizer6 = UITapGestureRecognizer(target: self, action: #selector(logout_tap))
         self.img_logout.isUserInteractionEnabled = true
@@ -189,6 +194,12 @@ class patient_dashboard: UIViewController {
     @objc func logout_tap() {
         print("logout")
         logout_click_method()
+    }
+    
+    @objc func add_journal_tap() {
+        print("add journal")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "add_health_journal_id") as? add_health_journal
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
 }
