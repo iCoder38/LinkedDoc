@@ -408,6 +408,106 @@ class complete_profile_table_cell : UITableViewCell {
     @IBOutlet weak var btn_end_time:UIButton!
 }
 
+// /* ************** DOCTOR : EDIT COMPLETE PROFILE ************************ */
+// /* ********************************************************** */
+class update_doctor_details_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var view_tble_view:UIView! {
+        didSet {
+            view_tble_view.layer.cornerRadius = 8
+            view_tble_view.clipsToBounds = true
+            view_tble_view.backgroundColor = .clear
+        }
+    }
+    
+    @IBOutlet weak var txt_complete_address:UITextField! {
+        didSet {
+            txt_complete_address.layer.cornerRadius = 12
+            txt_complete_address.clipsToBounds = true
+            txt_complete_address.backgroundColor = .white
+            txt_complete_address.placeholder = "Complete address"
+            txt_complete_address.setLeftPaddingPoints(20)
+        }
+    }
+    
+    @IBOutlet weak var txt_area_zipcode:UITextField! {
+        didSet {
+            txt_area_zipcode.layer.cornerRadius = 12
+            txt_area_zipcode.clipsToBounds = true
+            txt_area_zipcode.backgroundColor = .white
+            txt_area_zipcode.placeholder = "Area zipcode"
+            txt_area_zipcode.setLeftPaddingPoints(20)
+            txt_area_zipcode.keyboardType = .numberPad
+        }
+    }
+    
+    @IBOutlet weak var txt_working_hours:UITextField! {
+        didSet {
+            txt_working_hours.layer.cornerRadius = 12
+            txt_working_hours.clipsToBounds = true
+            txt_working_hours.backgroundColor = .white
+            txt_working_hours.placeholder = "Working hours start"
+            txt_working_hours.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_working_hours_end:UITextField! {
+        didSet {
+            txt_working_hours_end.layer.cornerRadius = 12
+            txt_working_hours_end.clipsToBounds = true
+            txt_working_hours_end.backgroundColor = .white
+            txt_working_hours_end.placeholder = "Working hours end"
+            txt_working_hours_end.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_year_of_experience:UITextField! {
+        didSet {
+            txt_year_of_experience.layer.cornerRadius = 12
+            txt_year_of_experience.clipsToBounds = true
+            txt_year_of_experience.backgroundColor = .white
+            txt_year_of_experience.placeholder = "Year of experience"
+            txt_year_of_experience.setLeftPaddingPoints(20)
+            txt_year_of_experience.keyboardType = .numberPad
+        }
+    }
+    
+    @IBOutlet weak var txt_specialization:UITextField! {
+        didSet {
+            txt_specialization.layer.cornerRadius = 12
+            txt_specialization.clipsToBounds = true
+            txt_specialization.backgroundColor = .white
+            txt_specialization.placeholder = "Specialization"
+            txt_specialization.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_view:UITextView! {
+        didSet {
+            txt_view.layer.cornerRadius = 12
+            txt_view.clipsToBounds = true
+            txt_view.backgroundColor = .white
+        }
+    }
+    
+    @IBOutlet weak var btn_finish:UIButton!  {
+        didSet {
+            btn_finish.backgroundColor = button_light_blue_color
+            btn_finish.layer.cornerRadius = 12
+            btn_finish.clipsToBounds = true
+            btn_finish.setTitleColor(.white, for: .normal)
+        }
+    }
+    @IBOutlet weak var btn_start_time:UIButton!
+    @IBOutlet weak var btn_end_time:UIButton!
+    
+    @IBOutlet weak var lbl_address:UILabel!
+    @IBOutlet weak var lbl_zipcode:UILabel!
+    @IBOutlet weak var lbl_working_hr_start:UILabel!
+    @IBOutlet weak var lbl_working_hr_end:UILabel!
+    @IBOutlet weak var lbl_year_of_experience:UILabel!
+    @IBOutlet weak var lbl_specialization:UILabel!
+    @IBOutlet weak var lbl_about_us:UILabel!
+}
+
+
 // /* ************** TRANSLATE LANGUAGE ************************ */
 // /* ********************************************************** */
 class translate_language_table_cell : UITableViewCell {

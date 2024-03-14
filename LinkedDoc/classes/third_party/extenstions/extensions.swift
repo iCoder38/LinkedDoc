@@ -47,6 +47,31 @@ extension UIViewController {
         
     }
     
+    
+    
+    @objc func logout_click_method() {
+        
+        let alert = NewYorkAlertController(title: text_language.dashboard_screen(status: "#08"), message: text_language.common_screen(status: "logout_message"), style: .alert)
+        
+        let yes = NewYorkButton(title: text_language.dashboard_screen(status: "#08"), style: .default)  {
+            _ in
+             UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
+             UserDefaults.standard.set(nil, forKey: default_key_language)
+            
+            let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
+            let navController = UINavigationController(rootViewController: obj)
+            navController.setViewControllers([obj], animated:true)
+            self.revealViewController().setFront(navController, animated: true)
+            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+            
+        }
+        
+         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+        alert.addButtons([yes,cancel])
+        self.present(alert, animated: true)
+        
+    }
+    
 }
 
 extension Date {

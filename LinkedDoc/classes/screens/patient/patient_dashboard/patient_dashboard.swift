@@ -83,6 +83,7 @@ class patient_dashboard: UIViewController {
     @IBOutlet weak var lbl_translate:UILabel!
     @IBOutlet weak var lbl_password:UILabel!
     @IBOutlet weak var lbl_help:UILabel!
+    @IBOutlet weak var img_logout:UIImageView!
     
     @IBOutlet weak var lbl_add_journal:UILabel!
     @IBOutlet weak var lbl_journal:UILabel!
@@ -121,6 +122,10 @@ class patient_dashboard: UIViewController {
         let tapGestureRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(help_tap))
         self.img_help.isUserInteractionEnabled = true
         self.img_help.addGestureRecognizer(tapGestureRecognizer3)
+        
+        let tapGestureRecognizer6 = UITapGestureRecognizer(target: self, action: #selector(logout_tap))
+        self.img_logout.isUserInteractionEnabled = true
+        self.img_logout.addGestureRecognizer(tapGestureRecognizer6)
         
         self.convert_language()
         
@@ -179,6 +184,11 @@ class patient_dashboard: UIViewController {
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "help_id") as? help
         push!.str_back_menu = "back"
         self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func logout_tap() {
+        print("logout")
+        logout_click_method()
     }
     
 }

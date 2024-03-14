@@ -106,7 +106,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         self.lbl_navigation_title.text = text_language.login_screen(status: "#01")
         self.lbl_message.text = text_language.login_screen(status: "#02")
         
-        self.btn_continue.setTitle(text_language.login_screen(status: "#03"), for: .normal)
+        self.btn_continue.setTitle(text_language.login_screen(status: "#01"), for: .normal)
         
         self.txt_email.placeholder = text_language.login_screen(status: "#04")
         self.txt_password.placeholder = text_language.login_screen(status: "#05")

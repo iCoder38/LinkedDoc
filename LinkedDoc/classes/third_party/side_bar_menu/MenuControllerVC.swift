@@ -66,7 +66,7 @@ class MenuControllerVC: UIViewController {
     
     @IBOutlet weak var img_profile:UIImageView! {
         didSet {
-            img_profile.layer.cornerRadius = 35
+            img_profile.layer.cornerRadius = 45
             img_profile.clipsToBounds = true
         }
     }
@@ -521,12 +521,27 @@ extension MenuControllerVC: UITableViewDataSource {
             
         } else if strMyPageNumber == "8" {
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
-            self.view.window?.rootViewController = sw
-            let destinationController = storyboard.instantiateViewController(withIdentifier: "update_patient_details_id")
-            let navigationController = UINavigationController(rootViewController: destinationController)
-            sw.setFront(navigationController, animated: true)
+            if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+                print(person)
+                
+                if (person["role"] as! String) == "Member" {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+                    self.view.window?.rootViewController = sw
+                    let destinationController = storyboard.instantiateViewController(withIdentifier: "update_patient_details_id")
+                    let navigationController = UINavigationController(rootViewController: destinationController)
+                    sw.setFront(navigationController, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let sw = storyboard.instantiateViewController(withIdentifier: "sw") as! SWRevealViewController
+                    self.view.window?.rootViewController = sw
+                    let destinationController = storyboard.instantiateViewController(withIdentifier: "update_doctor_details_id")
+                    let navigationController = UINavigationController(rootViewController: destinationController)
+                    sw.setFront(navigationController, animated: true)
+                }
+                
+            }
+            
             
         } else if strMyPageNumber == "7" {
             

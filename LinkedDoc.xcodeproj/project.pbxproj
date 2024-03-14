@@ -15,6 +15,7 @@
 		B90784612BA02DDB0024970D /* translate_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784602BA02DDB0024970D /* translate_language.swift */; };
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
 		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
+		B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */; };
 		B9A280752BA1C99200D3ACFD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A280742BA1C99200D3ACFD /* help.swift */; };
 		B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF86222B9F27EA00DBB05A /* complete_profile.swift */; };
 		B9BF96552BA074DC00860A64 /* change_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96542BA074DC00860A64 /* change_password.swift */; };
@@ -85,6 +86,7 @@
 		B90784602BA02DDB0024970D /* translate_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate_language.swift; sourceTree = "<group>"; };
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
 		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
+		B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_doctor_details.swift; sourceTree = "<group>"; };
 		B9A280742BA1C99200D3ACFD /* help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = help.swift; sourceTree = "<group>"; };
 		B9BF86222B9F27EA00DBB05A /* complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = complete_profile.swift; sourceTree = "<group>"; };
 		B9BF96542BA074DC00860A64 /* change_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = change_password.swift; sourceTree = "<group>"; };
@@ -245,6 +247,14 @@
 			path = update_profile;
 			sourceTree = "<group>";
 		};
+		B92A1BBE2BA2ED68004919D1 /* update_doctor_details */ = {
+			isa = PBXGroup;
+			children = (
+				B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */,
+			);
+			path = update_doctor_details;
+			sourceTree = "<group>";
+		};
 		B9A280732BA1C98900D3ACFD /* help */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 		B9BF86202B9F1AF700DBB05A /* doctor */ = {
 			isa = PBXGroup;
 			children = (
+				B92A1BBE2BA2ED68004919D1 /* update_doctor_details */,
 				B9E52CFF2B9EF84B00948E89 /* create_an_account */,
 				B9BF86212B9F277400DBB05A /* complete_profile */,
 			);
@@ -768,6 +779,7 @@
 				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
 				B9BF966F2BA0905700860A64 /* welcome.swift in Sources */,
 				B907845B2BA02CFB0024970D /* all_colors.swift in Sources */,
+				B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */,
 				B9BF96632BA07CCF00860A64 /* LeftPaddingTextField.swift in Sources */,
 				B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */,
 				B9E52CB52B9ED4D600948E89 /* SceneDelegate.swift in Sources */,

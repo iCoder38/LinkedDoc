@@ -30,7 +30,7 @@ var button_text_patient_continue_en = "Patient"
 var button_text_patient_continue_ch = "病人"
 
 // login
-var navigation_title_login_en = "Login"
+var navigation_title_login_en = "Sign in"
 var navigation_title_login_ch = "登入"
 
 var text_login_message_en = "Sign in to your account"
@@ -70,6 +70,8 @@ var navigation_title_edit_profile_ch = "編輯個人資料"
 var navigation_title_edit_details_en = "Edit details"
 var navigation_title_edit_details_ch = "編輯個人資料"
 
+var text_about_en = "About"
+var text_about_ch = "有關醫生資料"
 
 var text_field_name_placeholder_en = "Name"
 var text_field_email_placeholder_en = "Email"
@@ -164,7 +166,7 @@ var button_text_ch = "翻譯".uppercased()
 var text_translate_up_en = "Native Language: English"
 var text_translate_up_ch = "母語/ 英文"
 
-var text_translate_down_en = "Native Language: Chinese"
+var text_translate_down_en = "Selective Language: Chinese"
 var text_translate_down_ch = "可選擇語言/ 中文"
 
 // dashboard
@@ -297,7 +299,7 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_gallery_ch
             }
             
-        } else  if (status == "logout") {
+        } else  if (status == "logout_message") {
             if (text_language.selected_language_get() == english_language) {
                 str_language_prefrence_is = text_are_you_sure_logout_en
             } else {
@@ -621,6 +623,12 @@ class text_language: UIViewController {
                 str_language_prefrence_is = navigation_title_edit_details_en
             } else {
                 str_language_prefrence_is = navigation_title_edit_details_ch
+            }
+        } else if (status == "#15") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_about_en
+            } else {
+                str_language_prefrence_is = text_about_ch
             }
         }
         
