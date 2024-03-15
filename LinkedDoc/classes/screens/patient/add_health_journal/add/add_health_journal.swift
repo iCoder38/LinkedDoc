@@ -49,6 +49,9 @@ class add_health_journal: UIViewController {
     
     @objc func convert_language() {
         self.lbl_navigation_title.text = text_language.add_health_journal_screen(status: "#01")
+        
+        /*let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "actions_id") as? actions
+        self.navigationController?.pushViewController(push!, animated: true)*/
     }
     
     
@@ -70,7 +73,7 @@ class add_health_journal: UIViewController {
         let indexPath = IndexPath.init(row: 0, section: 0)
         let cell = self.tble_view.cellForRow(at: indexPath) as! add_health_journal_table_cell
         
-        /*if (cell.txt_BP.text == "") {
+        if (cell.txt_BP.text == "") {
             return
         }
         if (cell.txt_weight.text == "") {
@@ -81,16 +84,19 @@ class add_health_journal: UIViewController {
         }
         if (cell.txt_notable_event.text == "") {
             return
-        }*/
+        }
         
-        var custom_dict = [
+        let custom_dict = [
             "BP":String(cell.txt_BP.text!),
             "weight":String(cell.txt_weight.text!),
             "exercise_time":String(cell.txt_minute_of_excercise.text!),
             "notable_event":String(cell.txt_notable_event.text!)
         ]
         print(custom_dict as Any)
-             
+          
+        let defaults = UserDefaults.standard
+        defaults.setValue(custom_dict, forKey: "key_save_add_health_journal")
+        
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "onset_id") as? onset
         self.navigationController?.pushViewController(push!, animated: true)
         

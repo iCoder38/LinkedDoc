@@ -86,24 +86,29 @@ class describe_pain: UIViewController {
         self.btn_dull.addTarget(self, action: #selector(dull_click_method), for: .touchUpInside)
         self.btn_constant.addTarget(self, action: #selector(constant_click_method), for: .touchUpInside)
         
+        self.btn_skip.addTarget(self, action: #selector(skip_click_method), for: .touchUpInside)
         self.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
     }
     
     @objc func continue_click_method() {
          
-        /*if (cell.txt_BP.text == "") {
+        if (self.txt_dull.text == "") {
             return
         }
-       */
+        if (self.txt_constant.text == "") {
+            return
+        }
         
-        var custom_dict = [
+        let custom_dict = [
             "dull":String(self.txt_dull.text!),
             "constant":String(self.txt_constant.text!),
-            
         ]
         print(custom_dict as Any)
+          
+        let defaults = UserDefaults.standard
+        defaults.setValue(custom_dict, forKey: "key_save_quality")
              
-        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "describe_pain_id") as? describe_pain
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "region_id") as? region
         self.navigationController?.pushViewController(push!, animated: true)
         
     }
@@ -177,6 +182,20 @@ class describe_pain: UIViewController {
             }
             print(self.str_server_value_for_constant as Any)
         }
+    }
+    
+    @objc func skip_click_method() {
+        let custom_dict = [
+            "dull":"",
+            "constant":"",
+        ]
+        print(custom_dict as Any)
+          
+        let defaults = UserDefaults.standard
+        defaults.setValue(custom_dict, forKey: "key_save_quality")
+             
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "region_id") as? region
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
 }

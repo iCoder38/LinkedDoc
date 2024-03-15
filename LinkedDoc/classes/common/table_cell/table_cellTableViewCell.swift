@@ -163,7 +163,7 @@ class updating_profile_table_cell : UITableViewCell {
 
 // /* ************** ADD HEALTH JOURNAL ****************** */
 // /* ********************************************************** */
-class region_table_cell_table_cell : UITableViewCell {
+class region_table_cell : UITableViewCell {
     
     @IBOutlet weak var txt_view_one:UITextView! {
         didSet {
@@ -181,7 +181,22 @@ class region_table_cell_table_cell : UITableViewCell {
         }
     }
     
+    @IBOutlet weak var btn_continue:UIButton! {
+        didSet {
+            btn_continue.backgroundColor = button_light_blue_color
+            btn_continue.layer.cornerRadius = 12
+            btn_continue.clipsToBounds = true
+            btn_continue.setTitleColor(.white, for: .normal)
+        }
+    }
     
+    @IBOutlet weak var lbl_where_is:UILabel!
+    @IBOutlet weak var lbl_is_there:UILabel!
+    
+    @IBOutlet weak var lbl_pd1:UILabel!
+    @IBOutlet weak var lbl_pd2:UILabel!
+    
+    @IBOutlet weak var btn_skip:UIButton!
 }
 
 // /* ************** ADD HEALTH JOURNAL ****************** */

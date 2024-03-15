@@ -72,6 +72,14 @@ extension UIViewController {
         
     }
     
+    
+    
+    @objc func success_message(message:String) {
+        
+        self.view.makeToast(message)
+    }
+    
+    
 }
 
 extension Date {

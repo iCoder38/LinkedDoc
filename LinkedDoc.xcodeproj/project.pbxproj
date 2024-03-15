@@ -16,6 +16,9 @@
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
 		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
 		B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */; };
+		B96AD7BC2BA4216100B9835F /* severity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96AD7BB2BA4216100B9835F /* severity.swift */; };
+		B96AD7C02BA4250D00B9835F /* timinig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96AD7BF2BA4250D00B9835F /* timinig.swift */; };
+		B96AD7C32BA4272800B9835F /* actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96AD7C22BA4272800B9835F /* actions.swift */; };
 		B975F24F2BA3082B0002964F /* add_health_journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F24E2BA3082B0002964F /* add_health_journal.swift */; };
 		B975F2522BA31B600002964F /* onset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F2512BA31B600002964F /* onset.swift */; };
 		B975F2552BA31F270002964F /* provocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B975F2542BA31F270002964F /* provocation.swift */; };
@@ -92,6 +95,9 @@
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
 		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
 		B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_doctor_details.swift; sourceTree = "<group>"; };
+		B96AD7BB2BA4216100B9835F /* severity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = severity.swift; sourceTree = "<group>"; };
+		B96AD7BF2BA4250D00B9835F /* timinig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timinig.swift; sourceTree = "<group>"; };
+		B96AD7C22BA4272800B9835F /* actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = actions.swift; sourceTree = "<group>"; };
 		B975F24E2BA3082B0002964F /* add_health_journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_health_journal.swift; sourceTree = "<group>"; };
 		B975F2512BA31B600002964F /* onset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onset.swift; sourceTree = "<group>"; };
 		B975F2542BA31F270002964F /* provocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provocation.swift; sourceTree = "<group>"; };
@@ -265,6 +271,37 @@
 			path = update_doctor_details;
 			sourceTree = "<group>";
 		};
+		B96AD7BA2BA4215200B9835F /* severity */ = {
+			isa = PBXGroup;
+			children = (
+				B96AD7BB2BA4216100B9835F /* severity.swift */,
+			);
+			path = severity;
+			sourceTree = "<group>";
+		};
+		B96AD7BD2BA424FF00B9835F /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B96AD7BE2BA4250500B9835F /* timing */ = {
+			isa = PBXGroup;
+			children = (
+				B96AD7BF2BA4250D00B9835F /* timinig.swift */,
+			);
+			path = timing;
+			sourceTree = "<group>";
+		};
+		B96AD7C12BA4271700B9835F /* actions */ = {
+			isa = PBXGroup;
+			children = (
+				B96AD7C22BA4272800B9835F /* actions.swift */,
+			);
+			path = actions;
+			sourceTree = "<group>";
+		};
 		B975F24C2BA308000002964F /* add_health_journal */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +310,9 @@
 				B975F2532BA31F1C0002964F /* provocation */,
 				B975F2562BA3212B0002964F /* describe_pain */,
 				B975F2592BA332400002964F /* region */,
+				B96AD7BA2BA4215200B9835F /* severity */,
+				B96AD7BE2BA4250500B9835F /* timing */,
+				B96AD7C12BA4271700B9835F /* actions */,
 			);
 			path = add_health_journal;
 			sourceTree = "<group>";
@@ -394,6 +434,7 @@
 		B9E05BDC2BA2C9FE00720A47 /* patient */ = {
 			isa = PBXGroup;
 			children = (
+				B96AD7BD2BA424FF00B9835F /* New Group */,
 				B9E05BDF2BA2D0A500720A47 /* patient_dashboard */,
 				B975F24C2BA308000002964F /* add_health_journal */,
 				B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */,
@@ -827,6 +868,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9BF96552BA074DC00860A64 /* change_password.swift in Sources */,
+				B96AD7C32BA4272800B9835F /* actions.swift in Sources */,
 				B9BF96582BA07C9700860A64 /* ERProgressHud.swift in Sources */,
 				B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */,
 				B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */,
@@ -842,6 +884,7 @@
 				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
 				B9BF966F2BA0905700860A64 /* welcome.swift in Sources */,
 				B907845B2BA02CFB0024970D /* all_colors.swift in Sources */,
+				B96AD7BC2BA4216100B9835F /* severity.swift in Sources */,
 				B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */,
 				B9BF96632BA07CCF00860A64 /* LeftPaddingTextField.swift in Sources */,
 				B9E52D042B9EF90B00948E89 /* table_cellTableViewCell.swift in Sources */,
@@ -850,6 +893,7 @@
 				B9E52CBD2B9ED4D600948E89 /* LinkedDoc.xcdatamodeld in Sources */,
 				B9E52CF02B9ED6C400948E89 /* MenuControllerVC.swift in Sources */,
 				B9E52D012B9EF86100948E89 /* create_an_account.swift in Sources */,
+				B96AD7C02BA4250D00B9835F /* timinig.swift in Sources */,
 				B90784612BA02DDB0024970D /* translate_language.swift in Sources */,
 				B975F2552BA31F270002964F /* provocation.swift in Sources */,
 				B90784582BA0218D0024970D /* dashboard.swift in Sources */,
