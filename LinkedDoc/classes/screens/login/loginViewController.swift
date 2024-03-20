@@ -150,7 +150,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         
-        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: "Please wait...")
+        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
         var parameters:Dictionary<AnyHashable, Any>!
         
         
@@ -199,6 +199,19 @@ class loginViewController: UIViewController, UITextFieldDelegate {
                             
                         }
                         
+                    } else {
+                        ERProgressHud.sharedInstance.hide()
+                        
+                        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                            print(language_select as Any)
+                            
+                            if (language_select == "en") {
+                                self.view.makeToast(JSON["msg"] as? String)
+                            } else {
+                                self.view.makeToast(JSON["msg_ch"] as? String)
+                            }
+                            
+                        }
                     }
                     
                     

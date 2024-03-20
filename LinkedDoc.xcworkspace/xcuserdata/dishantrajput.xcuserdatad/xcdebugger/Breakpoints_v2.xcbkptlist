@@ -327,16 +327,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B24F513D-1626-4654-95DF-9408A059B533"
-            shouldBeEnabled = "Yes"
+            uuid = "60470517-50B4-4788-AE99-341157354D91"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
+            filePath = "LinkedDoc/classes/screens/nearby_doctors/doctor_details/doctor_details.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "send_now_WB()"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "get_data_from_place_id()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

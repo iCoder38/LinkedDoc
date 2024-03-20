@@ -7,8 +7,13 @@
 
 import UIKit
 import SDWebImage
+import CoreLocation
 
-class patient_dashboard: UIViewController {
+class patient_dashboard: UIViewController, CLLocationManagerDelegate {
+    
+    var str_location_access:String! = "0"
+    
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -85,6 +90,8 @@ class patient_dashboard: UIViewController {
     @IBOutlet weak var lbl_password:UILabel!
     @IBOutlet weak var lbl_help:UILabel!
     @IBOutlet weak var img_logout:UIImageView!
+    @IBOutlet weak var img_journal:UIImageView!
+    @IBOutlet weak var img_doctors:UIImageView!
     
     @IBOutlet weak var lbl_add_journal:UILabel!
     @IBOutlet weak var lbl_journal:UILabel!
@@ -94,6 +101,9 @@ class patient_dashboard: UIViewController {
     @IBOutlet weak var lbl_name:UILabel!
     @IBOutlet weak var lbl_phone:UILabel!
     @IBOutlet weak var lbl_address:UILabel!
+    
+    var strSaveLatitude:String!
+    var strSaveLongitude:String!
     
     @IBOutlet weak var img_profile:UIImageView! {
         didSet {
@@ -128,12 +138,52 @@ class patient_dashboard: UIViewController {
         self.img_add_journal.isUserInteractionEnabled = true
         self.img_add_journal.addGestureRecognizer(tapGestureRecognizer4)
         
+        let tapGestureRecognizer5 = UITapGestureRecognizer(target: self, action: #selector(journal_list_tap))
+        self.img_journal.isUserInteractionEnabled = true
+        self.img_journal.addGestureRecognizer(tapGestureRecognizer5)
+        
         let tapGestureRecognizer6 = UITapGestureRecognizer(target: self, action: #selector(logout_tap))
         self.img_logout.isUserInteractionEnabled = true
         self.img_logout.addGestureRecognizer(tapGestureRecognizer6)
         
+        let tapGestureRecognizer7 = UITapGestureRecognizer(target: self, action: #selector(doctors_tap))
+        self.img_doctors.isUserInteractionEnabled = true
+        self.img_doctors.addGestureRecognizer(tapGestureRecognizer7)
+        
         self.convert_language()
         
+        self.check_location_is_enable_or_not()
+        
+    }
+    
+    
+    @objc func check_location_is_enable_or_not() {
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                self.strSaveLatitude = "0"
+                self.strSaveLongitude = "0"
+                self.str_location_access = "0"
+                
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+                
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                locationManager.startUpdatingLocation()
+                self.str_location_access = "1"
+                
+            @unknown default:
+                break
+            }
+        }
     }
     
     @objc func convert_language() {
@@ -200,6 +250,21 @@ class patient_dashboard: UIViewController {
         print("add journal")
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "add_health_journal_id") as? add_health_journal
         self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func journal_list_tap() {
+        print("all journal")
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "journal_list_id") as? journal_list
+        self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func doctors_tap() {
+        print("doctors tab")
+        
+            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "nearby_doctors_id") as? nearby_doctors
+            self.navigationController?.pushViewController(push!, animated: true)
+        
+        
     }
     
 }

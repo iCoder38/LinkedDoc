@@ -1,16 +1,16 @@
 //
-//  patient_complete_profile.swift
+//  journal_list.swift
 //  LinkedDoc
 //
-//  Created by Dishant Rajput on 14/03/24.
+//  Created by Dishant Rajput on 18/03/24.
 //
 
 import UIKit
 import Alamofire
 
-class patient_complete_profile: UIViewController {
-    
-    var str_token:String! = ""
+class journal_list: UIViewController {
+
+    var arrListOfAppointment:Array<Any>!
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -26,59 +26,36 @@ class patient_complete_profile: UIViewController {
     @IBOutlet weak var btn_back:UIButton! {
         didSet {
             btn_back.tintColor = .white
-            btn_back.isHidden = true
         }
     }
     
     @IBOutlet weak var tble_view:UITableView! {
         didSet {
             tble_view.backgroundColor = .clear
+            
+            tble_view.separatorColor = .clear
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tble_view.delegate = self
-        self.tble_view.dataSource = self
-        self.tble_view.reloadData()
-        
-        self.tble_view.separatorColor = .clear
-        
-        self.view.backgroundColor = app_bg_color
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        
+        self.convert_language()
     }
     
-    @objc func finish_click_method() {
-        self.complete_profile_account_WB()
+    @objc func convert_language() {
+        self.lbl_navigation_title.text = text_language.all_journal_screen(status: "#01")
         
+        self.journal_list_WB()
     }
     
-    
-    @objc func complete_profile_account_WB() {
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! patient_complete_profile_table_cell
-        
-        if (cell.txt_complete_address.text == "") {
-            return
-        }
-        if (cell.txt_area_zipcode.text == "") {
-            return
-        }
-        if (cell.txt_gender.text == "") {
-            return
-        }
-        if (cell.txt_weight.text == "") {
-            return
-        }
-        if (cell.txt_blood_group.text == "") {
-            return
-        }
+    @objc func journal_list_WB() {
         
         self.view.endEditing(true)
-        var parameters:Dictionary<AnyHashable, Any>!
         
         ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+        
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             print(person)
             
@@ -91,20 +68,17 @@ class patient_complete_profile: UIViewController {
                     "token":String(token_id_is),
                 ]
                 
+                let urlString = application_base_url
+                var parameters:Dictionary<AnyHashable, Any>!
+                
                 parameters = [
-                    "action"        : "editprofile",
-                    "userId"        : String(myString),
-                    "address"       : String(cell.txt_complete_address.text!),
-                    "zipcode"       : String(cell.txt_area_zipcode.text!),
-                    "gender"        : String(cell.txt_gender.text!),
-                    "weight"        : String(cell.txt_weight.text!),
-                    "BloodGroup"    : String(cell.txt_blood_group.text!),
-                   
+                    "action"        :   "recordlist",
+                    "userId"        :   String(myString),
                 ]
                 
                 print("parameters-------\(String(describing: parameters))")
                 
-                AF.request(application_base_url, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
+                AF.request(urlString, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
                     response in
                     
                     switch(response.result) {
@@ -115,31 +89,71 @@ class patient_complete_profile: UIViewController {
                             print(JSON)
                             
                             var strSuccess : String!
-                            strSuccess = JSON["status"] as? String
+                            strSuccess = JSON["status"]as Any as? String
                             
-                            if strSuccess.lowercased() == "success" {
+                            var strSuccess2 : String!
+                            strSuccess2 = JSON["msg"]as Any as? String
+                            
+                            if strSuccess == "success" {
                                 ERProgressHud.sharedInstance.hide()
                                 
-                                var dict: Dictionary<AnyHashable, Any>
-                                dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                                var ar : NSArray!
+                                ar = (JSON["data"] as! Array<Any>) as NSArray
                                 
-                                let defaults = UserDefaults.standard
-                                defaults.setValue(dict, forKey: str_save_login_user_data)
+                                self.arrListOfAppointment = (ar as! Array<Any>)
                                 
-                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
-                                self.navigationController?.pushViewController(push, animated: true)
+                                self.tble_view.delegate = self
+                                self.tble_view.dataSource = self
+                                self.tble_view.reloadData()
+                                
+                                
+                                
+                                
+                                
+                                /*if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                    print(language_select as Any)
+                                    
+                                    if (language_select == "en") {
+                                        
+                                        self.view.makeToast(String(strSuccess2))
+                                        
+                                    } else {
+                                        
+                                        self.view.makeToast(JSON["msg_ch"] as? String)
+                                        
+                                    }
+                                    
+                                }*/
+                                 
+                            } else {
+                                //
+                                if (strSuccess2 == your_are_not_auth) {
+                                    self.generate_token()
+                                } else {
+                                    ERProgressHud.sharedInstance.hide()
+                                    
+                                    if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                        print(language_select as Any)
+                                        if (language_select == "en") {
+                                            
+                                            self.view.makeToast(String(strSuccess2))
+                                            
+                                        } else {
+                                            
+                                            self.view.makeToast(JSON["msg_ch"] as? String)
+                                            
+                                        }
+                                    }
+                                    
+                                }
                                 
                             }
-                            else {
-                                self.generate_token()
-                            }
-                            
                         }
                         
                     case .failure(_):
                         print("Error message:\(String(describing: response.error))")
                         ERProgressHud.sharedInstance.hide()
-                        self.please_check_your_internet_connection()
+                        
                         
                         break
                     }
@@ -188,7 +202,7 @@ class patient_complete_profile: UIViewController {
                         UserDefaults.standard.set("", forKey: str_save_last_api_token)
                         UserDefaults.standard.set(str_token, forKey: str_save_last_api_token)
                         
-                        self.complete_profile_account_WB()
+                        self.journal_list_WB()
                         
                     } else {
                         ERProgressHud.sharedInstance.hide()
@@ -205,37 +219,22 @@ class patient_complete_profile: UIViewController {
             }
         }
     }
-    
-    
-    
-    @objc func gender_click_method() {
-        let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! patient_complete_profile_table_cell
-        
-        let dummyList = [text_language.common_screen(status: "male"), text_language.common_screen(status: "female")]
-        
-        RPicker.selectOption(title: text_language.common_screen(status: "gender"), cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
-             
-            cell.txt_gender.text = String(selctedText)
-        }
-    }
-    
-     
 }
 
+
 //MARK:- TABLE VIEW -
-extension patient_complete_profile: UITableViewDataSource , UITableViewDelegate {
+extension journal_list: UITableViewDataSource , UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.arrListOfAppointment.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:patient_complete_profile_table_cell = tableView.dequeueReusableCell(withIdentifier: "patient_complete_profile_table_cell") as! patient_complete_profile_table_cell
+        let cell:journal_list_table_cell = tableView.dequeueReusableCell(withIdentifier: "journal_list_table_cell") as! journal_list_table_cell
         
         cell.backgroundColor = .clear
         
@@ -243,30 +242,26 @@ extension patient_complete_profile: UITableViewDataSource , UITableViewDelegate 
         backgroundView.backgroundColor = .clear
         cell.selectedBackgroundView = backgroundView
         
-        self.lbl_navigation_title.text = text_language.complete_profile_screen(status: "#01")
+        let item = self.arrListOfAppointment[indexPath.row] as? [String:Any]
+        print(item as Any)
+        cell.lbl_title.text = (item!["created"] as! String)+" - Health Journal"
         
-        cell.txt_complete_address.placeholder = text_language.complete_profile_screen(status: "#02")
-        cell.txt_area_zipcode.placeholder = text_language.complete_profile_screen(status: "#03")
-        cell.txt_gender.placeholder = text_language.complete_profile_screen(status: "#09")
-        cell.txt_weight.placeholder = text_language.complete_profile_screen(status: "#10")
-        cell.txt_blood_group.placeholder = text_language.complete_profile_screen(status: "#11")
-        
-        cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#07"), for: .normal)
-        
-        cell.btn_finish.addTarget(self, action: #selector(finish_click_method), for: .touchUpInside)
-        
-        cell.btn_gender.addTarget(self, action: #selector(gender_click_method), for: .touchUpInside)
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let item = self.arrListOfAppointment[indexPath.row] as? [String:Any]
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "details_id") as? details
+        push!.dict_get_all_journal_data = (item! as NSDictionary)
+        self.navigationController?.pushViewController(push!, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 1100
+        return 60
     }
 
 }
-

@@ -45,6 +45,9 @@ var button_add_journal_ch = "保存個人健康日誌"
 var button_done_en = "Done"
 var button_done_ch = "完畢"
 
+var text_about_doctor_en = "About Doctor"
+var text_about_doctor_ch = "關於醫生"
+
 var button_register_now_en = "register now"
 var button_register_now_ch = "非會員？ 請註冊"
 
@@ -141,9 +144,16 @@ var text_what_is_pain_located_ch = "病痛地方，是不是有擴散到其他�
 var text_is_there_any_pain_en = "is there pain anywhere other than the site of stimulus"
 var text_is_there_any_pain_ch = "除了刺激部位之外還有其他地方疼痛嗎"
 
+// journal
+var navigation_title_journal_en = "Journal"
+var navigation_title_journal_ch = "個人健康日誌"
+
 // dashboard
 var navigation_title_dashboard_en = "Dashboard"
 var navigation_title_dashboard_ch = "儀表板"
+
+var navigation_title_nearby_doctors_en = "Nearby Doctors"
+var navigation_title_nearby_doctors_ch = "儀表板"
 
 var text_translate_en = "Translate"
 var text_translate_ch = "翻譯"
@@ -573,8 +583,15 @@ class text_language: UIViewController {
                 str_language_prefrence_is = button_done_ch
             }
             
+        } else  if (status == "about_doctor") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_about_doctor_en
+            } else {
+                str_language_prefrence_is = text_about_doctor_ch
+            }
+            
         }
-        
+         
         return str_language_prefrence_is
         
     }
@@ -1205,6 +1222,47 @@ class text_language: UIViewController {
         
     }
     
+    // journal
+    class func all_journal_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_journal_en
+            } else {
+                str_language_prefrence_is = navigation_title_journal_ch
+            }
+        }
+        
+        return str_language_prefrence_is
+    }
+    
+    // dashboard
+    class func nearby_doctors_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        if (status == "#01") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = navigation_title_nearby_doctors_en
+            } else {
+                str_language_prefrence_is = navigation_title_nearby_doctors_ch
+                
+                
+            }
+        }
+        
+        return str_language_prefrence_is
+        
+    }
+            
     // dashboard
     class func dashboard_screen(status:String)->String {
         

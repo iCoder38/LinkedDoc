@@ -25,5 +25,9 @@
 	<string>LinkedDoc would like toh access your Camera to Upload Upload profile picture.</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>LinkedDoc would like toh access your Gallery to Upload profile picture.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>LinkedDoc would like to access your location to search nearby doctors.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>LinkedDoc would like to access your location to search nearby doctors.</string>
 </dict>
 </plist>

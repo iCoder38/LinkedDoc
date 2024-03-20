@@ -274,7 +274,7 @@ class actions: UIViewController {
                     "event_extra":String(self.str_provocation),
                     
                     "describe_plan_1":String(self.str_dull),
-                    "describe_plan_2":String(self.str_provocation),
+                    "describe_plan_2":String(self.str_constant),
                     
                     "location":String(self.str_where),
                     "stimulus":String(self.str_is),
@@ -315,7 +315,7 @@ class actions: UIViewController {
                                         let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: (JSON["msg"] as! String), style: .alert)
                                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel){
                                             _ in
-                                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
+                                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
                                             self.navigationController?.pushViewController(push, animated: true)
                                         }
                                         alert.addButtons([cancel])
@@ -325,7 +325,7 @@ class actions: UIViewController {
                                         let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: (JSON["msg_ch"] as! String), style: .alert)
                                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel){
                                             _ in
-                                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "dashboard_id")
+                                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
                                             self.navigationController?.pushViewController(push, animated: true)
                                         }
                                         alert.addButtons([cancel])

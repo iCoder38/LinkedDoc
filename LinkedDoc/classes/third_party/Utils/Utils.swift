@@ -21,6 +21,8 @@ var default_key_language = "key_select_language"
 var english_language = "en"
 var chinese_language = "ch"
 
+var KGoogleApiKey = "AIzaSyAULQHYzpkutmeYPo9nU3BIGTlFlw9ZuH8"
+
 class Utils: NSObject {
 
     class func light_vibrate() {

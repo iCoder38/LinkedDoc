@@ -57,7 +57,7 @@ class update_doctor_details: UIViewController {
     
     @objc func complete_profile_account_WB() {
         let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
+        let cell = self.tble_view.cellForRow(at: indexPath) as! update_doctor_details_table_cell
         
         if (cell.txt_complete_address.text == "") {
             return
@@ -222,7 +222,7 @@ class update_doctor_details: UIViewController {
     
     @objc func start_time_click_method() {
         let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
+        let cell = self.tble_view.cellForRow(at: indexPath) as! update_doctor_details_table_cell
         RPicker.selectDate(title: "Select Time", cancelText: "Cancel", datePickerMode: .time, didSelectDate: { (selectedDate) in
             cell.txt_working_hours.text = selectedDate.dateString("hh:mm a")
              
@@ -232,7 +232,7 @@ class update_doctor_details: UIViewController {
     
     @objc func end_time_click_method() {
         let indexPath = IndexPath.init(row: 0, section: 0)
-        let cell = self.tble_view.cellForRow(at: indexPath) as! complete_profile_table_cell
+        let cell = self.tble_view.cellForRow(at: indexPath) as! update_doctor_details_table_cell
         RPicker.selectDate(title: "Select Time", cancelText: "Cancel", datePickerMode: .time, didSelectDate: { (selectedDate) in
             cell.txt_working_hours_end.text = selectedDate.dateString("hh:mm a")
              
@@ -270,6 +270,8 @@ extension update_doctor_details: UITableViewDataSource , UITableViewDelegate {
         cell.txt_year_of_experience.placeholder = text_language.complete_profile_screen(status: "#05")
         cell.txt_specialization.placeholder = text_language.complete_profile_screen(status: "#06")
         cell.txt_working_hours_end.placeholder = text_language.complete_profile_screen(status: "#08")
+        
+        cell.lbl_about_us.text =  text_language.common_screen(status: "about_doctor")
         
         cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#07"), for: .normal)
         

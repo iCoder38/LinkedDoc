@@ -14,6 +14,8 @@
 		B907845E2BA02D310024970D /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907845D2BA02D310024970D /* extensions.swift */; };
 		B90784612BA02DDB0024970D /* translate_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784602BA02DDB0024970D /* translate_language.swift */; };
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
+		B90EB9242BA8162500E3C1E9 /* journal_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90EB9232BA8162500E3C1E9 /* journal_list.swift */; };
+		B90EB9272BA81BB100E3C1E9 /* details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90EB9262BA81BB100E3C1E9 /* details.swift */; };
 		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
 		B92A1BC02BA2ED7C004919D1 /* update_doctor_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */; };
 		B96AD7BC2BA4216100B9835F /* severity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96AD7BB2BA4216100B9835F /* severity.swift */; };
@@ -38,6 +40,8 @@
 		B9BF96692BA07CCF00860A64 /* NewYorkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */; };
 		B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966B2BA088F400860A64 /* RPicker.swift */; };
 		B9BF966F2BA0905700860A64 /* welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF966E2BA0905700860A64 /* welcome.swift */; };
+		B9D2E0BD2BA9870E0088D43B /* nearby_doctors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2E0BC2BA9870E0088D43B /* nearby_doctors.swift */; };
+		B9DBADF32BA9AD8500105827 /* doctor_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DBADF22BA9AD8500105827 /* doctor_details.swift */; };
 		B9E05BDE2BA2CA1000720A47 /* patient_complete_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */; };
 		B9E05BE12BA2D0B200720A47 /* patient_dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BE02BA2D0B200720A47 /* patient_dashboard.swift */; };
 		B9E05BE42BA2E22F00720A47 /* update_patient_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E05BE32BA2E22F00720A47 /* update_patient_details.swift */; };
@@ -93,6 +97,8 @@
 		B907845D2BA02D310024970D /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B90784602BA02DDB0024970D /* translate_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate_language.swift; sourceTree = "<group>"; };
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
+		B90EB9232BA8162500E3C1E9 /* journal_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal_list.swift; sourceTree = "<group>"; };
+		B90EB9262BA81BB100E3C1E9 /* details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = details.swift; sourceTree = "<group>"; };
 		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
 		B92A1BBF2BA2ED7C004919D1 /* update_doctor_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_doctor_details.swift; sourceTree = "<group>"; };
 		B96AD7BB2BA4216100B9835F /* severity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = severity.swift; sourceTree = "<group>"; };
@@ -117,6 +123,8 @@
 		B9BF96612BA07CCF00860A64 /* NewYorkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewYorkButton.swift; sourceTree = "<group>"; };
 		B9BF966B2BA088F400860A64 /* RPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPicker.swift; sourceTree = "<group>"; };
 		B9BF966E2BA0905700860A64 /* welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcome.swift; sourceTree = "<group>"; };
+		B9D2E0BC2BA9870E0088D43B /* nearby_doctors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nearby_doctors.swift; sourceTree = "<group>"; };
+		B9DBADF22BA9AD8500105827 /* doctor_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doctor_details.swift; sourceTree = "<group>"; };
 		B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patient_complete_profile.swift; sourceTree = "<group>"; };
 		B9E05BE02BA2D0B200720A47 /* patient_dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patient_dashboard.swift; sourceTree = "<group>"; };
 		B9E05BE32BA2E22F00720A47 /* update_patient_details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_patient_details.swift; sourceTree = "<group>"; };
@@ -255,6 +263,14 @@
 			path = select_language_2;
 			sourceTree = "<group>";
 		};
+		B90EB9252BA81BA800E3C1E9 /* details */ = {
+			isa = PBXGroup;
+			children = (
+				B90EB9262BA81BB100E3C1E9 /* details.swift */,
+			);
+			path = details;
+			sourceTree = "<group>";
+		};
 		B919B7542BA18F40005E96D3 /* update_profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,11 +295,13 @@
 			path = severity;
 			sourceTree = "<group>";
 		};
-		B96AD7BD2BA424FF00B9835F /* New Group */ = {
+		B96AD7BD2BA424FF00B9835F /* journal_list */ = {
 			isa = PBXGroup;
 			children = (
+				B90EB9232BA8162500E3C1E9 /* journal_list.swift */,
+				B90EB9252BA81BA800E3C1E9 /* details */,
 			);
-			path = "New Group";
+			path = journal_list;
 			sourceTree = "<group>";
 		};
 		B96AD7BE2BA4250500B9835F /* timing */ = {
@@ -431,11 +449,28 @@
 			path = welcome;
 			sourceTree = "<group>";
 		};
+		B9D2E0BB2BA987010088D43B /* nearby_doctors */ = {
+			isa = PBXGroup;
+			children = (
+				B9D2E0BC2BA9870E0088D43B /* nearby_doctors.swift */,
+				B9DBADF12BA9AD7500105827 /* doctor_details */,
+			);
+			path = nearby_doctors;
+			sourceTree = "<group>";
+		};
+		B9DBADF12BA9AD7500105827 /* doctor_details */ = {
+			isa = PBXGroup;
+			children = (
+				B9DBADF22BA9AD8500105827 /* doctor_details.swift */,
+			);
+			path = doctor_details;
+			sourceTree = "<group>";
+		};
 		B9E05BDC2BA2C9FE00720A47 /* patient */ = {
 			isa = PBXGroup;
 			children = (
-				B96AD7BD2BA424FF00B9835F /* New Group */,
 				B9E05BDF2BA2D0A500720A47 /* patient_dashboard */,
+				B96AD7BD2BA424FF00B9835F /* journal_list */,
 				B975F24C2BA308000002964F /* add_health_journal */,
 				B9E05BDD2BA2CA1000720A47 /* patient_complete_profile.swift */,
 				B9E05BE22BA2E21A00720A47 /* update_patient_details */,
@@ -527,6 +562,7 @@
 		B9E52CE62B9ED68700948E89 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				B9D2E0BB2BA987010088D43B /* nearby_doctors */,
 				B9E05BDC2BA2C9FE00720A47 /* patient */,
 				B9E52CF92B9ED8FD00948E89 /* select_language */,
 				B9A280732BA1C98900D3ACFD /* help */,
@@ -870,6 +906,7 @@
 				B9BF96552BA074DC00860A64 /* change_password.swift in Sources */,
 				B96AD7C32BA4272800B9835F /* actions.swift in Sources */,
 				B9BF96582BA07C9700860A64 /* ERProgressHud.swift in Sources */,
+				B9DBADF32BA9AD8500105827 /* doctor_details.swift in Sources */,
 				B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */,
 				B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */,
 				B9BF96622BA07CCF00860A64 /* AlertView.swift in Sources */,
@@ -882,6 +919,7 @@
 				B9E52CFE2B9EDA6C00948E89 /* text_language.swift in Sources */,
 				B9E05BE12BA2D0B200720A47 /* patient_dashboard.swift in Sources */,
 				B9E52CFB2B9ED90F00948E89 /* select_language.swift in Sources */,
+				B90EB9242BA8162500E3C1E9 /* journal_list.swift in Sources */,
 				B9BF966F2BA0905700860A64 /* welcome.swift in Sources */,
 				B907845B2BA02CFB0024970D /* all_colors.swift in Sources */,
 				B96AD7BC2BA4216100B9835F /* severity.swift in Sources */,
@@ -907,9 +945,11 @@
 				B9BF96672BA07CCF00860A64 /* NewYorkAlertViewType.swift in Sources */,
 				B9BF86232B9F27EA00DBB05A /* complete_profile.swift in Sources */,
 				B9E05BE42BA2E22F00720A47 /* update_patient_details.swift in Sources */,
+				B90EB9272BA81BB100E3C1E9 /* details.swift in Sources */,
 				B9E52CF12B9ED6C400948E89 /* SWRevealViewController.m in Sources */,
 				B9E52CF52B9ED70C00948E89 /* Utils.swift in Sources */,
 				B9BF96662BA07CCF00860A64 /* UIStackView+Utility.swift in Sources */,
+				B9D2E0BD2BA9870E0088D43B /* nearby_doctors.swift in Sources */,
 				B9E52CF82B9ED87500948E89 /* loginViewController.swift in Sources */,
 				B975F24F2BA3082B0002964F /* add_health_journal.swift in Sources */,
 			);
@@ -1105,7 +1145,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1143,7 +1183,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

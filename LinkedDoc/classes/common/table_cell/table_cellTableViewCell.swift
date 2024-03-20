@@ -201,6 +201,73 @@ class region_table_cell : UITableViewCell {
 
 // /* ************** ADD HEALTH JOURNAL ****************** */
 // /* ********************************************************** */
+class journal_list_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var lbl_title:UILabel! {
+        didSet {
+            
+        }
+    }
+    
+}
+
+// /* ************** ADD HEALTH JOURNAL ****************** */
+// /* ********************************************************** */
+class doctor_details_table_cell : UITableViewCell {
+    
+    
+    @IBOutlet weak var lbl_title:UILabel!
+    @IBOutlet weak var lbl_sub_title:UILabel!
+    
+    
+    
+    @IBOutlet weak var clView: UICollectionView! {
+        didSet {
+            //collection
+            // Do any additional setup after loading the view, typically from a nib
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            clView!.backgroundColor = .clear
+            clView.isPagingEnabled = true
+        }
+    }
+}
+
+// /* ************** DOCTORS LIST ****************** */
+// /* ********************************************************** */
+class doctors_list_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var img_profile:UIImageView! {
+        didSet {
+            img_profile.layer.cornerRadius = 40
+            img_profile.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var img_open_status:UIImageView! {
+        didSet {
+            img_open_status.layer.cornerRadius = 5
+            img_open_status.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var lbl_title:UILabel!
+    @IBOutlet weak var lbl_address:UILabel!
+    @IBOutlet weak var lbl_speciality:UILabel!
+    
+}
+// /* ************** DOCTOR DETAILS ****************** */
+// /* ********************************************************** */
+class details_table_cell : UITableViewCell {
+    
+    @IBOutlet weak var lbl_title:UILabel!
+    @IBOutlet weak var lbl_sub_title:UILabel!
+    
+}
+
+// /* ************** ADD HEALTH JOURNAL ****************** */
+// /* ********************************************************** */
 class add_health_journal_table_cell : UITableViewCell {
     
     @IBOutlet weak var txt_BP:UITextField! {
@@ -507,6 +574,7 @@ class complete_profile_table_cell : UITableViewCell {
     }
     @IBOutlet weak var btn_start_time:UIButton!
     @IBOutlet weak var btn_end_time:UIButton!
+    @IBOutlet weak var lbl_about:UILabel!
 }
 
 // /* ************** DOCTOR : EDIT COMPLETE PROFILE ************************ */
