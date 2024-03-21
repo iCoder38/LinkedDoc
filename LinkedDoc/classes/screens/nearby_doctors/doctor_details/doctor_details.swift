@@ -186,10 +186,10 @@ class doctor_details: UIViewController {
                                         ////////////////////////////////////////////////////////////////////////////////////////
                                         ///// Open Now
                                         if "\(dict_opening_hour["open_now"]!)" == "1" {
-                                            status = "Open"
+                                            status = text_language.doctors_details_screen(status: "#09")
                                             self.lbl_open_status.textColor = .systemGreen
                                         } else {
-                                            status = "Close"
+                                            status = text_language.doctors_details_screen(status: "#10")
                                             self.lbl_open_status.textColor = .systemRed
                                         }
                                         
@@ -249,13 +249,13 @@ class doctor_details: UIViewController {
                                     
                                     
                                     self.arr_title = [
-                                        "Name",
-                                         "Phone Number",
-                                        "Address",
-                                         "Website",
-                                        "Rating",
-                                         "Days and Timings",
-                                        "Photos"
+                                        text_language.doctors_details_screen(status: "#01"),
+                                        text_language.doctors_details_screen(status: "#02"),
+                                        text_language.doctors_details_screen(status: "#03"),
+                                        text_language.doctors_details_screen(status: "#04"),
+                                        text_language.doctors_details_screen(status: "#05"),
+                                        text_language.doctors_details_screen(status: "#06"),
+                                        text_language.doctors_details_screen(status: "#07"),
                                     ]
                                     
                                     self.arr_sub_title = [(self.dict_all_details_from_place_id["name"] as! String),
@@ -268,11 +268,6 @@ class doctor_details: UIViewController {
                                                           ""
                                                           
                                     ]
-                                    
-                                    
-                                    
-                                    
-                                    
                                     
                                     
                                     self.tble_view.delegate = self

@@ -43,6 +43,8 @@ class nearby_doctors: UIViewController, CLLocationManagerDelegate {
     }
     
     var arr_types_of_doctors:NSMutableArray! = []
+    var arr_types_of_doctors_converted:NSMutableArray! = []
+    
     @IBOutlet weak var btn_filter:UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +97,41 @@ class nearby_doctors: UIViewController, CLLocationManagerDelegate {
             "Surgeon",
             ]
         
-        print(arr_types_of_doctors as Any)
-        print(arr_types_of_doctors.count as Any)
+        arr_types_of_doctors_converted = [
+            text_language.doctors_screen(status: "Pediatrician"),
+            text_language.doctors_screen(status: "Cardiologist"),
+            text_language.doctors_screen(status: "Endocrinologist"),
+            
+            text_language.doctors_screen(status: "Gynecologist"),
+            text_language.doctors_screen(status: "Neurologist"),
+            text_language.doctors_screen(status: "Psychiatrist"),
+            
+            text_language.doctors_screen(status: "Dermatologist"),
+            text_language.doctors_screen(status: "Oncologist"),
+            text_language.doctors_screen(status: "Physicians"),
+            
+            text_language.doctors_screen(status: "Otolaryngologist"),
+            text_language.doctors_screen(status: "Radiologist"),
+            text_language.doctors_screen(status: "Emergency Medicine"),
+            
+            text_language.doctors_screen(status: "Gastroenterologist"),
+            text_language.doctors_screen(status: "Ophthalmologist"),
+            text_language.doctors_screen(status: "Orthopedist"),
+            
+            text_language.doctors_screen(status: "Pulmonologist"),
+            text_language.doctors_screen(status: "Allergist"),
+            text_language.doctors_screen(status: "Internists"),
+            
+            text_language.doctors_screen(status: "Nephrologist"),
+            text_language.doctors_screen(status: "Dentist"),
+            text_language.doctors_screen(status: "Geriatrician"),
+            
+            text_language.doctors_screen(status: "Epidemiologist"),
+            text_language.doctors_screen(status: "Podiatrist"),
+            text_language.doctors_screen(status: "Surgeon"),
+            ]
+        // print(arr_types_of_doctors as Any)
+        // print(arr_types_of_doctors.count as Any)
         
         self.check_location_is_enable_or_not()
     }
@@ -117,7 +152,7 @@ class nearby_doctors: UIViewController, CLLocationManagerDelegate {
                 
                 ERProgressHud.sharedInstance.hide()
                 
-                let alert = NewYorkAlertController(title: "Alert", message: "Please enable your location and try again", style: .alert)
+                let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: text_language.common_screen(status: "enable_location"), style: .alert)
                 let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel) {
                     _ in
                     self.navigationController?.popViewController(animated: true)
@@ -156,14 +191,26 @@ class nearby_doctors: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func doctor_category() {
-        let alert = UIAlertController(title: "Type of Doctors", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for indexx in 0..<arr_types_of_doctors.count {
             
-            alert.addAction(UIAlertAction(title: (arr_types_of_doctors[indexx] as! String), style: .default , handler:{ [self] (UIAlertAction)in
-                ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
-                self.search_nearby_doctors(doctor_category: (arr_types_of_doctors[indexx] as! String))
-            }))
+            if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                print(language_select as Any)
+                if (language_select == "en") {
+                    alert.addAction(UIAlertAction(title: (arr_types_of_doctors[indexx] as! String), style: .default , handler:{ [self] (UIAlertAction)in
+                        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+                        self.search_nearby_doctors(doctor_category: (arr_types_of_doctors[indexx] as! String))
+                    }))
+                } else {
+                    alert.addAction(UIAlertAction(title: (arr_types_of_doctors_converted[indexx] as! String), style: .default , handler:{ [self] (UIAlertAction)in
+                        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+                        self.search_nearby_doctors(doctor_category: (arr_types_of_doctors[indexx] as! String))
+                    }))
+                }
+                
+            }
+            
             
         }
         
@@ -193,7 +240,7 @@ class nearby_doctors: UIViewController, CLLocationManagerDelegate {
                                 // let jsonDict:NSDictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSDictionary
                                 // print(jsonDict as Any)
                                 if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                                    // print(json)
+                                     print(json)
                                     ERProgressHud.sharedInstance.hide()
                                     
                                     var ar : NSArray!

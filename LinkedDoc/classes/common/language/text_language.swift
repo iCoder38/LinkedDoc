@@ -48,8 +48,18 @@ var button_done_ch = "完畢"
 var text_about_doctor_en = "About Doctor"
 var text_about_doctor_ch = "關於醫生"
 
+
+var text_please_install_whatsapp_en = "Please install whatsapp"
+var text_please_install_whatsapp_ch = "請安裝whatsapp"
+
+var text_enable_your_location_en = "Please enable your location and try again"
+var text_enable_your_location_ch = "請啟用您的位置並重試"
+
 var button_register_now_en = "register now"
 var button_register_now_ch = "非會員？ 請註冊"
+
+var text_alert_en = "Alert"
+var text_alert_ch = "警報"
 
 // help
 var navigation_title_help_en = "Help"
@@ -372,6 +382,127 @@ var text_action_change_activity_food_ch = "改變作息"
 var text_action_water_intake_en = "Food/Water Intake"
 var text_action_water_intake_ch = "食物和飲水的習慣"
 
+// DOCTOS CATEGORY
+var text_doctor_details_name_en = "Name"
+var text_doctor_details_name_ch = "姓名"
+
+var text_doctor_details_phone_number_en = "Phone number"
+var text_doctor_details_phone_number_ch = "電話號碼"
+
+var text_doctor_details_address_en = "Address"
+var text_doctor_details_address_ch = "地址 "
+
+var text_doctor_details_website_en = "Website"
+var text_doctor_details_website_ch = "網站"
+
+var text_doctor_details_rating_en = "Rating"
+var text_doctor_details_rating_ch = "評分"
+
+var text_doctor_details_days_and_timings_en = "Days and Timings"
+var text_doctor_details_days_and_timings_ch = "日期 和時間"
+
+var text_doctor_details_photos_en = "Photos"
+var text_doctor_details_photos_ch = "照片"
+
+var text_doctor_details_open_en = "Open"
+var text_doctor_details_open_ch = "開門時間"
+
+var text_doctor_details_close_en = "Close"
+var text_doctor_details_close_ch = "關門時間"
+
+
+
+var text_doctor_Pediatrician_en = "Pediatrician"
+var text_doctor_Pediatrician_ch = "小兒科醫生"
+
+var text_doctor_Cardiologist_en = "Cardiologist"
+var text_doctor_Cardiologist_ch = "心臟科醫生"
+
+var text_doctor_Endocrinologist_en = "Endocrinologist"
+var text_doctor_Endocrinologist_ch = "內分泌科醫生"
+
+
+
+var text_doctor_Gynecologist_en = "Gynecologist"
+var text_doctor_Gynecologist_ch = "婦產科醫生"
+
+var text_doctor_Neurologist_en = "Neurologist"
+var text_doctor_Neurologist_ch = "神經科醫生"
+
+var text_doctor_Psychiatrist_en = "Psychiatrist"
+var text_doctor_Psychiatrist_ch = "精神科醫生"
+
+
+
+var text_doctor_Dermatologist_en = "Dermatologist"
+var text_doctor_Dermatologist_ch = "皮膚科醫生"
+
+var text_doctor_Oncologist_en = "Oncologist"
+var text_doctor_Oncologist_ch = "腫瘤科醫生"
+
+var text_doctor_Physicians_en = "Physicians"
+var text_doctor_Physicians_ch = "般醫生"
+
+
+
+var text_doctor_Otolaryngologist_en = "Otolaryngologist"
+var text_doctor_Otolaryngologist_ch = "耳鼻喉科醫生"
+
+var text_doctor_Radiologist_en = "Radiologist"
+var text_doctor_Radiologist_ch = "放射科醫生"
+
+var text_doctor_Emergency_Medicine_en = "Emergency Medicine"
+var text_doctor_Emergency_Medicine_ch = "急診室醫生"
+
+
+
+var text_doctor_Gastroenterologist_en = "Gastroenterologist"
+var text_doctor_Gastroenterologist_ch = "胃腸科醫生"
+
+var text_doctor_Ophthalmologist_en = "Ophthalmologist"
+var text_doctor_Ophthalmologist_ch = "眼科醫生"
+
+var text_doctor_Orthopedist_en = "Orthopedist"
+var text_doctor_Orthopedist_ch = "骨科醫生"
+
+
+
+
+var text_doctor_Pulmonologist_en = "Pulmonologist"
+var text_doctor_Pulmonologist_ch = "肺科醫生"
+
+var text_doctor_Allergist_en = "Allergist"
+var text_doctor_Allergist_ch = "過敏科醫生"
+
+var text_doctor_Internists_en = "Internists"
+var text_doctor_Internists_ch = "內科醫生"
+
+
+
+var text_doctor_Nephrologist_en = "Nephrologist"
+var text_doctor_Nephrologist_ch = "腎臟科醫生"
+
+var text_doctor_Dentist_en = "Dentist"
+var text_doctor_Dentist_ch = "牙醫"
+
+var text_doctor_Geriatrician_en = "Geriatrician"
+var text_doctor_Geriatrician_ch = "老年科醫生"
+
+
+
+var text_doctor_Epidemiologist_en = "Epidemiologist"
+var text_doctor_Epidemiologist_ch = "流行病科醫生"
+
+var text_doctor_Podiatrist_en = "Podiatrist"
+var text_doctor_Podiatrist_ch = "足科醫生"
+
+var text_doctor_Surgeon_en = "Surgeon"
+var text_doctor_Surgeon_ch = "外科手術醫生"
+
+
+
+
+
 class text_language: UIViewController {
     
     
@@ -590,12 +721,372 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_about_doctor_ch
             }
             
+        } else  if (status == "install_whatsapp") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_please_install_whatsapp_en
+            } else {
+                str_language_prefrence_is = text_please_install_whatsapp_ch
+            }
+            
+        } else  if (status == "enable_location") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_enable_your_location_en
+            } else {
+                str_language_prefrence_is = text_enable_your_location_ch
+            }
+            
         }
-         
+        else  if (status == "alert") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_alert_en
+           } else {
+               str_language_prefrence_is = text_alert_ch
+           }
+           
+       }
+        
+        
+        
+        
         return str_language_prefrence_is
         
     }
     
+    
+    // doctors details
+    class func doctors_details_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        //
+        if (status == "#01") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_name_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_name_ch
+           }
+           
+       } else  if (status == "#02") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_phone_number_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_phone_number_ch
+           }
+           
+       } else  if (status == "#03") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_address_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_address_ch
+           }
+           
+       } else  if (status == "#04") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_website_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_website_ch
+           }
+           
+       } else  if (status == "#05") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_rating_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_rating_ch
+           }
+           
+       } else  if (status == "#06") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_days_and_timings_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_days_and_timings_ch
+           }
+           
+       } else  if (status == "#07") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_photos_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_photos_ch
+           }
+           
+       }  else  if (status == "#08") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_photos_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_photos_ch
+           }
+           
+       }  else  if (status == "#09") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_open_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_open_ch
+           }
+           
+       }  else  if (status == "#10") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_details_close_en
+           } else {
+               str_language_prefrence_is = text_doctor_details_close_ch
+           }
+           
+       }
+        return str_language_prefrence_is
+        
+    }
+    
+    
+    
+    // doctors
+    class func doctors_screen(status:String)->String {
+        
+        var str_language_prefrence_is:String! = "0"
+        
+        print(status)
+        print(text_language.selected_language_get())
+        
+        //
+        if (status == "Pediatrician") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Pediatrician_en
+           } else {
+               str_language_prefrence_is = text_doctor_Pediatrician_ch
+           }
+            
+       }
+        else  if (status == "Cardiologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Cardiologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Cardiologist_ch
+           }
+           
+       }
+        else  if (status == "Endocrinologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Endocrinologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Endocrinologist_ch
+           }
+           
+       }
+        
+        
+        
+        
+        else  if (status == "Gynecologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Gynecologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Gynecologist_ch
+           }
+           
+       }
+        else  if (status == "Neurologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Neurologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Neurologist_ch
+           }
+           
+       }
+        else  if (status == "Psychiatrist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Psychiatrist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Psychiatrist_ch
+           }
+           
+       }
+        
+        
+        
+        
+        else  if (status == "Dermatologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Dermatologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Dermatologist_ch
+           }
+           
+       }
+        else  if (status == "Oncologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Oncologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Oncologist_ch
+           }
+           
+       }
+        else  if (status == "Physicians") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Physicians_en
+           } else {
+               str_language_prefrence_is = text_doctor_Physicians_ch
+           }
+           
+       }
+        
+        
+        
+        
+        
+        
+        
+        else  if (status == "Otolaryngologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Otolaryngologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Otolaryngologist_ch
+           }
+           
+       }
+        else  if (status == "Radiologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Radiologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Radiologist_ch
+           }
+           
+       }
+        else  if (status == "Emergency Medicine") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Emergency_Medicine_en
+           } else {
+               str_language_prefrence_is = text_doctor_Emergency_Medicine_ch
+           }
+           
+       }
+        
+        
+        
+        
+        
+        
+        else  if (status == "Gastroenterologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Gastroenterologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Gastroenterologist_ch
+           }
+           
+       }
+        else  if (status == "Ophthalmologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Ophthalmologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Ophthalmologist_ch
+           }
+           
+       }
+        else  if (status == "Orthopedist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Orthopedist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Orthopedist_ch
+           }
+           
+       }
+        
+        
+        
+        
+        
+        else  if (status == "Pulmonologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Pulmonologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Pulmonologist_ch
+           }
+           
+       }
+        else  if (status == "Allergist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Allergist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Allergist_ch
+           }
+           
+       }
+        else  if (status == "Internists") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Internists_en
+           } else {
+               str_language_prefrence_is = text_doctor_Internists_ch
+           }
+           
+       }
+        
+        
+        
+        
+        
+        
+        else  if (status == "Nephrologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Nephrologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Nephrologist_ch
+           }
+           
+       }
+        else  if (status == "Dentist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Dentist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Dentist_ch
+           }
+           
+       }
+        else  if (status == "Geriatrician") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Geriatrician_en
+           } else {
+               str_language_prefrence_is = text_doctor_Geriatrician_ch
+           }
+           
+       }
+        
+        
+        
+        
+        else  if (status == "Epidemiologist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Epidemiologist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Epidemiologist_ch
+           }
+           
+       }
+        else  if (status == "Podiatrist") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Podiatrist_en
+           } else {
+               str_language_prefrence_is = text_doctor_Podiatrist_ch
+           }
+           
+       }
+        else  if (status == "Surgeon") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_doctor_Surgeon_en
+           } else {
+               str_language_prefrence_is = text_doctor_Surgeon_ch
+           }
+           
+       }
+     
+        return str_language_prefrence_is
+        
+    }
+        
+        
+        
+        
+        
+        
+        
     // timings
     class func actions_screen(status:String)->String {
         

@@ -46,7 +46,9 @@ class update_doctor_details: UIViewController {
         self.tble_view.separatorColor = .clear
         
         self.view.backgroundColor = app_bg_color
-        self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        self.btn_back.setImage(UIImage(systemName: "list.dash"), for: .normal)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.sideBarMenu(button: self.btn_back)
     }
     
     @objc func finish_click_method() {
@@ -306,6 +308,14 @@ extension update_doctor_details: UITableViewDataSource , UITableViewDelegate {
             cell.txt_year_of_experience.text = "\(person["yearOfExperience"]!)"
             cell.txt_specialization.text = (person["specialization"] as! String)
             cell.txt_working_hours_end.text = (person["wokingHours"] as! String)
+            
+            let fullNameArr = (person["wokingHours"] as! String).components(separatedBy: "-")
+
+            cell.txt_working_hours.text = fullNameArr[0]
+            cell.txt_working_hours_end.text = fullNameArr[1]
+            
+            cell.txt_view.text = (person["about"] as! String)
+            
         }
         
         return cell

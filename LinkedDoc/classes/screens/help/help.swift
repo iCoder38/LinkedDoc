@@ -15,6 +15,7 @@ class help: UIViewController, MFMailComposeViewControllerDelegate {
     
     var phone:String!
     var email:String!
+    var whatsapp:String!
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -70,6 +71,30 @@ class help: UIViewController, MFMailComposeViewControllerDelegate {
         self.help_WB()
     }
     
+    @objc func make_a_phone_call_click_method() {
+         
+        let url: NSURL = URL(string: "TEL://\(self.phone!)")! as NSURL
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+       
+    }
+    
+    @objc func open_whatsapp_send_message() {
+        let urlWhats = "whatsapp://send?phone=\(self.whatsapp!)&abid=12354&text=Hi I want to know something"
+            if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+                if let whatsappURL = URL(string: urlString) {
+                    if UIApplication.shared.canOpenURL(whatsappURL) {
+                        UIApplication.shared.open(whatsappURL as URL, options: [:], completionHandler: nil)
+                    } else {
+                        print("Install Whatsapp")
+                        let alert = NewYorkAlertController(title: text_language.common_screen(status: "Alert"), message: text_language.common_screen(status: "install_whatsapp"), style: .alert)
+                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+                         alert.addButtons([cancel])
+                         self.present(alert, animated: true)
+                    }
+                }
+            }
+    }
+    
     @objc func help_WB() {
         
         self.view.endEditing(true)
@@ -95,7 +120,7 @@ class help: UIViewController, MFMailComposeViewControllerDelegate {
                 
                 print("parameters-------\(String(describing: parameters))")
                 
-                AF.request(urlString, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
+                AF.request(urlString, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON { [self]
                     response in
                     
                     switch(response.result) {
@@ -119,15 +144,21 @@ class help: UIViewController, MFMailComposeViewControllerDelegate {
                                 
                                 var merge_support:String!
                                 var merge_email:String!
+                                var merge_whatsapp:String!
                                 
                                 merge_support = text_language.help_screen(status: "#04")+": "+String(dict["phone"] as! String)
                                 merge_email = text_language.login_screen(status: "#04")+": "+String(dict["eamil"] as! String)
-                                
+                                merge_whatsapp = text_language.help_screen(status: "#03")+": "+String(dict["whatsappNumber"] as! String)
+                                self.whatsapp = String(dict["whatsappNumber"] as! String)
                                 self.phone = String(dict["phone"] as! String)
                                 self.email = String(dict["eamil"] as! String)
                                 
                                 self.btn_support.setTitle(merge_support, for: .normal)
                                 self.btn_email.setTitle(merge_email, for: .normal)
+                                self.btn_whatsapp.setTitle(merge_whatsapp, for: .normal)
+                                
+                                self.btn_support.addTarget(self, action: #selector(make_a_phone_call_click_method), for: .touchUpInside)
+                                self.btn_whatsapp.addTarget(self, action: #selector(open_whatsapp_send_message), for: .touchUpInside)
                                 
                             } else {
                                 //

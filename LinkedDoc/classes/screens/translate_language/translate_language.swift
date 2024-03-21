@@ -140,21 +140,31 @@ class translate_language: UIViewController {
                     do {
                         //create json object from data
                         if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                            // print(json)
-                            print(json["data"] as Any)
+                            print(json)
+                            // print(json["data"] as Any)
                             
-                            var dict:NSDictionary!
-                            dict = (json["data"] as! NSDictionary)
+                            if (json["message"] == nil) {
+                                
+                            } else {
+                                if (json["message"] as! String) == "You are not subscribed to this API." {
+                                    
+                                } else {
+                                    var dict:NSDictionary!
+                                    dict = (json["data"] as! NSDictionary)
+                                    
+                                    var ar : NSArray!
+                                    ar = (dict["translations"] as! Array<Any>) as NSArray
+                                    // print(ar[0]["translatedText"] as Any)
+                                    
+                                    let item = ar[0] as? [String:Any]
+                                    // print(item!["translatedText"] as! String)
+                                    
+                                    cell.txt_view_down.text = (item!["translatedText"] as! String)
+                                    ERProgressHud.sharedInstance.hide()
+                                }
+                                
+                            }
                             
-                            var ar : NSArray!
-                            ar = (dict["translations"] as! Array<Any>) as NSArray
-                            // print(ar[0]["translatedText"] as Any)
-                            
-                            let item = ar[0] as? [String:Any]
-                            // print(item!["translatedText"] as! String)
-                            
-                            cell.txt_view_down.text = (item!["translatedText"] as! String)
-                            ERProgressHud.sharedInstance.hide()
                             
                         }
                     } catch let error {

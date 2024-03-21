@@ -10,7 +10,9 @@ import UIKit
 var application_base_url = "https://demo4.evirtualservices.net/linkdoc/services/index"
 
 // keys
-var str_rapid_api_keys = "0947338691msh3f39d264894c812p10b756jsnff8e4a6543e7"
+//
+// henry : 37359e35c6msh46cf0ff20f75d55p1d6501jsn59c2c19695ad
+var str_rapid_api_keys = "37359e35c6msh46cf0ff20f75d55p1d6501jsn59c2c19695ad"
 
 let str_save_login_user_data = "keyLoginFullData"
 let str_save_last_api_token = "key_last_api_token"
@@ -21,7 +23,9 @@ var default_key_language = "key_select_language"
 var english_language = "en"
 var chinese_language = "ch"
 
-var KGoogleApiKey = "AIzaSyAULQHYzpkutmeYPo9nU3BIGTlFlw9ZuH8"
+// AIzaSyBnOBYmGv9Pa5JUgxgw52HzcNe95JWii1c
+// henry 2 : AIzaSyCKxiD73rXP7059hKRTP57egdBxB_NMkIc
+var KGoogleApiKey = "AIzaSyCKxiD73rXP7059hKRTP57egdBxB_NMkIc"
 
 class Utils: NSObject {
 
