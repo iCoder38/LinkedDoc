@@ -234,7 +234,7 @@ class patient_dashboard: UIViewController, CLLocationManagerDelegate {
 //        self.navigationController?.pushViewController(push!, animated: true)
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "help_id") as? help
         push!.str_back_menu = "back"
-        self.navigationController?.pushViewController(push!, animated: true) 
+        self.navigationController?.pushViewController(push!, animated: true)
     }
     
     @objc func help_tap() {

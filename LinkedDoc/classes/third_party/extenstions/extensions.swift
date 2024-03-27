@@ -53,6 +53,7 @@ extension UIViewController {
         
         let yes = NewYorkButton(title: text_language.dashboard_screen(status: "#08"), style: .default)  {
             _ in
+            
             UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
             UserDefaults.standard.set(nil, forKey: default_key_language)
             
@@ -77,7 +78,6 @@ extension UIViewController {
 }
 
 extension Date {
-    
     func dateString(_ format: String = "MMM-dd-YYYY, hh:mm a") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
@@ -107,7 +107,6 @@ extension UIImageView {
 
 
 extension UITextField {
-    
     func setLeftPaddingPoints(_ amount:CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.leftView = paddingView
@@ -119,6 +118,5 @@ extension UITextField {
         self.rightView = paddingView
         self.rightViewMode = .always
     }
-    
 }
  
