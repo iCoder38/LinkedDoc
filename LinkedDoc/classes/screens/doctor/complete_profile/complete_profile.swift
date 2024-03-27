@@ -270,6 +270,7 @@ extension complete_profile: UITableViewDataSource , UITableViewDelegate {
         cell.txt_year_of_experience.placeholder = text_language.complete_profile_screen(status: "#05")
         cell.txt_specialization.placeholder = text_language.complete_profile_screen(status: "#06")
         cell.txt_working_hours_end.placeholder = text_language.complete_profile_screen(status: "#08")
+        cell.lbl_about_us.text = text_language.complete_profile_screen(status: "#15")
         
         cell.btn_finish.setTitle(text_language.complete_profile_screen(status: "#07"), for: .normal)
         

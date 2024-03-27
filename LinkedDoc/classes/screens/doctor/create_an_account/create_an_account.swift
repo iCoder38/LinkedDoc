@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 
 class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     var str_get_profile:String!
     
     // image
@@ -125,12 +125,13 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                                 
                                 let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
                                 self.navigationController?.pushViewController(push, animated: true)
+                                
                             } else {
+                                
                                 let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
                                 self.navigationController?.pushViewController(push, animated: true)
+                                
                             }
-                            
-                            
                             
                         }
                         else {
@@ -142,16 +143,12 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 case .failure(_):
                     print("Error message:\(String(describing: response.error))")
                     ERProgressHud.sharedInstance.hide()
-                     self.please_check_your_internet_connection()
+                    self.please_check_your_internet_connection()
                     
                     break
                 }
             }
         }
-        
-        
-        
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -192,6 +189,7 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
     }
     
     @objc func uploadImageOpenActionSheet() {
+        
         let alert = UIAlertController(title: text_language.common_screen(status: "upload_profile_picture"), message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: text_language.common_screen(status: "camera"), style: .default , handler:{ (UIAlertAction)in
@@ -209,7 +207,9 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
         self.present(alert, animated: true, completion: {
             //print("completion block")
         })
+        
     }
+    
     @objc func openCamera() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -319,37 +319,64 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                         let JSON = dictionary
                         print(JSON)
                         
-                        var dict: Dictionary<AnyHashable, Any>
-                        dict = JSON["data"] as! Dictionary<AnyHashable, Any>
-                        
-                        let defaults = UserDefaults.standard
-                        defaults.setValue(dict, forKey: str_save_login_user_data)
-                        
-                        self.imgUploadYesOrNo = "0"
-                        
-                        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
-                            print(language_select as Any)
+                        if "\(JSON["status"]!)" != "Fails" {
                             
-                            if (language_select == "en") {
+                            var dict: Dictionary<AnyHashable, Any>
+                            dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                            
+                            let defaults = UserDefaults.standard
+                            defaults.setValue(dict, forKey: str_save_login_user_data)
+                            
+                            self.imgUploadYesOrNo = "0"
+                            
+                            if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                print(language_select as Any)
                                 
-                                self.view.makeToast(dictionary["msg"] as? String)
+                                if (language_select == "en") {
+                                    
+                                    self.view.makeToast(dictionary["msg"] as? String)
+                                } else {
+                                    
+                                    self.view.makeToast(dictionary["msg_ch"] as? String)
+                                    
+                                }
+                                
+                            }
+                            if (dict["role"] as! String) == "Member" {
+                                
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
+                                self.navigationController?.pushViewController(push, animated: true)
                             } else {
                                 
-                                self.view.makeToast(dictionary["msg_ch"] as? String)
+                                let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                                self.navigationController?.pushViewController(push, animated: true)
+                                
+                            }
+                        } else {
+                            
+                            if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                print(language_select as Any)
+                                if (language_select == "en") {
+                                    
+                                    let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: JSON["msg"] as? String, style: .alert)
+                                     let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+                                     alert.addButtons([cancel])
+                                     self.present(alert, animated: true)
+                                    
+                                } else {
+                                    
+                                    let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: JSON["msg_ch"] as? String, style: .alert)
+                                     let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+                                     alert.addButtons([cancel])
+                                     self.present(alert, animated: true)
+                                    
+                                }
                                 
                             }
                             
-                        }
-                        if (dict["role"] as! String) == "Member" {
-                            
-                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
-                            self.navigationController?.pushViewController(push, animated: true)
-                        } else {
-                            
-                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
-                            self.navigationController?.pushViewController(push, animated: true)
                             
                         }
+                        
                     }
                     
                     
@@ -367,11 +394,7 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                 break
                 
             }
-            
-            
         })
-        
-        
     }
 }
 

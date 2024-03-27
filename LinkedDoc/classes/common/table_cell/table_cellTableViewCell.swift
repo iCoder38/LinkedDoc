@@ -575,6 +575,7 @@ class complete_profile_table_cell : UITableViewCell {
     @IBOutlet weak var btn_start_time:UIButton!
     @IBOutlet weak var btn_end_time:UIButton!
     @IBOutlet weak var lbl_about:UILabel!
+    @IBOutlet weak var lbl_about_us:UILabel!
 }
 
 // /* ************** DOCTOR : EDIT COMPLETE PROFILE ************************ */
