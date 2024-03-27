@@ -246,6 +246,7 @@ extension journal_list: UITableViewDataSource , UITableViewDelegate {
         print(item as Any)
         cell.lbl_title.text = (item!["created"] as! String)+" - Health Journal"
         
+        cell.accessoryType = .disclosureIndicator
         return cell
         
     }
