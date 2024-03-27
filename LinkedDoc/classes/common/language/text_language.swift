@@ -204,6 +204,18 @@ var text_translate_up_ch = "母語/ 英文"
 var text_translate_down_en = "Selective Language: Chinese"
 var text_translate_down_ch = "可選擇語言/ 中文"
 
+
+
+
+var text_translate2_up_en = "Native Language: Chinese"
+var text_translate2_up_ch = "母語/ 英文"
+
+var text_translate2_down_en = "Selective Language: English"
+var text_translate2_down_ch = "可選擇語言/ 中文"
+
+
+
+
 // dashboard
 var navigation_title_change_password_en = "Change Password"
 var navigation_title_change_password_ch = "密碼更改"
@@ -1855,6 +1867,21 @@ class text_language: UIViewController {
                 str_language_prefrence_is = text_translate_down_ch
             }
         }
+        
+        else if (status == "#05") {
+          if (text_language.selected_language_get() == english_language) {
+              str_language_prefrence_is = text_translate2_up_en
+          } else {
+              str_language_prefrence_is = text_translate2_up_ch
+          }
+      }
+        else if (status == "#06") {
+          if (text_language.selected_language_get() == english_language) {
+              str_language_prefrence_is = text_translate2_down_en
+          } else {
+              str_language_prefrence_is = text_translate2_down_ch
+          }
+      }
         
         return str_language_prefrence_is
     }

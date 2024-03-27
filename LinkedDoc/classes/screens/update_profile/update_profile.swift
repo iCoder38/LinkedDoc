@@ -395,7 +395,56 @@ class update_profile: UIViewController, UITextFieldDelegate, UIImagePickerContro
                                 let JSON = dictionary
                                 print(JSON)
                                 
-                                var dict: Dictionary<AnyHashable, Any>
+                                if "\(JSON["status"]!)" != "Fails" {
+                                    
+                                    var dict: Dictionary<AnyHashable, Any>
+                                    dict = JSON["data"] as! Dictionary<AnyHashable, Any>
+                                    
+                                    let defaults = UserDefaults.standard
+                                    defaults.setValue(dict, forKey: str_save_login_user_data)
+                                    
+                                    self.imgUploadYesOrNo = "0"
+                                    
+                                    if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                        print(language_select as Any)
+                                        
+                                        if (language_select == "en") {
+                                            
+                                            self.view.makeToast(dictionary["msg"] as? String)
+                                        } else {
+                                            
+                                            self.view.makeToast(dictionary["msg_ch"] as? String)
+                                            
+                                        }
+                                        
+                                    }
+                                    if (dict["role"] as! String) == "Member" {
+                                        
+                                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_complete_profile_id")
+                                        self.navigationController?.pushViewController(push, animated: true)
+                                    } else {
+                                        
+                                        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "complete_profile_id")
+                                        self.navigationController?.pushViewController(push, animated: true)
+                                        
+                                    }
+                                } else {
+                                    
+                                    if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                        print(language_select as Any)
+                                        if (language_select == "en") {
+                                            
+                                            self.view.makeToast(dictionary["msg"] as? String)
+                                        } else {
+                                            
+                                            self.view.makeToast(dictionary["msg_ch"] as? String)
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                                /*var dict: Dictionary<AnyHashable, Any>
                                 dict = JSON["data"] as! Dictionary<AnyHashable, Any>
                                 
                                 let defaults = UserDefaults.standard
@@ -415,7 +464,7 @@ class update_profile: UIViewController, UITextFieldDelegate, UIImagePickerContro
                                         
                                     }
                                     
-                                }
+                                }*/
                                 
                             }
                             

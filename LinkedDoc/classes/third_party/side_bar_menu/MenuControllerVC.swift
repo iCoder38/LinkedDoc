@@ -570,14 +570,29 @@ extension MenuControllerVC: UITableViewDataSource {
             
         } else if strMyPageNumber == "6" {
             
-            UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
-            UserDefaults.standard.set(nil, forKey: default_key_language)
             
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
-            let navController = UINavigationController(rootViewController: obj)
-            navController.setViewControllers([obj], animated:true)
-            self.revealViewController().setFront(navController, animated: true)
-            self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+            let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: text_language.common_screen(status: "logout_message"), style: .alert)
+            let logout = NewYorkButton(title: text_language.dashboard_screen(status: "#08"), style: .default) {
+                _ in
+                
+                UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
+                UserDefaults.standard.set(nil, forKey: default_key_language)
+                
+                
+                let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
+                let navController = UINavigationController(rootViewController: obj)
+                navController.setViewControllers([obj], animated:true)
+                self.revealViewController().setFront(navController, animated: true)
+                self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+                
+            }
+            
+            let dismiss = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .default)
+            
+            alert.addButtons([logout,dismiss])
+            self.present(alert, animated: true)
+            
+            
             
         }
         

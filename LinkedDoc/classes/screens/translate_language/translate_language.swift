@@ -54,6 +54,11 @@ class translate_language: UIViewController {
             self.sideBarMenu(button: self.btn_back)
         }
         
+        
+        
+        
+        
+        
     }
     
     @objc func sideBarMenuClick2() {
@@ -210,8 +215,8 @@ extension translate_language: UITableViewDataSource , UITableViewDelegate {
                 cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
                 cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
             } else {
-                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#04")
-                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#05")
+                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#06")
             }
         }
         

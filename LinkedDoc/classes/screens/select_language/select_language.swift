@@ -109,8 +109,6 @@ class select_language: UIViewController {
         
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "welcome_id")
         self.navigationController?.pushViewController(push, animated: true)
-        
-        
     }
     
     @objc func remember_me() {

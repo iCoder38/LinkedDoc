@@ -374,7 +374,6 @@ class create_an_account: UIViewController, UITextFieldDelegate, UIImagePickerCon
                                 
                             }
                             
-                            
                         }
                         
                     }
