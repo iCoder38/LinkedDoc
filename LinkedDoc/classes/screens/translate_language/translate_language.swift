@@ -12,6 +12,8 @@ class translate_language: UIViewController {
 
     var str_back_menu:String!
     
+    var postData:NSMutableData!
+    
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
             view_navigation.backgroundColor = navigation_color
@@ -92,38 +94,31 @@ class translate_language: UIViewController {
         
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
-            "Accept-Encoding": "application/gzip",
-            "X-RapidAPI-Key": String(str_rapid_api_keys),
-            "X-RapidAPI-Host": "google-translate1.p.rapidapi.com"
+            "X-RapidAPI-Key": String(str_rapid_api_key),
+            "X-RapidAPI-Host": "google-translate113.p.rapidapi.com"
         ]
 
         
         
-        let merge_text = "q="+String(text_to_convert)
-        print(merge_text as Any)
         
-        let doctor_target:String! = "&target=zh-TW"
-        let doctor_source:String! = "&source=en"
-        
-        let member_target:String! = "&target=en"
-        let member_source:String! = "&source=zh-TW"
-        
-        let postData = NSMutableData(data: String(merge_text).data(using: String.Encoding.utf8)!)
+        let merge_text = "&text="+String(text_to_convert)
         
         if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
             print(person)
             
             if (person["role"] as! String) == "Member" {
-                postData.append(String(member_target).data(using: String.Encoding.utf8)!)
-                postData.append(String(member_source).data(using: String.Encoding.utf8)!)
+                postData = NSMutableData(data: "from=zh-TW".data(using: String.Encoding.utf8)!)
+                postData.append("&to=en".data(using: String.Encoding.utf8)!)
+                postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
             } else {
-                postData.append(String(doctor_target).data(using: String.Encoding.utf8)!)
-                postData.append(String(doctor_source).data(using: String.Encoding.utf8)!)
+                postData = NSMutableData(data: "from=en".data(using: String.Encoding.utf8)!)
+                postData.append("&to=zh-TW".data(using: String.Encoding.utf8)!)
+                postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
             }
             
         }
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate1.p.rapidapi.com/language/translate/v2")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate113.p.rapidapi.com/api/v1/translator/text")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "POST"
@@ -134,42 +129,17 @@ class translate_language: UIViewController {
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error as Any)
-                ERProgressHud.sharedInstance.hide()
             } else {
                 let httpResponse = response as? HTTPURLResponse
-                // print(httpResponse as Any)
-                ERProgressHud.sharedInstance.hide()
-                guard let data = data else { return }
-                // print(String(data: data, encoding: .utf8)!)
+                // print(httpResponse)
                 DispatchQueue.main.async{
                     do {
                         //create json object from data
-                        if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                            print(json)
-                            // print(json["data"] as Any)
-                            
-                            if (json["message"] == nil) {
-                                
-                            } else {
-                                if (json["message"] as! String) == "You are not subscribed to this API." {
-                                    
-                                } else {
-                                    var dict:NSDictionary!
-                                    dict = (json["data"] as! NSDictionary)
-                                    
-                                    var ar : NSArray!
-                                    ar = (dict["translations"] as! Array<Any>) as NSArray
-                                    // print(ar[0]["translatedText"] as Any)
-                                    
-                                    let item = ar[0] as? [String:Any]
-                                    // print(item!["translatedText"] as! String)
-                                    
-                                    cell.txt_view_down.text = (item!["translatedText"] as! String)
-                                    ERProgressHud.sharedInstance.hide()
-                                }
-                                
-                            }
-                            
+                        if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
+                            // print(json)
+                           
+                            cell.txt_view_down.text = (json["trans"] as! String)
+                            ERProgressHud.sharedInstance.hide()
                             
                         }
                     } catch let error {
@@ -177,11 +147,11 @@ class translate_language: UIViewController {
                         ERProgressHud.sharedInstance.hide()
                     }
                 }
-               
             }
         })
-// hi how are you mate ?
+
         dataTask.resume()
+        
     }
 }
 

@@ -12,7 +12,7 @@ var application_base_url = "https://app.linkeddocapp.com/services/index"
 // keys
 //
 // henry : 37359e35c6msh46cf0ff20f75d55p1d6501jsn59c2c19695ad
-var str_rapid_api_keys = "37359e35c6msh46cf0ff20f75d55p1d6501jsn59c2c19695ad"
+var str_rapid_api_key = "37359e35c6msh46cf0ff20f75d55p1d6501jsn59c2c19695ad"
 
 let str_save_login_user_data = "keyLoginFullData"
 let str_save_last_api_token = "key_last_api_token"
