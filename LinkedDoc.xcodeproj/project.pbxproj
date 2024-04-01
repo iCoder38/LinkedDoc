@@ -14,6 +14,8 @@
 		B907845E2BA02D310024970D /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907845D2BA02D310024970D /* extensions.swift */; };
 		B90784612BA02DDB0024970D /* translate_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784602BA02DDB0024970D /* translate_language.swift */; };
 		B907846A2BA038E20024970D /* update_select_language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90784692BA038E20024970D /* update_select_language.swift */; };
+		B90CD6F62BBAC58F005B5088 /* forgot_password.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CD6F52BBAC58F005B5088 /* forgot_password.swift */; };
+		B90CD6F82BBAD0D2005B5088 /* forgot_password_otp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CD6F72BBAD0D2005B5088 /* forgot_password_otp.swift */; };
 		B90EB9242BA8162500E3C1E9 /* journal_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90EB9232BA8162500E3C1E9 /* journal_list.swift */; };
 		B90EB9272BA81BB100E3C1E9 /* details.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90EB9262BA81BB100E3C1E9 /* details.swift */; };
 		B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919B7552BA18F4C005E96D3 /* update_profile.swift */; };
@@ -97,6 +99,8 @@
 		B907845D2BA02D310024970D /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B90784602BA02DDB0024970D /* translate_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translate_language.swift; sourceTree = "<group>"; };
 		B90784692BA038E20024970D /* update_select_language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_select_language.swift; sourceTree = "<group>"; };
+		B90CD6F52BBAC58F005B5088 /* forgot_password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgot_password.swift; sourceTree = "<group>"; };
+		B90CD6F72BBAD0D2005B5088 /* forgot_password_otp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgot_password_otp.swift; sourceTree = "<group>"; };
 		B90EB9232BA8162500E3C1E9 /* journal_list.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journal_list.swift; sourceTree = "<group>"; };
 		B90EB9262BA81BB100E3C1E9 /* details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = details.swift; sourceTree = "<group>"; };
 		B919B7552BA18F4C005E96D3 /* update_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = update_profile.swift; sourceTree = "<group>"; };
@@ -261,6 +265,15 @@
 				B90784692BA038E20024970D /* update_select_language.swift */,
 			);
 			path = select_language_2;
+			sourceTree = "<group>";
+		};
+		B90CD6F42BBAC57D005B5088 /* forgot_password */ = {
+			isa = PBXGroup;
+			children = (
+				B90CD6F52BBAC58F005B5088 /* forgot_password.swift */,
+				B90CD6F72BBAD0D2005B5088 /* forgot_password_otp.swift */,
+			);
+			path = forgot_password;
 			sourceTree = "<group>";
 		};
 		B90EB9252BA81BA800E3C1E9 /* details */ = {
@@ -562,6 +575,7 @@
 		B9E52CE62B9ED68700948E89 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				B90CD6F42BBAC57D005B5088 /* forgot_password */,
 				B9D2E0BB2BA987010088D43B /* nearby_doctors */,
 				B9E05BDC2BA2C9FE00720A47 /* patient */,
 				B9E52CF92B9ED8FD00948E89 /* select_language */,
@@ -907,11 +921,13 @@
 				B96AD7C32BA4272800B9835F /* actions.swift in Sources */,
 				B9BF96582BA07C9700860A64 /* ERProgressHud.swift in Sources */,
 				B9DBADF32BA9AD8500105827 /* doctor_details.swift in Sources */,
+				B90CD6F82BBAD0D2005B5088 /* forgot_password_otp.swift in Sources */,
 				B919B7562BA18F4C005E96D3 /* update_profile.swift in Sources */,
 				B9E52CB72B9ED4D600948E89 /* ViewController.swift in Sources */,
 				B9BF96622BA07CCF00860A64 /* AlertView.swift in Sources */,
 				B907845E2BA02D310024970D /* extensions.swift in Sources */,
 				B9BF96642BA07CCF00860A64 /* Color.swift in Sources */,
+				B90CD6F62BBAC58F005B5088 /* forgot_password.swift in Sources */,
 				B9BF96682BA07CCF00860A64 /* ActionSheetView.swift in Sources */,
 				B9E52CF22B9ED6C400948E89 /* MenuControllerVCTableCell.swift in Sources */,
 				B9BF966C2BA088F400860A64 /* RPicker.swift in Sources */,
@@ -1252,14 +1268,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHVZESNL9B;
+				DEVELOPMENT_TEAM = C74PU37V9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod.LinkedDocUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linkeddoc.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = LinkedDoc;
 			};
 			name = Debug;
@@ -1271,14 +1290,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHVZESNL9B;
+				DEVELOPMENT_TEAM = C74PU37V9T;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.linked.doc.prod.LinkedDocUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.linkeddoc.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = LinkedDoc;
 			};
 			name = Release;

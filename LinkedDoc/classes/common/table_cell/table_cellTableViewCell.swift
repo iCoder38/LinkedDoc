@@ -484,6 +484,67 @@ class update_patient_details_table_cell : UITableViewCell {
     @IBOutlet weak var lbl_blood_group:UILabel!
 }
 
+// /* ************** FORGOT PASSWORD *************************** */
+// /* ********************************************************** */
+class forgot_password_table_cell : UITableViewCell {
+    @IBOutlet weak var txt_email:UITextField! {
+        didSet {
+            txt_email.layer.cornerRadius = 12
+            txt_email.clipsToBounds = true
+            txt_email.backgroundColor = .white
+            txt_email.placeholder = "Email address"
+            txt_email.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var btn_submit:UIButton!  {
+        didSet {
+            btn_submit.backgroundColor = button_light_blue_color
+            btn_submit.layer.cornerRadius = 12
+            btn_submit.clipsToBounds = true
+            btn_submit.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+// /* ************** FORGOT PASSWORD *************************** */
+// /* ********************************************************** */
+class forgot_password_otp_table_cell : UITableViewCell {
+    @IBOutlet weak var txt_otp:UITextField! {
+        didSet {
+            txt_otp.layer.cornerRadius = 12
+            txt_otp.clipsToBounds = true
+            txt_otp.backgroundColor = .white
+            txt_otp.placeholder = "Email address"
+            txt_otp.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_new_password:UITextField! {
+        didSet {
+            txt_new_password.layer.cornerRadius = 12
+            txt_new_password.clipsToBounds = true
+            txt_new_password.backgroundColor = .white
+            txt_new_password.placeholder = "Email address"
+            txt_new_password.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var txt_confirm_password:UITextField! {
+        didSet {
+            txt_confirm_password.layer.cornerRadius = 12
+            txt_confirm_password.clipsToBounds = true
+            txt_confirm_password.backgroundColor = .white
+            txt_confirm_password.placeholder = "Email address"
+            txt_confirm_password.setLeftPaddingPoints(20)
+        }
+    }
+    @IBOutlet weak var btn_submit:UIButton!  {
+        didSet {
+            btn_submit.backgroundColor = button_light_blue_color
+            btn_submit.layer.cornerRadius = 12
+            btn_submit.clipsToBounds = true
+            btn_submit.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
 
 // /* ************** COMPLETE PROFILE ************************ */
 // /* ********************************************************** */

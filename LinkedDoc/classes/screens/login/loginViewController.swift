@@ -74,7 +74,12 @@ class loginViewController: UIViewController, UITextFieldDelegate {
             btn_continue.setTitleColor(.white, for: .normal)
         }
     }
-    
+    @IBOutlet weak var btn_forgot_password:UIButton! {
+        didSet {
+            btn_forgot_password.layer.cornerRadius = 12
+            btn_forgot_password.clipsToBounds = true
+        }
+    }
     @IBOutlet weak var btn_register_now:UIButton! {
         didSet {
             btn_register_now.layer.cornerRadius = 12
@@ -95,6 +100,7 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         self.txt_password.delegate = self
         
         self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+        self.btn_forgot_password.addTarget(self, action: #selector(forgot_password_click_method), for: .touchUpInside)
         
         self.view.backgroundColor = app_bg_color
         self.convert_language()
@@ -122,6 +128,13 @@ class loginViewController: UIViewController, UITextFieldDelegate {
         
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "create_an_account_id") as? create_an_account
         push!.str_get_profile = String(self.str_profile)
+        self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func forgot_password_click_method() {
+        Utils.light_vibrate()
+        
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "forgot_password_id") as? forgot_password
         self.navigationController?.pushViewController(push!, animated: true)
     }
     

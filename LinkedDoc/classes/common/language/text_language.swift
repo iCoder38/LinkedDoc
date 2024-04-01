@@ -61,6 +61,9 @@ var button_register_now_ch = "非會員？ 請註冊"
 var text_alert_en = "Alert"
 var text_alert_ch = "警報"
 
+var text_forgot_password_en = "Forgot Password"
+var text_forgot_password_ch = "Forgot Password"
+
 // help
 var navigation_title_help_en = "Help"
 var navigation_title_help_ch = "輔助說明"
@@ -223,10 +226,12 @@ var navigation_title_change_password_ch = "密碼更改"
 var text_field_old_password_placeholder_en = "Old Password"
 var text_field_new_password_placeholder_en = "New Password"
 var text_field_confirm_password_placeholder_en = "Confirm Password"
+var text_field_otp_placeholder_en = "OTP"
 
 var text_field_old_password_placeholder_ch = "舊密碼"
 var text_field_new_password_placeholder_ch = "新密碼"
 var text_field_confirm_password_placeholder_ch = "確定密碼"
+var text_field_otp_placeholder_ch = "奧特普"
 
 var button_text_change_password_en = "Change Password"
 var button_text_change_password_ch = "密碼更改"
@@ -755,8 +760,15 @@ class text_language: UIViewController {
                str_language_prefrence_is = text_alert_ch
            }
            
+       } 
+        else  if (status == "forgot_password") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_forgot_password_en
+           } else {
+               str_language_prefrence_is = text_forgot_password_ch
+           }
+           
        }
-        
         
         
         
@@ -1924,6 +1936,12 @@ class text_language: UIViewController {
                 str_language_prefrence_is = button_text_change_password_en
             } else {
                 str_language_prefrence_is = button_text_change_password_ch
+            }
+        }else if (status == "#06") {
+            if (text_language.selected_language_get() == english_language) {
+                str_language_prefrence_is = text_field_otp_placeholder_en
+            } else {
+                str_language_prefrence_is = text_field_otp_placeholder_ch
             }
         }
         
