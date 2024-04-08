@@ -23,17 +23,19 @@ class MenuControllerVC: UIViewController {
                             "Change Language",
                            "Change Password",
                            "Help",
+                            "Delete account",
                            "Logout",
     ]
     
     var arr_menu_list_ch = ["儀表板",
-                           "編輯個人資料",
                             "編輯個人資料",
-                           "翻譯",
+                            "編輯個人資料",
+                            "翻譯",
                             "更改你要用的語言",
-                           "密碼更改",
-                           "輔助說明",
-                           "登出",
+                            "密碼更改",
+                            "輔助說明",
+                            "刪除帳戶",
+                            "登出",
     ]
     
     var arrMenuItemImage = ["home",
@@ -43,6 +45,7 @@ class MenuControllerVC: UIViewController {
                             "translation",
                             "changePassword",
                             "help_w",
+                            "delete",
                             "logout"
     ]
     
@@ -125,6 +128,163 @@ class MenuControllerVC: UIViewController {
         return .lightContent
     }
        
+    @objc func delete_account_WB() {
+        
+        self.view.endEditing(true)
+        
+        ERProgressHud.sharedInstance.showDarkBackgroundView(withTitle: text_language.common_screen(status: "please_wait"))
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            print(person)
+            
+            let x : Int = person["userId"] as! Int
+            let myString = String(x)
+            
+            if let token_id_is = UserDefaults.standard.string(forKey: str_save_last_api_token) {
+                
+                let headers: HTTPHeaders = [
+                    "token":String(token_id_is),
+                ]
+                
+                let urlString = application_base_url
+                var parameters:Dictionary<AnyHashable, Any>!
+                
+                parameters = [
+                    "action"        :   "userdelete",
+                    "userId"        :   String(myString),
+                ]
+                
+                print("parameters-------\(String(describing: parameters))")
+                
+                AF.request(urlString, method: .post, parameters: parameters as? Parameters, headers: headers).responseJSON {
+                    response in
+                    
+                    switch(response.result) {
+                    case .success(_):
+                        if let data = response.value {
+                            
+                            let JSON = data as! NSDictionary
+                            print(JSON)
+                            
+                            var strSuccess : String!
+                            strSuccess = JSON["status"]as Any as? String
+                            
+                            var strSuccess2 : String!
+                            strSuccess2 = JSON["msg"]as Any as? String
+                            
+                            if strSuccess == "success" {
+                                ERProgressHud.sharedInstance.hide()
+                                if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                    print(language_select as Any)
+                                    
+                                    UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
+                                    UserDefaults.standard.set(nil, forKey: default_key_language)
+                                    
+                                    let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
+                                    let navController = UINavigationController(rootViewController: obj)
+                                    navController.setViewControllers([obj], animated:true)
+                                    self.revealViewController().setFront(navController, animated: true)
+                                    self.revealViewController().setFrontViewPosition(FrontViewPosition.left, animated: true)
+                                    
+                                }
+                                 
+                            } else {
+                                //
+                                if (strSuccess2 == your_are_not_auth) {
+                                    self.generate_token()
+                                } else {
+                                    ERProgressHud.sharedInstance.hide()
+                                    
+                                    if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+                                        print(language_select as Any)
+                                        if (language_select == "en") {
+                                            
+                                            self.view.makeToast(String(strSuccess2))
+                                            
+                                        } else {
+                                            
+                                            self.view.makeToast(JSON["msg_ch"] as? String)
+                                            
+                                        }
+                                    }
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    case .failure(_):
+                        print("Error message:\(String(describing: response.error))")
+                        ERProgressHud.sharedInstance.hide()
+                        
+                        
+                        break
+                    }
+                }
+            } else {
+                self.generate_token()
+            }
+        }
+    }
+    
+    @objc func generate_token() {
+        
+        var parameters:Dictionary<AnyHashable, Any>!
+        
+        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            
+            let x : Int = person["userId"] as! Int
+            let myString = String(x)
+            
+            parameters = [
+                "action"    : "gettoken",
+                "userId"    : String(myString),
+                "email"     : (person["email"] as! String),
+                "role"      : (person["role"] as! String)
+            ]
+        }
+        
+        print("parameters-------\(String(describing: parameters))")
+        
+        AF.request(application_base_url, method: .post, parameters: parameters as? Parameters).responseJSON {
+            response in
+            
+            switch(response.result) {
+            case .success(_):
+                if let data = response.value {
+                    
+                    let JSON = data as! NSDictionary
+                    print(JSON)
+                    
+                    var strSuccess : String!
+                    strSuccess = JSON["status"] as? String
+                    
+                    if strSuccess.lowercased() == "success" {
+                        
+                        let str_token = (JSON["AuthToken"] as! String)
+                        UserDefaults.standard.set("", forKey: str_save_last_api_token)
+                        UserDefaults.standard.set(str_token, forKey: str_save_last_api_token)
+                        
+                        self.delete_account_WB()
+                        
+                    } else {
+                        ERProgressHud.sharedInstance.hide()
+                    }
+                    
+                }
+                
+            case .failure(_):
+                print("Error message:\(String(describing: response.error))")
+                ERProgressHud.sharedInstance.hide()
+                self.please_check_your_internet_connection()
+                
+                break
+            }
+        }
+    }
+    
+    
+    
 }
 
 extension MenuControllerVC: UITableViewDataSource {
@@ -165,275 +325,7 @@ extension MenuControllerVC: UITableViewDataSource {
         
         cell.lblName.textColor = .white
         cell.imgProfile.image = UIImage(named: self.arrMenuItemImage[indexPath.row])
-        
-        /*if  indexPath.row == 0 {
-            let label = UILabel(frame: CGRect(x: 15, y: 10, width: 345, height: 30))
-            label.textAlignment = .left
-            if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any] {
-                label.text = (person["fullName"] as! String)
-            }
-            
-            label.textColor = .black
-            label.font = UIFont.init(name: "OpenSans-Bold", size: 20)
-            cell.addSubview(label)
-            
-            let image : UIImage = UIImage(named:"location")!
-            bgImage = UIImageView(image: image)
-            bgImage!.frame = CGRect(x: 15, y: 46, width: 20, height: 20)
-            cell.addSubview(bgImage!)
-            
-            let label2 = UILabel(frame: CGRect(x: 44, y: 40, width: 311, height: 30))
-            label2.textAlignment = .left
-            if let person = UserDefaults.standard.value(forKey: "keyLoginFullData") as? [String:Any]
-            {
-                label2.text = (person["address"] as! String)
-            }
-            label2.textColor = .black
-            cell.addSubview(label2)
-            cell.backgroundColor = UIColor.init(red: 252.0/255.0, green: 195.0/255.0, blue: 10.0/255.0, alpha: 1)
-        }
-         if  indexPath.row == 1 {
-            let mScreenSize = UIScreen.main.bounds
-            let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-            let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-            mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-            cell.addSubview(mAddSeparator)
-            
-            let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-            bgImage = UIImageView(image: image)
-            bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-            cell.addSubview(bgImage!)
-            
-            let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-            label.textAlignment = .left
-            label.text = "Dashboard" // arrMenuItemList[indexPath.row]
-            label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-            label.textColor = .white
-            cell.addSubview(label)
-            cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-        }
-         if  indexPath.row == 2 {
-            let mScreenSize = UIScreen.main.bounds
-            let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-            let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-            mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-            cell.addSubview(mAddSeparator)
-            
-            let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-            bgImage = UIImageView(image: image)
-            bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-            cell.addSubview(bgImage!)
-            
-            let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-            label.textAlignment = .left
-            label.text =  "Edit Profile" // arrMenuItemList[indexPath.row]
-            label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-            label.textColor = .white
-            cell.addSubview(label)
-            cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-        }
-         if  indexPath.row == 3 {
-            let mScreenSize = UIScreen.main.bounds
-            let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-            let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-            mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-            cell.addSubview(mAddSeparator)
-            
-            let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-            bgImage = UIImageView(image: image)
-            bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-            cell.addSubview(bgImage!)
-            
-            let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-            label.textAlignment = .left
-            label.text = "My Post" //  arrMenuItemList[indexPath.row]
-            label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-            label.textColor = .white
-            cell.addSubview(label)
-            cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-        }
-             if  indexPath.row == 4 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Submit New Post" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 5 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Request Service" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 6 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Pet Store" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 7 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "My Orders" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 8 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Appointment" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 9 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "My Booking" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 10 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Change Password" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-             if  indexPath.row == 11 {
-                let mScreenSize = UIScreen.main.bounds
-                let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-                let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-                mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-                cell.addSubview(mAddSeparator)
-                
-                let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-                bgImage = UIImageView(image: image)
-                bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-                cell.addSubview(bgImage!)
-                
-                let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-                label.textAlignment = .left
-                label.text = "Help" // arrMenuItemList[indexPath.row]
-                label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-                label.textColor = .white
-                cell.addSubview(label)
-                cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-            }
-         if  indexPath.row == 12 {
-            let mScreenSize = UIScreen.main.bounds
-            let mSeparatorHeight = CGFloat(0.5) // Change height of speatator as you want
-            let mAddSeparator = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - mSeparatorHeight, width: mScreenSize.width, height: mSeparatorHeight))
-            mAddSeparator.backgroundColor = UIColor.white // Change backgroundColor of separator
-            cell.addSubview(mAddSeparator)
-            
-            let image : UIImage = UIImage(named:arrMenuItemImage[indexPath.row])!
-            bgImage = UIImageView(image: image)
-            bgImage!.frame = CGRect(x: 20, y: 10, width: 30, height: 30)
-            cell.addSubview(bgImage!)
-            
-            let label = UILabel(frame: CGRect(x: 60, y: 15, width: 302, height: 24))
-            label.textAlignment = .left
-            label.text = "Logout" // arrMenuItemList[indexPath.row]
-            label.font = UIFont.init(name: "OpenSans-Light", size: 20)
-            label.textColor = .white
-            cell.addSubview(label)
-            cell.backgroundColor = UIColor.init(red: 8.0/255.0, green: 35.0/255.0, blue: 105.0/255.0, alpha: 1)
-        }
-        //
-       */
+       
         return cell
     }
     
@@ -463,6 +355,9 @@ extension MenuControllerVC: UITableViewDataSource {
         }
         if String(arr_menu_list_en[indexPath.row]) == "Edit Details" {
             pushPageNumber(strMyPageNumber: "8")
+        }
+        if String(arr_menu_list_en[indexPath.row]) == "Delete account" {
+            pushPageNumber(strMyPageNumber: "9")
         }
     }
     
@@ -578,7 +473,6 @@ extension MenuControllerVC: UITableViewDataSource {
                 UserDefaults.standard.set(nil, forKey: str_save_login_user_data)
                 UserDefaults.standard.set(nil, forKey: default_key_language)
                 
-                
                 let obj = self.storyboard?.instantiateViewController(withIdentifier: "select_language_id") as! select_language
                 let navController = UINavigationController(rootViewController: obj)
                 navController.setViewControllers([obj], animated:true)
@@ -593,6 +487,21 @@ extension MenuControllerVC: UITableViewDataSource {
             self.present(alert, animated: true)
             
             
+            
+        }  else if strMyPageNumber == "9" {
+            
+            let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: text_language.common_screen(status: "delete_account_message"), style: .alert)
+            let logout = NewYorkButton(title: text_language.common_screen(status: "delete"), style: .default) {
+                _ in
+                
+                self.delete_account_WB()
+                
+            }
+            
+            let dismiss = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .default)
+            
+            alert.addButtons([logout,dismiss])
+            self.present(alert, animated: true)
             
         }
         

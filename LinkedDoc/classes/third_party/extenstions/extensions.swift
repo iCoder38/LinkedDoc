@@ -12,7 +12,14 @@ extension UIViewController {
     
     @objc func please_check_your_internet_connection() {
         let alert = NewYorkAlertController(title: String("Error").uppercased(), message: String("Please check your Internet Connection"), style: .alert)
-        let cancel = NewYorkButton(title: "dismiss", style: .cancel)
+        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+        alert.addButtons([cancel])
+        self.present(alert, animated: true)
+    }
+    
+    @objc func field_should_not_be_empty() {
+        let alert = NewYorkAlertController(title: text_language.common_screen(status: "alert"), message: String("Please check your Internet Connection"), style: .alert)
+        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
         alert.addButtons([cancel])
         self.present(alert, animated: true)
     }
@@ -65,7 +72,7 @@ extension UIViewController {
             
         }
         
-        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel)
+        let cancel = NewYorkButton(title: text_language.common_screen(status: text_language.common_screen(status: "dismiss")), style: .cancel)
         alert.addButtons([yes,cancel])
         self.present(alert, animated: true)
         
@@ -120,3 +127,10 @@ extension UITextField {
     }
 }
  
+extension Date {
+    static func get_current_date_and_time() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        return dateFormatter.string(from: Date())
+    }
+}

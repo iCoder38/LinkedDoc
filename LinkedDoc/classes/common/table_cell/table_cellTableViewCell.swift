@@ -323,7 +323,7 @@ class add_health_journal_table_cell : UITableViewCell {
     @IBOutlet weak var lbl_minute_of_excercise:UILabel!
     @IBOutlet weak var lbl_notable_events:UILabel!
     
-    
+    @IBOutlet weak var btn_skip:UIButton!
     
     
 }

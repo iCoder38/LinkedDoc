@@ -73,7 +73,7 @@ class add_health_journal: UIViewController {
         let indexPath = IndexPath.init(row: 0, section: 0)
         let cell = self.tble_view.cellForRow(at: indexPath) as! add_health_journal_table_cell
         
-        if (cell.txt_BP.text == "") {
+        /*if (cell.txt_BP.text == "") {
             return
         }
         if (cell.txt_weight.text == "") {
@@ -84,7 +84,7 @@ class add_health_journal: UIViewController {
         }
         if (cell.txt_notable_event.text == "") {
             return
-        }
+        }*/
         
         let custom_dict = [
             "BP":String(cell.txt_BP.text!),
@@ -93,15 +93,31 @@ class add_health_journal: UIViewController {
             "notable_event":String(cell.txt_notable_event.text!)
         ]
         print(custom_dict as Any)
-          
+        
         let defaults = UserDefaults.standard
         defaults.setValue(custom_dict, forKey: "key_save_add_health_journal")
         
         let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "onset_id") as? onset
         self.navigationController?.pushViewController(push!, animated: true)
+    }
+    
+    @objc func skip_click_method() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! add_health_journal_table_cell
         
+        let custom_dict = [
+            "BP":String(cell.txt_BP.text!),
+            "weight":String(cell.txt_weight.text!),
+            "exercise_time":String(cell.txt_minute_of_excercise.text!),
+            "notable_event":String(cell.txt_notable_event.text!)
+        ]
+        print(custom_dict as Any)
         
+        let defaults = UserDefaults.standard
+        defaults.setValue(custom_dict, forKey: "key_save_add_health_journal")
         
+        let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "onset_id") as? onset
+        self.navigationController?.pushViewController(push!, animated: true)
     }
 }
 
@@ -143,6 +159,7 @@ extension add_health_journal: UITableViewDataSource , UITableViewDelegate {
         cell.btn_notable_event.addTarget(self, action: #selector(notable_events_click_method), for: .touchUpInside)
         cell.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
         
+        cell.btn_skip.addTarget(self, action: #selector(skip_click_method), for: .touchUpInside)
         
         return cell
         

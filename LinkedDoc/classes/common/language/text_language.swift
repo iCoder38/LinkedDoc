@@ -64,6 +64,16 @@ var text_alert_ch = "警報"
 var text_forgot_password_en = "Forgot Password"
 var text_forgot_password_ch = "Forgot Password"
 
+
+
+var text_delete_account_en = "Are you sure you want to delete your account ?"
+var text_delete_account_ch = "您確定要刪除您的帳戶嗎？"
+
+
+var text_delete_en = "delete"
+var text_delete_ch = "刪除"
+
+
 // help
 var navigation_title_help_en = "Help"
 var navigation_title_help_ch = "輔助說明"
@@ -246,7 +256,7 @@ var text_please_wait_ch = "請稍待一下"
 var text_updating_en = "updating..."
 var text_updating_ch = "更新"
 
-var text_dismiss_en = "dismiss"
+var text_dismiss_en = "Dismiss"
 var text_dismiss_ch = "解除"
 
 var text_success_en = "Success"
@@ -277,11 +287,11 @@ var text_blood_pressure_ch = "血壓"
 var text_weight_en = "Weight"
 var text_weight_ch = "體重"
 
-var text_minute_of_excercise_en = "Minute of Excercise"
+var text_minute_of_excercise_en = "Exercise Duration"
 var text_minute_of_excercise_ch = "運動時間"
 
-var text_notable_events_en = "Notable events"
-var text_notable_events_ch = "值得注意事項"
+var text_notable_events_en = "Event type"
+var text_notable_events_ch = "事件類型"
 
 var text_pain_en = "Pain"
 var text_pain_ch = "身體不舒服"
@@ -766,6 +776,20 @@ class text_language: UIViewController {
                str_language_prefrence_is = text_forgot_password_en
            } else {
                str_language_prefrence_is = text_forgot_password_ch
+           }
+           
+       }else  if (status == "delete_account_message") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_delete_account_en
+           } else {
+               str_language_prefrence_is = text_delete_account_ch
+           }
+           
+       }else  if (status == "delete") {
+           if (text_language.selected_language_get() == english_language) {
+               str_language_prefrence_is = text_delete_en
+           } else {
+               str_language_prefrence_is = text_delete_ch
            }
            
        }

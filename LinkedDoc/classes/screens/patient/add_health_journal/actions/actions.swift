@@ -10,7 +10,7 @@ import Alamofire
 
 class actions: UIViewController {
     
-    var str_server_value:String!
+    var str_server_value:String! = ""
     
     var str_add_journal_bp:String!
     var str_add_journal_weight:String!
@@ -87,6 +87,7 @@ class actions: UIViewController {
         self.btn_continue.setTitle(text_language.common_screen(status: "add_journal"), for: .normal)
         
         self.btn_continue.addTarget(self, action: #selector(manage_all_data_to_send_server), for: .touchUpInside)
+        self.btn_skip.addTarget(self, action: #selector(manage_all_data_to_send_server), for: .touchUpInside)
     }
     
     @objc func actions_method() {
@@ -147,10 +148,10 @@ class actions: UIViewController {
             self.str_add_journal_minute_of_excercise = ""
             self.str_add_journal_notable_events = ""
         }
-        print(self.str_add_journal_bp as Any)
+        /*print(self.str_add_journal_bp as Any)
         print(self.str_add_journal_weight as Any)
         print(self.str_add_journal_minute_of_excercise as Any)
-        print(self.str_add_journal_notable_events as Any)
+        print(self.str_add_journal_notable_events as Any)*/
         
         // #2 ONSET
         if let data_onset = UserDefaults.standard.value(forKey: "key_save_onset") as? [String:Any] {
@@ -234,9 +235,9 @@ class actions: UIViewController {
     }
     
     @objc func send_data_to_server() {
-        if (self.txt_medication.text!) == "" {
+        /*if (self.txt_medication.text!) == "" {
             return
-        }
+        }*/
         self.send_now_WB()
     }
     
@@ -282,6 +283,8 @@ class actions: UIViewController {
                     "scale":String(self.str_severity),
                     "about_event":String(self.str_timing),
                     "event_action":String(self.str_server_value),
+                    
+                    "Date_time":Date.get_current_date_and_time()
                 ]
                 
                 
