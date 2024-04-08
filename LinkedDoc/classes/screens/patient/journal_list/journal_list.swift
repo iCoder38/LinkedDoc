@@ -244,7 +244,30 @@ extension journal_list: UITableViewDataSource , UITableViewDelegate {
         
         let item = self.arrListOfAppointment[indexPath.row] as? [String:Any]
         print(item as Any)
-        cell.lbl_title.text = (item!["created"] as! String)+" - Health Journal"
+        
+        if (item!["Date_time"] as! String) == "" {
+            cell.lbl_title.text = (item!["created"] as! String)+" - Health Journal"
+        } else {
+            
+            
+            let separate_time_from_converted_date_2 = (item!["Date_time"] as! String).components(separatedBy: " ")
+            
+            let first_five = separate_time_from_converted_date_2[1].prefix(5)
+            print(first_five)
+            let one = String(first_five)
+            let dateFormatter_one = DateFormatter()
+            dateFormatter_one.dateFormat = "HH:mm"
+
+            let date_one = dateFormatter_one.date(from: one)
+            dateFormatter_one.dateFormat = "hh:mm a"
+            let Date12_one = dateFormatter_one.string(from: date_one!)
+            print("12 hour formatted Date:",Date12_one)
+            
+            cell.lbl_title.text = String(separate_time_from_converted_date_2[0])+" "+String(Date12_one)+" - Health Journal"
+        }
+        
+        
+        
         
         cell.accessoryType = .disclosureIndicator
         return cell

@@ -130,7 +130,7 @@ extension UITextField {
 extension Date {
     static func get_current_date_and_time() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
         return dateFormatter.string(from: Date())
     }
 }

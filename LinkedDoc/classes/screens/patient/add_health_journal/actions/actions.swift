@@ -272,7 +272,7 @@ class actions: UIViewController {
                     
                     "event_description":String(self.str_onset),
                     
-                    "event_extra":String(self.str_provocation),
+                    "event_extra"   :String(self.str_provocation),
                     
                     "describe_plan_1":String(self.str_dull),
                     "describe_plan_2":String(self.str_constant),
@@ -284,7 +284,7 @@ class actions: UIViewController {
                     "about_event":String(self.str_timing),
                     "event_action":String(self.str_server_value),
                     
-                    "Date_time":Date.get_current_date_and_time()
+                    "Date_time"     :Date.get_current_date_and_time()
                 ]
                 
                 
