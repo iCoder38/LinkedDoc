@@ -149,6 +149,7 @@ class help: UIViewController, MFMailComposeViewControllerDelegate {
                                 merge_support = text_language.help_screen(status: "#04")+": "+String(dict["phone"] as! String)
                                 merge_email = text_language.login_screen(status: "#04")+": "+String(dict["eamil"] as! String)
                                 merge_whatsapp = text_language.help_screen(status: "#03")+": "+String(dict["whatsappNumber"] as! String)
+                                
                                 self.whatsapp = String(dict["whatsappNumber"] as! String)
                                 self.phone = String(dict["phone"] as! String)
                                 self.email = String(dict["eamil"] as! String)
