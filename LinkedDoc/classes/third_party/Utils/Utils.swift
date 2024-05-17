@@ -22,6 +22,7 @@ let your_are_not_auth = "You are not authorize to access the API"
 var default_key_language = "key_select_language"
 var english_language = "en"
 var chinese_language = "ch"
+var spanish_language = "sp"
 
 // AIzaSyBnOBYmGv9Pa5JUgxgw52HzcNe95JWii1c
 // henry 2 : AIzaSyCKxiD73rXP7059hKRTP57egdBxB_NMkIc
