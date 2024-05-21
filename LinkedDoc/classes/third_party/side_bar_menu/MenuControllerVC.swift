@@ -37,7 +37,16 @@ class MenuControllerVC: UIViewController {
                             "刪除帳戶",
                             "登出",
     ]
-    
+    var arr_menu_list_sp = ["panel",
+                            "Editar perfil",
+                            "Editar detalles",
+                            "traducir",
+                            "Cambiar idioma",
+                            "cambiar la contraseña",
+                            "ayuda",
+                            "Borrar cuenta",
+                            "cerrar sesión ",
+    ]
     var arrMenuItemImage = ["home",
                             "edit",
                             "edit",
@@ -298,8 +307,10 @@ extension MenuControllerVC: UITableViewDataSource {
             print(language_select as Any)
             if (language_select == "en") {
                 return self.arr_menu_list_en.count
-            } else {
+            } else if (language_select == "ch") {
                 return self.arr_menu_list_ch.count
+            } else {
+                return self.arr_menu_list_sp.count
             }
             
         }
@@ -317,8 +328,10 @@ extension MenuControllerVC: UITableViewDataSource {
             print(language_select as Any)
             if (language_select == "en") {
                 cell.lblName.text = self.arr_menu_list_en[indexPath.row]
-            } else {
+            } else if (language_select == "ch") {
                 cell.lblName.text = self.arr_menu_list_ch[indexPath.row]
+            } else {
+                cell.lblName.text = self.arr_menu_list_sp[indexPath.row]
             }
         }
         

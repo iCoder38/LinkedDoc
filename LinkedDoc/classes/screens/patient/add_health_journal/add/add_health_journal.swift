@@ -160,6 +160,7 @@ extension add_health_journal: UITableViewDataSource , UITableViewDelegate {
         cell.btn_continue.addTarget(self, action: #selector(continue_click_method), for: .touchUpInside)
         
         cell.btn_skip.addTarget(self, action: #selector(skip_click_method), for: .touchUpInside)
+        cell.btn_skip.setTitle(text_language.on_set_screen(status: "#04"), for: .normal)
         
         return cell
         

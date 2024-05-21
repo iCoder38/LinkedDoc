@@ -792,9 +792,9 @@ var text_translate_down_sp = "lenguaje selectivo:Chino  "
 var text_translate_down_ch = "可選擇語言:西班牙語"
 var text_translate_down_sp = "lenguaje selectivo:español"*/
 
-var text_translate2_up_en = "Native Language: Chinese"
+var text_translate2_up_en = "Selective Language: English"//"Native Language: Chinese"
 var text_translate2_up_ch = "母語:中文"
-var text_translate2_up_sp = "Lengua materna: Chino"
+var text_translate2_up_sp = " lenguaje selectivo: inglés"//"Lengua materna: Chino"
 
 var text_translate2_down_en = "Selective Language: English"
 var text_translate2_down_ch = "可選擇語言:英文"
@@ -2515,7 +2515,7 @@ class text_language: UIViewController {
             } else if (text_language.selected_language_get() == chinese_language) {
                 str_language_prefrence_is = text_field_phone_placeholder_ch
             } else {
-                str_language_prefrence_is = navigation_title_edit_profile_sp
+                str_language_prefrence_is = text_field_phone_placeholder_sp
             }
         }  else  if (status == "#07") {
             if (text_language.selected_language_get() == english_language) {
@@ -2881,7 +2881,7 @@ class text_language: UIViewController {
           } else if (text_language.selected_language_get() == chinese_language) {
               str_language_prefrence_is = text_translate2_down_ch
           } else {
-              str_language_prefrence_is = text_translate2_down_sp
+              str_language_prefrence_is = text_translate3_up_sp
           }
       }
         

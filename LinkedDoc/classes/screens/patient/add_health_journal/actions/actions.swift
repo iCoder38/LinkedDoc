@@ -86,6 +86,7 @@ class actions: UIViewController {
         // get from other's screen
         self.btn_continue.setTitle(text_language.common_screen(status: "add_journal"), for: .normal)
         
+        self.btn_skip.setTitle(text_language.on_set_screen(status: "#04"), for: .normal)
         self.btn_continue.addTarget(self, action: #selector(manage_all_data_to_send_server), for: .touchUpInside)
         self.btn_skip.addTarget(self, action: #selector(manage_all_data_to_send_server), for: .touchUpInside)
     }
@@ -324,7 +325,7 @@ class actions: UIViewController {
                                         alert.addButtons([cancel])
                                         self.present(alert, animated: true)
                                         self.success_message(message: (JSON["msg"] as! String))
-                                    } else {
+                                    } else if (language_select == "ch") {
                                         let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: (JSON["msg_ch"] as! String), style: .alert)
                                         let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel){
                                             _ in
@@ -334,6 +335,16 @@ class actions: UIViewController {
                                         alert.addButtons([cancel])
                                         self.present(alert, animated: true)
                                         self.success_message(message: (JSON["msg_ch"] as! String))
+                                    } else {
+                                        let alert = NewYorkAlertController(title: text_language.common_screen(status: "success"), message: (JSON["msg_sp"] as! String), style: .alert)
+                                        let cancel = NewYorkButton(title: text_language.common_screen(status: "dismiss"), style: .cancel){
+                                            _ in
+                                            let push = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "patient_dashboard_id")
+                                            self.navigationController?.pushViewController(push, animated: true)
+                                        }
+                                        alert.addButtons([cancel])
+                                        self.present(alert, animated: true)
+                                        self.success_message(message: (JSON["msg_sp"] as! String))
                                     }
                                     
                                 }

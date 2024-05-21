@@ -30,8 +30,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "manage_all_data_to_send_server()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "manage_all_data_to_send_server()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "manage_all_data_to_send_server()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "manage_all_data_to_send_server()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "manage_all_data_to_send_server()"
             landmarkType = "7">
          </BreakpointContent>
@@ -135,22 +135,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "61C37086-8B34-42DC-881F-88657A02C01A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "send_now_WB()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7009096D-D8D6-421D-9C1B-D474942B4ABF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -158,8 +142,8 @@
             filePath = "LinkedDoc/classes/screens/patient/add_health_journal/actions/actions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
             landmarkName = "generate_token()"
             landmarkType = "7">
          </BreakpointContent>
@@ -177,22 +161,6 @@
             startingLineNumber = "2415"
             endingLineNumber = "2415"
             landmarkName = "welcome_screen(status:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "176716B2-1A80-4B44-AA55-BDD248E09270"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LinkedDoc/classes/screens/select_language/select_language.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "remember_me()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -225,6 +193,38 @@
             startingLineNumber = "182"
             endingLineNumber = "182"
             landmarkName = "generate_token()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F37B8748-BEDC-4486-99F4-BCDC46764F3B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LinkedDoc/classes/common/language/text_language.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2875"
+            endingLineNumber = "2875"
+            landmarkName = "translate_language_screen(status:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D06745F-269A-4081-A7CF-97F02B277FCB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LinkedDoc/classes/common/language/text_language.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2884"
+            endingLineNumber = "2884"
+            landmarkName = "translate_language_screen(status:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

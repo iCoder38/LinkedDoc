@@ -430,6 +430,7 @@
                         <outlet property="view_eng" destination="tWn-oa-8Az" id="hXQ-SL-NC1"/>
                         <outlet property="view_mid" destination="GED-Ko-mk4" id="Xxk-F0-ONn"/>
                         <outlet property="view_navigation" destination="7LH-K1-2kc" id="eyN-VR-mEV"/>
+                        <outlet property="view_spanish" destination="8gK-6j-vk3" id="egY-Kz-tch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJW-dW-57U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1381,9 +1382,37 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gS9-F6-1KQ">
+                                                    <rect key="frame" x="298" y="8" width="75" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="4UB-mO-73F"/>
+                                                        <constraint firstAttribute="height" constant="27" id="LdS-N8-9Bd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="English">
+                                                        <color key="titleColor" name="AccentColor"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLM-Gd-aHk">
+                                                    <rect key="frame" x="298" y="174" width="75" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="ELQ-MN-fMd"/>
+                                                        <constraint firstAttribute="width" constant="75" id="sl5-Fq-gTP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="English">
+                                                        <color key="titleColor" name="AccentColor"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="gS9-F6-1KQ" firstAttribute="top" secondItem="xNq-CL-qbX" secondAttribute="top" constant="8" id="0BJ-cV-ajJ"/>
+                                                <constraint firstItem="WLM-Gd-aHk" firstAttribute="top" secondItem="kMS-Pe-rRp" secondAttribute="bottom" constant="5" id="2QE-Lc-18V"/>
+                                                <constraint firstAttribute="trailing" secondItem="gS9-F6-1KQ" secondAttribute="trailing" constant="20" symbolic="YES" id="3Rp-oL-Wok"/>
                                                 <constraint firstItem="bur-0G-ddW" firstAttribute="top" secondItem="wny-hr-dxZ" secondAttribute="bottom" constant="8" symbolic="YES" id="4zq-lz-cYz"/>
+                                                <constraint firstItem="WLM-Gd-aHk" firstAttribute="trailing" secondItem="xNq-CL-qbX" secondAttribute="trailingMargin" id="7pj-5Z-Fu3"/>
                                                 <constraint firstItem="wny-hr-dxZ" firstAttribute="leading" secondItem="xNq-CL-qbX" secondAttribute="leadingMargin" id="BoD-Ac-IVW"/>
                                                 <constraint firstItem="0W2-ET-McW" firstAttribute="leading" secondItem="xNq-CL-qbX" secondAttribute="leadingMargin" id="CP8-Lg-2aD"/>
                                                 <constraint firstItem="Ghy-IY-NDQ" firstAttribute="trailing" secondItem="xNq-CL-qbX" secondAttribute="trailingMargin" id="FoI-ug-OAM"/>
@@ -1401,7 +1430,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btn_down" destination="WLM-Gd-aHk" id="sOj-2F-xtp"/>
                                             <outlet property="btn_translate" destination="bur-0G-ddW" id="fTj-ga-79l"/>
+                                            <outlet property="btn_up" destination="gS9-F6-1KQ" id="lFp-lu-8x3"/>
                                             <outlet property="lbl_text_down" destination="Ghy-IY-NDQ" id="YPO-a0-jOD"/>
                                             <outlet property="lbl_text_up" destination="0W2-ET-McW" id="YHN-LU-QM7"/>
                                             <outlet property="txt_view_down" destination="wny-hr-dxZ" id="sKZ-sG-gSd"/>
@@ -1477,7 +1508,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEv-Np-l0b">
-                                <rect key="frame" x="16" y="329" width="361" height="194"/>
+                                <rect key="frame" x="16" y="329" width="361" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select he language to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1b-l8-ngO">
                                         <rect key="frame" x="8" y="8" width="345" height="50"/>
@@ -1566,6 +1597,45 @@
                                             <constraint firstItem="hFs-cz-nBv" firstAttribute="leading" secondItem="0rk-Pf-PxG" secondAttribute="leading" constant="5" id="ig3-9A-5NL"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPU-Zl-R4h">
+                                        <rect key="frame" x="8" y="182" width="345" height="50"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spain" translatesAutoresizingMaskIntoConstraints="NO" id="HHh-FW-oGa">
+                                                <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="efY-DF-rUf"/>
+                                                    <constraint firstAttribute="width" constant="40" id="tyd-3m-PnT"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spanish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGu-ee-Ry7">
+                                                <rect key="frame" x="53" y="6" width="57.666666666666657" height="39"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="39" id="PgV-uw-Xfq"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22T-bm-0ef">
+                                                <rect key="frame" x="307" y="10" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="fvs-44-MWe"/>
+                                                    <constraint firstAttribute="height" constant="30" id="jeD-bn-GjH"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="22T-bm-0ef" firstAttribute="top" secondItem="BPU-Zl-R4h" secondAttribute="top" constant="10" id="cS3-LM-o6r"/>
+                                            <constraint firstItem="LGu-ee-Ry7" firstAttribute="leading" secondItem="HHh-FW-oGa" secondAttribute="trailing" constant="8" symbolic="YES" id="dX1-he-amU"/>
+                                            <constraint firstAttribute="height" constant="50" id="kk9-mH-HiZ"/>
+                                            <constraint firstItem="LGu-ee-Ry7" firstAttribute="top" secondItem="BPU-Zl-R4h" secondAttribute="top" constant="6" id="l7U-S6-kxD"/>
+                                            <constraint firstItem="HHh-FW-oGa" firstAttribute="top" secondItem="BPU-Zl-R4h" secondAttribute="top" constant="5" id="l9N-2q-XC4"/>
+                                            <constraint firstAttribute="trailing" secondItem="22T-bm-0ef" secondAttribute="trailing" constant="8" id="mq8-RG-SyZ"/>
+                                            <constraint firstItem="HHh-FW-oGa" firstAttribute="leading" secondItem="BPU-Zl-R4h" secondAttribute="leading" constant="5" id="oln-eZ-CND"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
@@ -1573,9 +1643,12 @@
                                     <constraint firstAttribute="trailing" secondItem="h1b-l8-ngO" secondAttribute="trailing" constant="8" id="Aef-O4-2xq"/>
                                     <constraint firstAttribute="trailing" secondItem="FLf-Vz-ceZ" secondAttribute="trailing" constant="8" id="Ak9-2j-aqZ"/>
                                     <constraint firstItem="h1b-l8-ngO" firstAttribute="top" secondItem="kEv-Np-l0b" secondAttribute="top" constant="8" id="EQn-fG-q0I"/>
-                                    <constraint firstAttribute="height" constant="194" id="LXy-Xz-bie"/>
+                                    <constraint firstAttribute="height" constant="240" id="LXy-Xz-bie"/>
+                                    <constraint firstAttribute="trailing" secondItem="BPU-Zl-R4h" secondAttribute="trailing" constant="8" id="MdN-5a-3gz"/>
                                     <constraint firstItem="h1b-l8-ngO" firstAttribute="leading" secondItem="kEv-Np-l0b" secondAttribute="leading" constant="8" id="V3p-o2-7tL"/>
                                     <constraint firstItem="FLf-Vz-ceZ" firstAttribute="top" secondItem="h1b-l8-ngO" secondAttribute="bottom" constant="8" symbolic="YES" id="aoA-Lb-FF8"/>
+                                    <constraint firstItem="BPU-Zl-R4h" firstAttribute="leading" secondItem="kEv-Np-l0b" secondAttribute="leading" constant="8" id="bS1-UH-UqW"/>
+                                    <constraint firstItem="BPU-Zl-R4h" firstAttribute="top" secondItem="0rk-Pf-PxG" secondAttribute="bottom" constant="8" symbolic="YES" id="bjm-c1-YtH"/>
                                     <constraint firstItem="0rk-Pf-PxG" firstAttribute="top" secondItem="FLf-Vz-ceZ" secondAttribute="bottom" constant="8" symbolic="YES" id="kaE-Xq-p5Q"/>
                                     <constraint firstAttribute="trailing" secondItem="0rk-Pf-PxG" secondAttribute="trailing" constant="8" id="m6W-GM-0FY"/>
                                     <constraint firstItem="FLf-Vz-ceZ" firstAttribute="leading" secondItem="kEv-Np-l0b" secondAttribute="leading" constant="8" id="rL8-yh-8b0"/>
@@ -1601,7 +1674,7 @@
                             <constraint firstItem="kEv-Np-l0b" firstAttribute="centerX" secondItem="juH-A4-xM4" secondAttribute="centerX" id="Bln-hN-viG"/>
                             <constraint firstItem="EJs-5c-Sxs" firstAttribute="trailing" secondItem="juH-A4-xM4" secondAttribute="trailing" id="Dfc-zG-tNT"/>
                             <constraint firstItem="XOl-U2-2Pe" firstAttribute="bottom" secondItem="juH-A4-xM4" secondAttribute="bottom" id="IVj-W0-aSS"/>
-                            <constraint firstItem="kEv-Np-l0b" firstAttribute="centerY" secondItem="juH-A4-xM4" secondAttribute="centerY" constant="-12.5" id="dsL-fh-rK7"/>
+                            <constraint firstItem="kEv-Np-l0b" firstAttribute="centerY" secondItem="juH-A4-xM4" secondAttribute="centerY" constant="10.5" id="dsL-fh-rK7"/>
                             <constraint firstItem="XOl-U2-2Pe" firstAttribute="leading" secondItem="juH-A4-xM4" secondAttribute="leading" constant="24" id="euR-Xp-viz"/>
                             <constraint firstItem="EJs-5c-Sxs" firstAttribute="leading" secondItem="juH-A4-xM4" secondAttribute="leading" id="oUm-z5-36h"/>
                             <constraint firstItem="juH-A4-xM4" firstAttribute="trailing" secondItem="XOl-U2-2Pe" secondAttribute="trailing" constant="24" id="x5g-XH-a7c"/>
@@ -1613,17 +1686,19 @@
                         <outlet property="btn_chinese" destination="inR-5O-ZWE" id="Clw-Qp-rRA"/>
                         <outlet property="btn_continue" destination="XOl-U2-2Pe" id="RaD-Eo-I2u"/>
                         <outlet property="btn_english" destination="idF-7a-bm6" id="In8-WM-3xX"/>
+                        <outlet property="btn_spanish" destination="22T-bm-0ef" id="G1y-oG-Deu"/>
                         <outlet property="lbl_mid_text" destination="h1b-l8-ngO" id="gkj-ji-G6p"/>
                         <outlet property="lbl_navigation_title" destination="qgu-zf-ZOv" id="nIg-ec-bjL"/>
                         <outlet property="view_chinese" destination="0rk-Pf-PxG" id="Vrf-8n-d3U"/>
                         <outlet property="view_eng" destination="FLf-Vz-ceZ" id="1lQ-gW-e2C"/>
                         <outlet property="view_mid" destination="kEv-Np-l0b" id="da1-HG-vNK"/>
                         <outlet property="view_navigation" destination="EJs-5c-Sxs" id="W3h-FP-Hye"/>
+                        <outlet property="view_spanish" destination="BPU-Zl-R4h" id="2hE-1O-lzd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmt-6A-mbs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10207" y="204"/>
+            <point key="canvasLocation" x="10206.870229007633" y="203.52112676056339"/>
         </scene>
         <!--Change password-->
         <scene sceneID="axM-Vs-Rhr">
@@ -2348,7 +2423,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="8"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="v 0.0.4 | 0">
+                                <state key="normal" title="v 0.0.5 | 0">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -3736,7 +3811,7 @@
                                             <outlet property="lbl_blood_pressure" destination="aMS-EY-ln0" id="hES-YK-mmE"/>
                                             <outlet property="lbl_minute_of_excercise" destination="u0k-TB-3x1" id="ZUZ-MV-e7v"/>
                                             <outlet property="lbl_notable_events" destination="QUc-Cj-HYf" id="bA4-h6-Rgm"/>
-                                            <outlet property="lbl_weight" destination="QUc-Cj-HYf" id="8B7-Uw-pau"/>
+                                            <outlet property="lbl_weight" destination="JAU-do-4nN" id="Gpn-Cw-JVg"/>
                                             <outlet property="txt_BP" destination="FOb-bJ-Kvf" id="xL2-cV-0WQ"/>
                                             <outlet property="txt_minute_of_excercise" destination="chU-jP-wwU" id="Mzc-7k-AkI"/>
                                             <outlet property="txt_notable_event" destination="sDN-NW-q4h" id="5Yx-up-ezP"/>

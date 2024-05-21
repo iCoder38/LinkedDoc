@@ -14,6 +14,9 @@ class translate_language: UIViewController {
     
     var postData:NSMutableData!
     
+    var select_language_up:String! = "en"
+    var select_language_down:String! = "es"
+    
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
             view_navigation.backgroundColor = navigation_color
@@ -102,21 +105,26 @@ class translate_language: UIViewController {
         
         
         let merge_text = "&text="+String(text_to_convert)
+        let from = String(self.select_language_up)
+        let to = String(self.select_language_down)
         
-        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-            print(person)
+        print(from as Any)
+        print(to as Any)
+        
+        // if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            // print(person)
             
-            if (person["role"] as! String) == "Member" {
-                postData = NSMutableData(data: "from=zh-TW".data(using: String.Encoding.utf8)!)
-                postData.append("&to=en".data(using: String.Encoding.utf8)!)
+            //if (person["role"] as! String) == "Member" {
+                postData = NSMutableData(data: "from=\(from)".data(using: String.Encoding.utf8)!)
+        postData.append("&to=\(to)".data(using: String.Encoding.utf8)!)
                 postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-            } else {
+            /*} else {
                 postData = NSMutableData(data: "from=en".data(using: String.Encoding.utf8)!)
-                postData.append("&to=zh-TW".data(using: String.Encoding.utf8)!)
+                postData.append("&to=es".data(using: String.Encoding.utf8)!)
                 postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-            }
+            }*/
             
-        }
+        // }
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate113.p.rapidapi.com/api/v1/translator/text")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
@@ -136,7 +144,7 @@ class translate_language: UIViewController {
                     do {
                         //create json object from data
                         if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                            // print(json)
+                             print(json)
                            
                             cell.txt_view_down.text = (json["trans"] as! String)
                             ERProgressHud.sharedInstance.hide()
@@ -153,6 +161,51 @@ class translate_language: UIViewController {
         dataTask.resume()
         
     }
+    
+    
+    
+    @objc func select_language_up_click() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! translate_language_table_cell
+        
+        let dummyList = ["English","Chinese","Spanish"]
+        
+        RPicker.selectOption(title: "Please select", cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
+             
+            if (selctedText == "English") {
+                self.select_language_up = "en"
+                cell.btn_up.setTitle("English", for: .normal)
+            } else if (selctedText == "Chinese") {
+                self.select_language_up = "zh-CN"
+                cell.btn_up.setTitle("Chinese", for: .normal)
+            } else {
+                self.select_language_up = "es"
+                cell.btn_up.setTitle("Spanish", for: .normal)
+            }
+        }
+    }
+    
+    @objc func select_language_down_click() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! translate_language_table_cell
+        
+        let dummyList = ["English","Chinese","Spanish"]
+        
+        RPicker.selectOption(title: "Please select", cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
+             
+            if (selctedText == "English") {
+                self.select_language_down = "en"
+                cell.btn_down.setTitle("English", for: .normal)
+            } else if (selctedText == "Chinese") {
+                self.select_language_down = "zh-CN"
+                cell.btn_down.setTitle("Chinese", for: .normal)
+            } else {
+                self.select_language_down = "es"
+                cell.btn_down.setTitle("Spanish", for: .normal)
+            }
+        }
+    }
+    
 }
 
 //MARK:- TABLE VIEW -
@@ -178,18 +231,35 @@ extension translate_language: UITableViewDataSource , UITableViewDelegate {
         self.lbl_navigation_title.text = text_language.translate_language_screen(status: "#01")
         cell.btn_translate.setTitle(text_language.translate_language_screen(status: "#02"), for: .normal)
         
-        if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-            print(person as Any)
+        // if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
+            // print(person as Any)
             
-            if person["role"] as! String == "Doctor" {
-                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#03")
-                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#04")
+            // if person["role"] as! String == "Doctor" {
+                cell.lbl_text_up.text = "Lengua materna" //text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_down.text = "lenguaje selectivo" // text_language.translate_language_screen(status: "#04")
+            // } else {
+                // cell.lbl_text_up.text = "Lengua materna" // text_language.translate_language_screen(status: "#05")
+                // cell.lbl_text_down.text = "Selective Language" // text_language.translate_language_screen(status: "#06")
+            // }
+        // }
+        // text_language.translate_language_screen(status: "#04")
+        if let language_select = UserDefaults.standard.string(forKey: default_key_language) {
+            print(language_select as Any)
+            if (language_select == "en") {
+                cell.lbl_text_up.text = "Native language" //text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_down.text = "Selective language" // text_language.translate_language_screen(status: "#04")
+            } else if (language_select == "ch") {
+                cell.lbl_text_up.text = "母語:西班牙語" //text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_down.text = "母語:西班牙語" // text_language.translate_language_screen(status: "#04")
             } else {
-                cell.lbl_text_up.text = text_language.translate_language_screen(status: "#05")
-                cell.lbl_text_down.text = text_language.translate_language_screen(status: "#06")
+                cell.lbl_text_up.text = "Lengua materna" //text_language.translate_language_screen(status: "#03")
+                cell.lbl_text_down.text = "lenguaje selectivo" // text_language.translate_language_screen(status: "#04")
             }
+            
         }
         
+        cell.btn_up.addTarget(self, action: #selector(select_language_up_click), for: .touchUpInside)
+        cell.btn_down.addTarget(self, action: #selector(select_language_down_click), for: .touchUpInside)
         
         cell.btn_translate.addTarget(self, action: #selector(convert_language_click_method), for: .touchUpInside)
         return cell

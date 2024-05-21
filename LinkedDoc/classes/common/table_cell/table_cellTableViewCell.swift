@@ -771,6 +771,17 @@ class translate_language_table_cell : UITableViewCell {
             btn_translate.setTitleColor(.white, for: .normal)
         }
     }
+    
+    @IBOutlet weak var btn_up:UIButton! {
+        didSet {
+            btn_up.setTitle("English", for: .normal)
+        }
+    }
+    @IBOutlet weak var btn_down:UIButton! {
+        didSet {
+            btn_down.setTitle("Spanish", for: .normal)
+        }
+    }
 }
 
 // /* ************** TRANSLATE LANGUAGE ************************ */
