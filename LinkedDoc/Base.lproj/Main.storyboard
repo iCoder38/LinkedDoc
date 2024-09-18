@@ -1311,11 +1311,26 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="arrow.left" catalog="system"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vi2-Qg-CGb">
+                                        <rect key="frame" x="337" y="47" width="48" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="AFX-iU-M5A"/>
+                                            <constraint firstAttribute="width" constant="48" id="eTI-RA-rq7"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="mic.and.signal.meter.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="recordButtonTapped:" destination="aaW-Jy-Y4t" eventType="touchUpInside" id="1BR-ms-g3o"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
+                                    <constraint firstItem="vi2-Qg-CGb" firstAttribute="top" secondItem="Hzf-nZ-XJT" secondAttribute="top" constant="47" id="2df-Tz-qNj"/>
                                     <constraint firstAttribute="trailing" secondItem="r2E-Sl-ZLa" secondAttribute="trailing" constant="51" id="5ED-oS-Kf3"/>
                                     <constraint firstItem="dDm-5F-KOX" firstAttribute="leading" secondItem="Hzf-nZ-XJT" secondAttribute="leading" id="7hh-Gg-32c"/>
+                                    <constraint firstAttribute="trailing" secondItem="vi2-Qg-CGb" secondAttribute="trailing" constant="8" id="OKf-8V-5uX"/>
                                     <constraint firstAttribute="bottom" secondItem="dDm-5F-KOX" secondAttribute="bottom" constant="1" id="ScY-x8-b1t"/>
                                     <constraint firstAttribute="bottom" secondItem="r2E-Sl-ZLa" secondAttribute="bottom" constant="8" id="Z8q-IO-2RT"/>
                                     <constraint firstItem="r2E-Sl-ZLa" firstAttribute="leading" secondItem="Hzf-nZ-XJT" secondAttribute="leading" constant="50" id="qPj-VI-Ank"/>
@@ -1458,6 +1473,7 @@
                     <connections>
                         <outlet property="btn_back" destination="dDm-5F-KOX" id="avw-YR-EPA"/>
                         <outlet property="lbl_navigation_title" destination="r2E-Sl-ZLa" id="qcX-ta-C4Z"/>
+                        <outlet property="recordButton" destination="vi2-Qg-CGb" id="E8X-bz-Az4"/>
                         <outlet property="tble_view" destination="agd-PV-NvF" id="zZz-Ah-eD1"/>
                         <outlet property="view_navigation" destination="Hzf-nZ-XJT" id="S9r-cb-A2d"/>
                     </connections>
@@ -5904,6 +5920,7 @@ in your registered email ID to reset new  password</string>
         <image name="lock" catalog="system" width="125" height="128"/>
         <image name="logo" width="797" height="745"/>
         <image name="menuWhite" width="128" height="128"/>
+        <image name="mic.and.signal.meter.fill" catalog="system" width="128" height="118"/>
         <image name="password(1)" width="512" height="512"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>

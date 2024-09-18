@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>LinkedDoc would like to access to speech recognition for converting speech to text</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -22,7 +24,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>LinkedDoc would like toh access your Camera to Upload Upload profile picture.</string>
+	<string>LinkedDoc would like to access your Camera to Upload Upload profile picture.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LinkedDoc would like to  access to your microphone for recording speech</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>LinkedDoc would like toh access your Gallery to Upload profile picture.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

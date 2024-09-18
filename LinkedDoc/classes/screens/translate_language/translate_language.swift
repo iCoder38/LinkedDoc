@@ -7,15 +7,28 @@
 
 import UIKit
 import Foundation
+import Speech
 
-class translate_language: UIViewController {
-
+class translate_language: UIViewController, SFSpeechRecognizerDelegate {
+    
     var str_back_menu:String!
     
     var postData:NSMutableData!
     
     var select_language_up:String! = "en"
     var select_language_down:String! = "es"
+    
+    //record
+    @IBOutlet weak var recordButton: UIButton! {
+        didSet {
+            recordButton.setImage(UIImage(systemName: "mic"), for: .normal)
+        }
+    }
+    
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
     
     @IBOutlet weak var view_navigation:UIView! {
         didSet {
@@ -52,7 +65,7 @@ class translate_language: UIViewController {
         
         if (self.str_back_menu == "back") {
             self.btn_back.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-            self.btn_back.addTarget(self, action: #selector(back_click_method), for: .touchUpInside)
+            self.btn_back.addTarget(self, action: #selector(back_click_method1), for: .touchUpInside)
         } else {
             self.btn_back.setImage(UIImage(systemName: "list.dash"), for: .normal)
             self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -62,8 +75,36 @@ class translate_language: UIViewController {
         
         
         
+        self.initMic()
         
-        
+    }
+    
+    @objc func back_click_method1() {
+        audioEngine.stop()
+        recognitionRequest?.endAudio()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func initMic() {
+        speechRecognizer.delegate = self
+        recordButton.isEnabled = false
+        requestSpeechAuthorization()
+    }
+    
+    // Request Speech Authorization
+    func requestSpeechAuthorization() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            OperationQueue.main.addOperation {
+                switch authStatus {
+                case .authorized:
+                    self.recordButton.isEnabled = true
+                case .denied, .restricted, .notDetermined:
+                    self.recordButton.isEnabled = false
+                @unknown default:
+                    fatalError()
+                }
+            }
+        }
     }
     
     @objc func sideBarMenuClick2() {
@@ -100,7 +141,7 @@ class translate_language: UIViewController {
             "X-RapidAPI-Key": String(str_rapid_api_key),
             "X-RapidAPI-Host": "google-translate113.p.rapidapi.com"
         ]
-
+        
         
         
         
@@ -112,27 +153,27 @@ class translate_language: UIViewController {
         print(to as Any)
         
         // if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-            // print(person)
-            
-            //if (person["role"] as! String) == "Member" {
-                postData = NSMutableData(data: "from=\(from)".data(using: String.Encoding.utf8)!)
+        // print(person)
+        
+        //if (person["role"] as! String) == "Member" {
+        postData = NSMutableData(data: "from=\(from)".data(using: String.Encoding.utf8)!)
         postData.append("&to=\(to)".data(using: String.Encoding.utf8)!)
-                postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-            /*} else {
-                postData = NSMutableData(data: "from=en".data(using: String.Encoding.utf8)!)
-                postData.append("&to=es".data(using: String.Encoding.utf8)!)
-                postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-            }*/
-            
+        postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
+        /*} else {
+         postData = NSMutableData(data: "from=en".data(using: String.Encoding.utf8)!)
+         postData.append("&to=es".data(using: String.Encoding.utf8)!)
+         postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
+         }*/
+        
         // }
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate113.p.rapidapi.com/api/v1/translator/text")! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 10.0)
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers
         request.httpBody = postData as Data
-
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
@@ -144,8 +185,8 @@ class translate_language: UIViewController {
                     do {
                         //create json object from data
                         if let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any] {
-                             print(json)
-                           
+                            print(json)
+                            
                             cell.txt_view_down.text = (json["trans"] as! String)
                             ERProgressHud.sharedInstance.hide()
                             
@@ -157,7 +198,7 @@ class translate_language: UIViewController {
                 }
             }
         })
-
+        
         dataTask.resume()
         
     }
@@ -171,7 +212,7 @@ class translate_language: UIViewController {
         let dummyList = ["English","Chinese","Spanish"]
         
         RPicker.selectOption(title: "Please select", cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
-             
+            
             if (selctedText == "English") {
                 self.select_language_up = "en"
                 cell.btn_up.setTitle("English", for: .normal)
@@ -192,7 +233,7 @@ class translate_language: UIViewController {
         let dummyList = ["English","Chinese","Spanish"]
         
         RPicker.selectOption(title: "Please select", cancelText: text_language.common_screen(status: "dismiss"), dataArray: dummyList, selectedIndex: 0) { (selctedText, atIndex) in
-             
+            
             if (selctedText == "English") {
                 self.select_language_down = "en"
                 cell.btn_down.setTitle("English", for: .normal)
@@ -206,6 +247,74 @@ class translate_language: UIViewController {
         }
     }
     
+    
+    // mic
+    // Start recording and speech recognition
+    @IBAction func recordButtonTapped(_ sender: UIButton) {
+        if audioEngine.isRunning {
+            debugPrint("start")
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            recordButton.setTitle("", for: .normal)
+            recordButton.setImage(UIImage(systemName: "mic"), for: .normal)
+        } else {
+            debugPrint("stop")
+            recordButton.setImage(UIImage(systemName: "mic.and.signal.meter.fill"), for: .normal)
+            startRecording()
+            recordButton.setTitle("", for: .normal)
+        }
+    }
+    
+    func startRecording() {
+        let indexPath = IndexPath.init(row: 0, section: 0)
+        let cell = self.tble_view.cellForRow(at: indexPath) as! translate_language_table_cell
+        
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try! audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let inputNode = audioEngine.inputNode
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to create a recognition request.")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            var isFinal = false
+            
+            if let result = result {
+                cell.txt_view_up.text = result.bestTranscription.formattedString
+                isFinal = result.isFinal
+            }
+            
+            if error != nil || isFinal {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                self.recordButton.isEnabled = true
+            }
+        }
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        try! audioEngine.start()
+        
+        cell.txt_view_up.text = "Say something, I'm listening!"
+    }
 }
 
 //MARK:- TABLE VIEW -
