@@ -25,7 +25,9 @@ class translate_language: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    var strStoreUserSelectLanguage:String! = "en-US"
+    
+    private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
@@ -142,30 +144,16 @@ class translate_language: UIViewController, SFSpeechRecognizerDelegate {
             "X-RapidAPI-Host": "google-translate113.p.rapidapi.com"
         ]
         
-        
-        
-        
         let merge_text = "&text="+String(text_to_convert)
         let from = String(self.select_language_up)
         let to = String(self.select_language_down)
         
         print(from as Any)
         print(to as Any)
-        
-        // if let person = UserDefaults.standard.value(forKey: str_save_login_user_data) as? [String:Any] {
-        // print(person)
-        
-        //if (person["role"] as! String) == "Member" {
+           
         postData = NSMutableData(data: "from=\(from)".data(using: String.Encoding.utf8)!)
         postData.append("&to=\(to)".data(using: String.Encoding.utf8)!)
         postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-        /*} else {
-         postData = NSMutableData(data: "from=en".data(using: String.Encoding.utf8)!)
-         postData.append("&to=es".data(using: String.Encoding.utf8)!)
-         postData.append("\(merge_text)".data(using: String.Encoding.utf8)!)
-         }*/
-        
-        // }
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://google-translate113.p.rapidapi.com/api/v1/translator/text")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
@@ -216,12 +204,19 @@ class translate_language: UIViewController, SFSpeechRecognizerDelegate {
             if (selctedText == "English") {
                 self.select_language_up = "en"
                 cell.btn_up.setTitle("English", for: .normal)
+                self.strStoreUserSelectLanguage = "en-US"
+                self.speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))! // English
+                
             } else if (selctedText == "Chinese") {
                 self.select_language_up = "zh-CN"
                 cell.btn_up.setTitle("Chinese", for: .normal)
+                self.strStoreUserSelectLanguage = "zh-CN"
+                self.speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "zh-CN"))!
             } else {
                 self.select_language_up = "es"
                 cell.btn_up.setTitle("Spanish", for: .normal)
+                self.strStoreUserSelectLanguage = "es-ES"
+                self.speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-ES"))! // Spanish
             }
         }
     }
@@ -284,6 +279,8 @@ class translate_language: UIViewController, SFSpeechRecognizerDelegate {
         guard let recognitionRequest = recognitionRequest else {
             fatalError("Unable to create a recognition request.")
         }
+        
+        print(self.speechRecognizer);
         
         recognitionRequest.shouldReportPartialResults = true
         

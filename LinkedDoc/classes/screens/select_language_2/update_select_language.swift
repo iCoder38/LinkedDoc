@@ -14,6 +14,7 @@ class update_select_language: UIViewController {
             view_navigation.backgroundColor = navigation_color
         }
     }
+    
     @IBOutlet weak var lbl_navigation_title:UILabel! {
         didSet {
              
@@ -39,18 +40,21 @@ class update_select_language: UIViewController {
             view_eng.clipsToBounds = true
         }
     }
+    
     @IBOutlet weak var view_chinese:UIView!  {
         didSet {
             view_chinese.layer.cornerRadius = 12
             view_chinese.clipsToBounds = true
         }
     }
+    
     @IBOutlet weak var view_spanish:UIView!  {
         didSet {
             view_spanish.layer.cornerRadius = 12
             view_spanish.clipsToBounds = true
         }
     }
+    
     @IBOutlet weak var lbl_mid_text:UILabel! {
         didSet {
             lbl_mid_text.text = "select the language to \ncontinue"

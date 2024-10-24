@@ -167,10 +167,10 @@ class doctor_details: UIViewController {
                                         // print(dict_opening_hour["weekday_text"] as Any)
                                         
                                         ////////////////////////////////////////////////////////////////////////////////////////
-                                        // weekday text
+                                        // weekday text //
                                         ////////////////////////////////////////////////////////////////////////////////////////
                                         var ar : NSArray!
-                                        if (dict_opening_hour["weekday_text"] == nil){
+                                        if (dict_opening_hour["weekday_text"] == nil) {
                                             self.str_days_timings = String("N.A.")
                                         } else {
                                             ar = (dict_opening_hour["weekday_text"] as! Array<Any>) as NSArray
@@ -242,12 +242,6 @@ class doctor_details: UIViewController {
                                     // print(self.arr_all_photos as Any)
                                     // print(self.arr_all_photos.count as Any)
                                     
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
                                     self.arr_title = [
                                         text_language.doctors_details_screen(status: "#01"),
                                         text_language.doctors_details_screen(status: "#02"),
@@ -285,6 +279,7 @@ class doctor_details: UIViewController {
                 };
                 task.resume()
     }
+    
     func getString(array : [String]) -> String {
             let stringArray = array.map{ String($0) }
             return stringArray.joined(separator: ",")
